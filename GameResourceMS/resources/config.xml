@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<item>
+		<system_name>GameResourceMS</system_name>
+		<!-- 工程根目录 -->
+		<system_root>E:\eclipseJavaEEworkspace\GameResourceMS\WebContent\</system_root>
+		<title_name>游戏资源集散论坛</title_name>
+		
+		<!-- 各类资源的根路径 -->
+		<image_path>http://localhost:8080/GameResourceMS</image_path>
+		<css_path>http://localhost:8080/GameResourceMS</css_path>
+		<javascript_path>http://localhost:8080/GameResourceMS</javascript_path>
+		
+		<!-- 数据库用户名 -->
+		<database_username>Penistrong</database_username>
+		
+		<!-- 超级管理员用户名 -->
+		<administrator>Penistrong</administrator>
+	</item>
+</configuration>

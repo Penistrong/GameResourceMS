@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<loginServer>http://localhost:8080/GameResourceMS</loginServer>
+	<validateServer>http://localhost:8080/GameResourceMS</validateServer>
+	
+	<!-- 客户端服务器地址 -->
+	<serverName>http://localhost:8080</serverName>
+	
+	<!-- 不过滤的url特征 -->
+	<notForceAuthUrls>
+	 	<!-- 请求不同类型的资源文件 -->
+		<url-pattern>\.js$</url-pattern>
+		<url-pattern>\.xml$</url-pattern>
+		<url-pattern>\.gif$</url-pattern>
+		<url-pattern>\.jpg$</url-pattern>
+		<url-pattern>\.bmp$</url-pattern>
+		<url-pattern>\.png$</url-pattern>
+		<url-pattern>\.css$</url-pattern>
+		<url-pattern>\.swf$</url-pattern>
+		<url-pattern>\.html.*</url-pattern>
+		<!-- 公开地址 -->
+		<url-pattern><![CDATA[.*/500]]></url-pattern>
+		<url-pattern><![CDATA[.*/404]]></url-pattern>
+		<url-pattern><![CDATA[.*/403]]></url-pattern>
+		<url-pattern><![CDATA[.*/register]]></url-pattern>
+		<url-pattern><![CDATA[.*/aboutMe]]></url-pattern>
+	</notForceAuthUrls>
+</config>

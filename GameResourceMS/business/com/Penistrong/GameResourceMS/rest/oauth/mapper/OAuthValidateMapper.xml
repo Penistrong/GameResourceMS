@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.Penistrong.GameResourceMS.rest.oauth.mapper.OAuthValidateMapper">
+	
+	<!-- 获取客户端信息 -->
+	<select id="getURIByAppId">
+		SELECT a.CLIENT_ID,a.CLIENT_SECRET,a.REDIRECT_URI,a.RESOURCE_ID
+		  FROM sys_oauth_client a
+		 WHERE a.CLIENT_ID = #{client_id}
+	</select>
+	
+	<!-- 将code插入数据库 -->
+	<insert id="addAppCode">
+		insert into sys_oauth_code (RESOURCE_ID, CLIENT_ID, CODE, CREATE_TIMESTAMP, CREATE_TIME)
+		values(#{resource_id,jdbcType=VARCHAR},#{client_id,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{create_timestamp,jdbcType=VARCHAR}
+			<![CDATA[
+				<mysql> now() </mysql>
+				<oracle> sysdate </oracle>
+			]]>
+		)
+	</insert>
+	
+	<!-- 获取客户端详细信息 -->
+	<select id="getAppDetail" resultType="map">
+		SELECT a.CLIENT_ID, a.CLIENT_SECRET, a.REDIRECT_URI, a.RESOURCE_ID, b.CODE, b.CREATE_TIMESTAMP
+		  FROM sys_oauth_client a
+		  JOIN sys_oauth_code b on b.client_id = a.client_id
+		 WHERE b.status = 1
+		   AND a.CLIENT_ID = #{client_id}
+		 ORDER BY b.CREATE_TIME desc  
+	</select>
+	
+	<!-- 使用一次后更改code的状态值 -->
+	<update id="updateCodeStatus">
+		update sys_oauth_code
+		   set status = '-1'
+		 where code = #{code}
+	</update>
+	
+	<!-- 将access_token插入数据库 -->
+	<insert id="addAccessToken">
+		insert into sys_oauth_token(RESOURCE_ID,CLIENT_ID,ACCESS_TOKEN,REFRESH_TOKEN,EXPIRES_IN,CREATE_TIMESTAMP,CREATE_TIME)
+		values(#{resource_id,jdbcType=VARCHAR},#{client_id,jdbcType=VARCHAR},#{access_token,jdbcType=VARCHAR},#{refresh_token,jdbcType=VARCHAR},#{expires_in,jdbcType=VARCHAR},#{create_timestamp,jdbcType=VARCHAR}
+			<![CDATA[
+			<mysql> now() </mysql>
+			<oracle> sysdate </oracle>
+			]]>
+		)
+	</insert>
+	
+	<!-- 获取token信息 -->
+	<select id="getAccessToken" resultType="map">
+		SELECT a.CLIENT_ID, a.ACCESS_TOKEN, a.REFRESH_TOKEN, a.EXPIRES_IN, a.CREATE_TIMESTAMP
+		  FROM sys_oauth_token a
+		 WHERE a.ACCESS_TOKEN = #{access_token}
+	</select>
+</mapper>

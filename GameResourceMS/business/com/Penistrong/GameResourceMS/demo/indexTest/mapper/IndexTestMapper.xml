@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.Penistrong.GameResourceMS.demo.indexTest.mapper.IndexTestMapper">
+	
+	<select id="getTestList">
+		SELECT DISTINCT
+			p.RESOURCE_ID,
+			p.USER_ID,
+			p.USER_NAME,
+			p.PHONE
+		FROM DEMO_INDEX_TEST p
+		WHERE 1 = 1
+		<if test=" USER_ID !='' and USER_ID != null ">
+		AND p.USER_ID = #{USER_ID}
+		</if>
+		<if test=" USER_NAME !='' and USER_NAME != null ">
+		AND p.USER_NAME = #{USER_NAME}
+		</if>
+		<if test=" PHONE !='' and PHONE != null ">
+		AND p.PHONE = #{PHONE}
+		</if>
+	</select>
+	
+	<insert id="addTest">
+		INSERT INTO
+			DEMO_INDEX_TEST
+			(RESOURCE_ID,USER_ID,USER_NAME,PHONE,CREATE_USER,CREATE_TIME,MODIFY_USER,MODIFY_TIME)
+			VALUES(#{RESOURCE_ID},#{USER_ID},#{USER_NAME},#{PHONE},#{CREATE_USER},#{CREATE_TIME},#{MODIFY_USER},#{MODIFY_TIME})
+	</insert>
+	
+	<update id="updateTest">
+		UPDATE DEMO_INDEX_TEST SET 
+			USER_ID = #{USER_ID},
+			USER_NAME = #{USER_NAME},
+			PHONE = #{PHONE}
+			CREATE_USER = #{CREATE_USER}
+			CREATE_TIME = #{CREATE_TIME}
+			MODIFY_USER = #{MODIFY_USER}
+			MODIFY_TIME = #{MODIFY_TIME}
+		WHERE RESOURCE_ID = #{RESOURCE_ID}
+	</update>
+	
+	<delete id="deleteTest">
+		DELETE FROM DEMO_INDEX_TEST WHERE RESOURCE_ID = #{RESOURCE_ID}
+	</delete>
+</mapper>

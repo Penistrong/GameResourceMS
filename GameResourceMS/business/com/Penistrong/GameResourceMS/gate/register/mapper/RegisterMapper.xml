@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Penistrong.GameResourceMS.gate.register.mapper.RegisterMapper">
+	<!-- 查询库中是否存在同ID或同名用户 -->
+	<select id="is_user_existed" resultType="com.Penistrong.GameResourceMS.po.User">
+		SELECT *
+		  FROM user_accounts
+		 WHERE USER_ID = #{user_id}
+		   OR USER_NAME = #{user_name}
+	</select>
+	
+	<!-- 新建用户并注册 -->
+	<insert id="register">
+		INSERT INTO
+			   user_accounts
+		(RESOURCE_ID,USER_ID,USER_NAME,PASSWORD,USER_TYPE,LEVEL,EXP,COINS,POSTS,AUTHENTICATION,IDENTITY,CREATE_USER,CREATE_TIME,MODIFY_USER,MODIFY_TIME)
+		VALUES
+		(#{resource_id},#{user_id},#{user_name},#{password},#{user_type},#{level},#{exp},#{coins},#{posts},#{authentication},#{identity},#{create_user},#{create_time},#{modify_user},#{modify_time})
+	</insert>
+	
+	<!-- 设置新用户的头像等特殊信息 -->
+	<insert id="setmoreinfos">
+		INSERT INTO
+		 	   user_moreinfos
+		(RESOURCE_ID,USER_ID,PORTRAIT_NAME,UPLOAD_TIME)
+		VALUES
+		(#{resource_id},#{user_id},#{portrait_name},#{upload_time})
+	</insert>
+</mapper>

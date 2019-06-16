@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Penistrong.GameResourceMS.admin.mapper.AdminMapper">
+
+	<select id="getAdminInfo" resultType="java.util.Map">
+		SELECT DISTINCT 
+		  FROM admin_info
+		 WHERE admin_id = #{admin_id} 
+		   AND admin_password = #{admin_password} 
+	</select>
+	
+	<update id="updateAdminInfo">
+		UPDATE admin_info
+		   SET <if test="changed_password != null and changed_password != ''">
+		   	   		admin_password = #{changed_password},
+		   	   </if>
+		   	   <if test="last_querytime != null and last_querytime != ''">
+		   	   		last_querytime = #{last_querytime}
+		   	   </if>
+		 WHERE admin_id = #{admin_id}
+		   AND admin_password = #{admin_password}
+	</update>
+	
+	<select id="getUserInfo" resultType="java.util.Map">
+		SELECT t.resource_id,
+			   t.user_id,
+			   t.user_name,
+			   t.user_type,
+			   t.level,
+			   t.exp,
+			   t.coins,
+			   t.posts,
+			   t.authentication,
+			   t.identity,
+			   t.create_time,
+			   t.modify_time,
+			   b.portrait_name,
+			   b.upload_time
+		  FROM user_accounts t
+	 LEFT JOIN user_moreinfos b
+	        ON t.resource_id = b.resource_id
+	  ORDER BY t.modify_time DESC
+	</select>
+	
+	<update id="updateUserInfo">
+		UPDATE user_accounts
+		   SET user_type = #{user_type},
+		   	   identity = #{identity}
+		 WHERE user_id = #{user_id}
+		   AND resource_id = #{resource_id}
+	</update>
+</mapper>

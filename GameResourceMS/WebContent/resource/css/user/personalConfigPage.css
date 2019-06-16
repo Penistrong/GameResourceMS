@@ -1,0 +1,35 @@
+body{position:relative;}
+
+ul.nav-pills{
+	top:80px;
+	position:fixed;
+}
+
+div.col-md-9 div{
+	height:250px;
+	font-size:28px;
+}
+
+div#user_info{
+	background-color:#00bcd4;
+}
+
+div#introduction_Section{
+	background-color:#D9D919;
+}
+
+@media screen and(max-width:810px){
+	#userName_Section,#portrait_Section,#personalInfo-user_type,#personalInfo-level,#personalInfo-coins_posts,#introduction_Section{
+		margin-left:150px;
+	}
+}
+
+img#nav-portrait{
+	width:50px;
+	height:50px;
+}
+
+img#portrait{
+	width:100px;
+	height:100px;
+}
