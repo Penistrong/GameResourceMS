@@ -50,15 +50,15 @@
   	<!-- 访问出现问题时出现的error-page -->
   	<error-page>
   		<error-code>403</error-code>
-  		<location>/403</location>
+  		<location>/WEB-INF/view/error_report/403.jsp</location>
   	</error-page>
    	<error-page>
     	<error-code>404</error-code>
-    	<location>/404</location>
+    	<location>/WEB-INF/view/error_report/404.jsp</location>
   	</error-page>
  	<error-page>
     	<error-code>500</error-code>
-    	<location>/500</location>
+    	<location>/WEB-INF/view/error_report/500.jsp</location>
   	</error-page>
 
 </web-app>
