@@ -22,6 +22,7 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/data.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/series-label.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/oldie.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/themes/sand-signika.js"></script>
 </head>
 <body>
 	<!-- 导航栏 -->

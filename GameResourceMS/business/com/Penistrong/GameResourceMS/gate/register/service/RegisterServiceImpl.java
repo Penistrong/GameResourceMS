@@ -24,6 +24,7 @@ public class RegisterServiceImpl extends BaseServiceImpl<RegisterMapper, Map<Str
 
 	@Override
 	public boolean Register(Map<String, Object> map) {
+		//for table user_accounts
 		map.put("mapping", "register");
 		map.put("resource_id",UtilTools.getUUID());
 		map.put("user_type", "normal");
@@ -41,20 +42,26 @@ public class RegisterServiceImpl extends BaseServiceImpl<RegisterMapper, Map<Str
 		String sql = String.format("%s%s", new Object[] {this.sqlMapping,map.get("mapping").toString()});
 		this.logger.debug("Execute {} params : {}", sql, map);
 		
-		Map<String,Object> extend_map = new HashMap<String,Object>();
-		extend_map.put("resource_id", map.get("resource_id"));
-		extend_map.put("user_id", map.get("user_id"));
-		extend_map.put("portrait_name", "common_portrait.png");
+		//for table user_moreinfos
+		map.put("portrait_name", "common_portrait.png");
 		try {
-			extend_map.put("upload_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2000-01-01 00:00:00"));
+			map.put("upload_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2000-01-01 00:00:00"));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String extend_sql = String.format("%s%s", new Object[] {this.sqlMapping,"setmoreinfos"});
-		this.logger.debug("Execute {} params : {}",extend_sql,extend_map);
+		this.logger.debug("Execute {} params : {}",extend_sql, map);
 		
-		return this.sqlSessionTemplate.insert(sql, map)>0&&this.sqlSessionTemplate.insert(extend_sql, extend_map)>0?true:false;
+		//for table user_megadata
+		map.put("pv", 0);
+		map.put("uv", 0);
+		map.put("exdau",0);
+		map.put("KPI", 0);
+		String statistics_sql = String.format("%s%s", new Object[] {this.sqlMapping, "setmegadata"});
+		this.logger.debug("Execute {} params: {}", statistics_sql, map);
+		
+		return this.sqlSessionTemplate.insert(sql, map)>0&&this.sqlSessionTemplate.insert(extend_sql, map)>0&&this.sqlSessionTemplate.insert(statistics_sql, map)>0?true:false;
 	}
 
 	@Override

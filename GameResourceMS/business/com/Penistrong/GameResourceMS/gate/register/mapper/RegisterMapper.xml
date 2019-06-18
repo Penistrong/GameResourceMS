@@ -26,4 +26,13 @@
 		VALUES
 		(#{resource_id},#{user_id},#{portrait_name},#{upload_time})
 	</insert>
+	
+	<!-- 设置新用户的统计大数据信息 -->
+	<insert id="setmegadata">
+		INSERT 	INTO
+				user_megadata
+		(RESOURCE_ID,USER_ID,PV,UV,EXDAU,KPI)
+		VALUES
+		(#{resource_id},#{user_id},#{pv},#{uv},#{exdau},#{KPI})
+	</insert>
 </mapper>

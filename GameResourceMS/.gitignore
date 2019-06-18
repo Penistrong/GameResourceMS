@@ -1,1 +1,11 @@
 /build/
+
+#eclipse files
+.project
+.classpath
+
+#project context
+applicationContext.xml
+config.xml
+mybatis-config.xml
+springmvc.xml

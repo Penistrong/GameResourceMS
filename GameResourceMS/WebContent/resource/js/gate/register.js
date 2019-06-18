@@ -19,13 +19,13 @@ $(document).ready(function(){
 					loadingConcreteTable(data.user_id,data.user_name);
 				}else{
 					if(data.error_msg=="the ID has been registered!"){
-						$("#user_id").attr({value:"",placeholer:data.error_msg});
+						$("#user_id").prop({value:"",placeholer:data.error_msg});
 					}else if(data.error_msg=="the Name has been registered!"){
-						$("#user_name").attr({value:"",placeholder:data.error_msg});
+						$("#user_name").prop({value:"",placeholder:data.error_msg});
 					}else if(data.error_msg=="both have been occupied"){
 						alert(data.error_msg);
-						$("#user_id").attr("value","");
-						$("#user_name").attr("value","");
+						$("#user_id").prop("value","");
+						$("#user_name").prop("value","");
 					}
 				}
 			},
@@ -37,7 +37,8 @@ $(document).ready(function(){
 })
 
 $(document).ready(function(){	
-	$("#register_button_2").live('click',function(){
+	$("#register_table").on('click','#register_button_2',function(){
+		alert("注册被点击");
 		var password = $("#password").val();
 		var re_password = $("#re_password").val();
 		var user_id_ready = $("#user_id_ready").text();
@@ -67,10 +68,11 @@ var user_name_Reg = /^[^]{2,7}$/
 	
 function ID_Name_validation(user_id,user_name){
 	if(user_id_Reg.test(user_id)==false){
-		$("#user_id").attr({value:"",placeholder:"请输入邮箱或手机号!"});
+		alert("id验证失败");
+		$("#user_id").prop({value:"",placeholder:"请输入邮箱或手机号!"});
 		return false;
 	}else if(user_name_Reg.test(user_name)==false){
-		$("#user_name").attr({value:"",placeholder:"名字仅有2到7位!"});
+		$("#user_name").prop({value:"",placeholder:"名字仅有2到7位!"});
 		return false;
 	}
 	return true;
@@ -80,11 +82,11 @@ function password_validation(password,re_password){
 	var password_Reg = /^([a-zA-Z]+[0-9]+[.!@#$%^&*]+)|([a-zA-Z]+[.!@#$%^&*]+[0-9]+)|([0-9]+[.!@#$%^&*]+[a-zA-Z]+)|([0-9]+[a-zA-Z]+[.!@#$%^&*]+)|([.!@#$%^&*]+[a-zA-Z]+[0-9]+)|([.!@#$%^&*]+[0-9]+[a-zA-Z]+)$/;
 
 	if(!password_Reg.test(password)){
-		$("#password").attr({value:"",placeholder:"仅支持字母数字标点的组合"});
-		$("#re_password").attr("value","");
+		$("#password").prop({value:"",placeholder:"仅支持字母数字标点的组合"});
+		$("#re_password").prop("value","");
 		return false;
 	}else if(password!=re_password){
-		$("#re_password").attr({value:"",placeholder:"密码不一致,请重新输入!"});
+		$("#re_password").prop({value:"",placeholder:"密码不一致,请重新输入!"});
 		return false;
 	}
 	

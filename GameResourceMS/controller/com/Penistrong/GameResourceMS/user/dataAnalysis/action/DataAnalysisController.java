@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.Penistrong.GameResourceMS.base.action.BaseAction;
 import com.Penistrong.GameResourceMS.user.dataAnalysis.service.DataAnalysisService;
 import com.Penistrong.GameResourceMS.po.CurrentUser;
+import com.Penistrong.GameResourceMS.po.DetailedUser;
 import com.Penistrong.GameResourceMS.po.User;
 
 /**
@@ -32,14 +33,13 @@ public class DataAnalysisController extends BaseAction<DataAnalysisService<Map<S
 		return "user/dataAnalysis";
 	}
 	
-	//将用户信息打包成需要的CSV数据，返还给前端highcharts进行处理
+	//将用户信息打包成需要的JSON数据，返还给前端highcharts模块进行处理
 	@ResponseBody
-	@RequestMapping(value="/getCSV",method=RequestMethod.POST)
-	public Map<String, Object> getCSV(HttpSession session,@RequestBody String user_id,HttpServletRequest request){
+	@RequestMapping(value="/getUserStats",method=RequestMethod.POST)
+	public DetailedUser getUser(HttpSession session, HttpServletRequest request){
 		CurrentUser curUser = (CurrentUser)session.getAttribute("currentUser");
-		//TODO 增加CSV模块
-		Map<String,Object> map = new HashMap<String,Object>();
-		return map;
+		DetailedUser user_stats = this.service.getUserStat(curUser.getResource_id(), curUser.getUser_id());
+		return user_stats;
 	}
 	
 }

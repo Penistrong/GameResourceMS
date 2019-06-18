@@ -13,7 +13,7 @@ $(document).ready(function(){
 			alert('拉取用户信息失败');
 		}
 	})
-	
+	/**
 	$.getJSON("https://data.jianshukeji.com/jsonp?filename=csv/analytics.csv&callback=?",function(csv){
 		//console.log(csv);
 		chart = Highcharts.chart({
@@ -108,11 +108,11 @@ $(document).ready(function(){
 	        	}
 	        }
 		});
-	})
+	})*/
 	
 	$.ajax({
 		type:"post",
-		url:contextpath+"/user/dataAnalysis/getJSON",
+		url:contextpath+"/user/dataAnalysis/getUserStats",
 		dataType:'json',
 		success:function(json){
 			console.log(json);
@@ -131,7 +131,7 @@ $(document).ready(function(){
 					tickWidth: 0,
 					gridLineWidth: 0,
 					labels: {
-						aligh: 'left',
+						align: 'left',
 						x: 3,
 						y: -3,
 					},
