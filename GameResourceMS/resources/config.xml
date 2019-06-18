@@ -3,7 +3,7 @@
 	<item>
 		<system_name>GameResourceMS</system_name>
 		<!-- 工程根目录 -->
-		<system_root>E:\eclipseJavaEEworkspace\GameResourceMS\WebContent\</system_root>
+		<system_root>E:\CodingSpace\GameResourceMS\WebContent\</system_root>
 		<title_name>游戏资源集散论坛</title_name>
 		
 		<!-- 各类资源的根路径 -->

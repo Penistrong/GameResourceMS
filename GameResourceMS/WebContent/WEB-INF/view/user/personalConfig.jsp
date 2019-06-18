@@ -28,14 +28,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span>游戏资源集散论坛-个人资料</a>
+			<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span> 游戏资源集散论坛-个人资料</a>
 			</div>
 			<div class="collapse navbar-collapse" id="example-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
+				<li><a href="<%=context_path%>/user/dataAnalysis"><span class="glyphicon glyphicon-stats"></span> 数据分析</a></li>
 				<li><img id="nav-portrait" class="img-circle"></li>
 				<li><p id="nav-username" class="navbar-text"><%=currentUser.getUser_name() %></p></li>
 				<li><a href="<%=context_path%>/gate/login/logout"><span class="glyphicon glyphicon-log-out"></span>注销</a></li>
-			</ul>
+				</ul>
 			</div>
 		</div>
 	</nav>

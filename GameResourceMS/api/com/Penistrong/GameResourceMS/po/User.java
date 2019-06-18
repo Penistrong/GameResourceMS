@@ -19,7 +19,7 @@ public class User extends CurrentUser{
 		this.introduction = introduction;
 	}
 	
-	public User() {};
+	public User() {super();};
 	
 	public User(Map<String,Object> user) {
 		if(user!=null) {

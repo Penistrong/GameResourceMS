@@ -38,7 +38,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span>游戏资源集散论坛</a>
+			<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span> 游戏资源集散论坛</a>
 		</div>
 		<div class="collapse navbar-collapse" id="example-navbar-collapse">
 			<form class="navbar-form navbar-left" role="search">
@@ -51,7 +51,7 @@
 				<li class="active"><a href="#"><span class="glyphicon glyphicon-bookmark"></span>What's new</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<span class="glyphicon glyphicon-list"></span>板块<b class="caret"></b>
+						<span class="glyphicon glyphicon-list"></span> 板块<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="#"><span></span>游戏快讯</a></li>
@@ -60,10 +60,10 @@
 						<li><a href="#"><span></span>秋名山</a></li>
 					</ul>
 				</li>
-				<li><a href="#"><span class="glyphicon glyphicon-book"></span>版规</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-book"></span> 版规</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<span class="glyphicon glyphicon-menu-down"></span>其他信息
+						<span class="glyphicon glyphicon-menu-down"></span> 其他信息
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>关于作者</a></li>
