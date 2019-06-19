@@ -117,59 +117,42 @@ $(document).ready(function(){
 		success:function(json){
 			console.log(json);
 			chart = Highcharts.chart('templates_Panel',{
+				chart:{
+					
+				},
 				data:{
 					json: json
 				},
 				title:{
-					text: '用户网站登陆/登出记录'
+					text: 'User Stats|数据分析'
 				},
 				subtitle:{
-					text: '数据源: mysql_database@game_resource_db'
+					text: '数据源: MySQL Server 5.17@game_resource_db'
 				},
-				xAxis:{
-					tickInterval: 7*24*3600*1000,
-					tickWidth: 0,
-					gridLineWidth: 0,
-					labels: {
-						align: 'left',
-						x: 3,
-						y: -3,
+				xAxis:[{
+					categories:['一月','二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月'],
+					crosshair: true
+				}],
+				yAxis:[{
+					//Primary yAxis
+					labels:{
+						format: '{value}pt',
+						style: {
+							color:HighCharts.getOptions().colors[2]
+						}
 					},
-					// 时间格式化字符
-		            // 默认会根据当前的刻度间隔取对应的值,即当刻度间隔为一周时,取 week 值
-					dataTimeLabelFormats:{
-						week: '%Y-%m-%d'
-					}
-				},
-				yAxis:[
-					{//第一坐标轴
-						title: {
-			                text: null
-			            },
-			            labels: {
-			                align: 'left',
-			                x: 3,
-			                y: 16,
-			                format: '{value:.,0f}'
-			            },
-			            showFirstLabel: false
+					title: {
+						text: '次数',
+						style: {
+							color:HighCharts.getOptions().colors[2]
+						}
 					},
-					{//第二坐标轴
-						linkedTo: 0,
-			            gridLineWidth: 0,
-			            opposite: true,  // 通过此参数设置坐标轴显示在对立面
-			            title: {
-			                text: null
-			            },
-			            labels: {
-			                align: 'right',
-			                x: -3,
-			                y: 16,
-			                format: '{value:.,0f}'
-			            },
-			            showFirstLabel: false
-					}
-				],
+					//第一坐标轴在右边
+					opposite: true
+				},{
+					//Secondary yAxis
+					
+				}],
 				tooltip: {
 		            shared: true,
 		            crosshairs: true,
@@ -179,22 +162,6 @@ $(document).ready(function(){
 		            dateTimeLabelFormats: {
 		                day: '%Y-%m-%d'
 		            }
-		        },
-		        plotOptions:{
-		        	series: {
-		        		cursor: 'pointer',
-		        		point: {
-		        			events: {
-		        				//图表中的数据点点击事件e为事件对象,this为当前数据点对象
-		        				click: function(e){
-		        					$('.point_message').html(Highcharts.dateFormat('%Y-%m-%d',this.x)+':<br/> 访问量:'+this.y);
-		        				}
-		        			}
-		        		},
-		        		marker: {
-		        			lineWidth: 1
-		        		}
-		        	}
 		        }
 			})
 		}

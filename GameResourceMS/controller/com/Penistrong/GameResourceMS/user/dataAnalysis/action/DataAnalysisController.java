@@ -33,7 +33,7 @@ public class DataAnalysisController extends BaseAction<DataAnalysisService<Map<S
 		return "user/dataAnalysis";
 	}
 	
-	//将用户信息打包成需要的JSON数据，返还给前端highcharts模块进行处理
+	//将用户信息打包成需要的JSON数据，发送给前端highcharts模块进行处理
 	@ResponseBody
 	@RequestMapping(value="/getUserStats",method=RequestMethod.POST)
 	public DetailedUser getUser(HttpSession session, HttpServletRequest request){
