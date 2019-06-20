@@ -136,33 +136,107 @@ $(document).ready(function(){
 				yAxis:[{
 					//Primary yAxis
 					labels:{
-						format: '{value}pt',
+						format: '{value}',
 						style: {
-							color:HighCharts.getOptions().colors[2]
+							color:Highcharts.getOptions().colors[0]
 						}
 					},
+					min:0,
+					allowDecimals: false,
 					title: {
-						text: '次数',
+						text: '访问量',
 						style: {
-							color:HighCharts.getOptions().colors[2]
+							color:Highcharts.getOptions().colors[0]
 						}
-					},
-					//第一坐标轴在右边
-					opposite: true
+					}
 				},{
 					//Secondary yAxis
-					
+					gridLineWidth: 0,
+					title: {
+						text:'日活跃峰值',
+						style: {
+							color:Highcharts.getOptions().colors[1]
+						}
+					},
+					labels: {
+						format: '{value}',
+						style: {
+							color: Highcharts.getOptions().colors[1]
+						}
+					},
+					opposite: true
+				},{
+					//Tertiary yAxis
+					gridLineWidth: 0,
+					min: 0,
+					title: {
+						text: 'KPI',
+						style: {
+							color:Highcharts.getOptions().colors[2]
+						}
+					},
+					labels: {
+						format: '{value} pt',
+						style: {
+							color: Highcharts.getOptions().colors[2]
+						}
+					},
+					opposite:true
 				}],
 				tooltip: {
 		            shared: true,
-		            crosshairs: true,
-		            // 时间格式化字符
-		            // 默认会根据当前的数据点间隔取对应的值
-		            // 当前图表中数据点间隔为 1天,所以配置 day 值即可
-		            dateTimeLabelFormats: {
-		                day: '%Y-%m-%d'
-		            }
-		        }
+		        },
+		        plotOptions: {
+		        	column: {
+		        		grouping: false,
+		        		shadow: true,
+		        		borderWidth: 0
+		        	}
+		        },
+		        legend: {
+		        	layout: 'vertical',
+		        	align: 'left',
+		        	x: 70,
+		        	verticalAlign: 'top',
+		        	y: 50,
+		        	floating: true,
+		        	backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+		        },
+		        series: [{
+					name: 'PV',
+					color: 'rgba(248,161,63,1)',
+					type: 'column',
+					yAxis: 0,
+					data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+					pointPadding:0.1,
+		        }, {
+		        	name:'UV',
+		        	color: Highcharts.getOptions().colors[0],
+		        	type: 'column',
+		        	yAxis: 0,
+		        	data: [46,50,80,90,120,150,55,130,200,156,80,49],
+		        	pointPadding:0.3,
+		        },	{
+					name: 'DAU',
+					type: 'spline',
+					color: Highcharts.getOptions().colors[1],
+					yAxis: 1,
+					data: [1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6, 1010.2, 1013.1, 1016.9, 1018.2, 1016.7],
+					marker: {
+							enabled: false
+					},
+					dashStyle: 'shortdot',
+					
+		        }, {
+					name: 'KPI',
+					type: 'spline',
+					color: Highcharts.getOptions().colors[2],
+					yAxis: 2,
+					data: [70, 69, 95, 74, 91, 102, 52, 53, 46, 92, 69, 96],
+					tooltip: {
+						valueSuffix: ' pt'
+					}
+		        }]
 			})
 		}
 	});
