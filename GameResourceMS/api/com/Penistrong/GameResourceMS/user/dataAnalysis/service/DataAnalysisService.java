@@ -1,5 +1,7 @@
 package com.Penistrong.GameResourceMS.user.dataAnalysis.service;
 
+import java.util.Map;
+
 import com.Penistrong.GameResourceMS.base.service.BaseService;
 import com.Penistrong.GameResourceMS.po.DetailedUser;
 import com.Penistrong.GameResourceMS.po.User;
@@ -12,5 +14,8 @@ import com.Penistrong.GameResourceMS.po.User;
 public interface DataAnalysisService <R extends Object> extends BaseService<R>{
 	
 	//获取当前用户信息及对应统计数据
-	DetailedUser getUserStat(String resource_id,String user_id);
+	DetailedUser getUserStats(String resource_id,String user_id);
+	
+	//获取当前用户一年中的统计信息(included month & PV,UV,DAU,KPI etc)
+	Map<String,Map<String,Object>> getUserStatsOfYear(String resource_id);
 }

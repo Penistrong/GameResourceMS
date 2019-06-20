@@ -10,5 +10,12 @@
 		 WHERE a.resource_id = #{resource_id}
 		   AND a.user_id = #{user_id}
 	</select>
+	
+	<select id="getUserStatsOfYear" resultType="java.util.Map">
+		SELECT pv, uv, exdau, KPI
+		  FROM user_monthlydata
+		 WHERE resource_id = #{resource_id}
+		   AND mon = #{mon}
+	</select>
 
 </mapper>

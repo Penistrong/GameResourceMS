@@ -36,10 +36,17 @@ public class DataAnalysisController extends BaseAction<DataAnalysisService<Map<S
 	//将用户信息打包成需要的JSON数据，发送给前端highcharts模块进行处理
 	@ResponseBody
 	@RequestMapping(value="/getUserStats",method=RequestMethod.POST)
-	public DetailedUser getUser(HttpSession session, HttpServletRequest request){
+	public DetailedUser getUserStats(HttpSession session, HttpServletRequest request){
 		CurrentUser curUser = (CurrentUser)session.getAttribute("currentUser");
-		DetailedUser user_stats = this.service.getUserStat(curUser.getResource_id(), curUser.getUser_id());
+		DetailedUser user_stats = this.service.getUserStats(curUser.getResource_id(), curUser.getUser_id());
 		return user_stats;
 	}
 	
+	//Map:key->month, value->innerMap(key->pv/uv/exdau/KPI,value->*.value)
+	@ResponseBody
+	@RequestMapping(value="/getUserStatsOfYear",method=RequestMethod.POST)
+	public Map<String,Map<String,Object>> getUserStatsOfYear(HttpSession session, HttpServletRequest request){
+		CurrentUser curUser = (CurrentUser)session.getAttribute("currentUser");
+		return this.service.getUserStatsOfYear(curUser.getResource_id());
+	}
 }
