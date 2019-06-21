@@ -92,7 +92,7 @@
 	</nav>
 	<!---------------------------------------------------- 导航栏组件 ----------------------------------------------------->
 	<!-- 加载不同模版 -->
-	<div class="container">
+	<div class="container-fluid main-container">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="col-xs-12 col-md-12 col-sm-12" id="templates_Panel">
@@ -103,8 +103,7 @@
 	</div>
 	<!-- 模版池 -->
 	<!-- 轮播广告池 -->
-	<div class="col-md-2"></div>
-	<div id="adCarousel" class="carousel slide col-md-8">
+	<div id="adCarousel" class="carousel slide col-md-8 col-md-offset-2">
 		<ol class="carousel-indicators">
 			<li data-target="#adCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#adCarousel" data-slide-to="1"></li>
@@ -112,16 +111,16 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-				<img alt="广告" src="http://upload.ouliu.net/i/201710200835097sxf8.jpeg">
+				<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200835097sxf8.jpeg">
 				<div class="carousel-caption"></div>
 			</div>
 			<div class="item">
-				<img alt="广告" src="http://upload.ouliu.net/i/201710200848121eydw.jpeg">
+				<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200848121eydw.jpeg">
 				<div class="carousel-caption"></div>
 			</div>
 			<div class="item">
 				<!-- <img alt="广告" src="<%=image_path%>/resource/image/ads"> -->
-				<img alt="广告" src="http://upload.ouliu.net/i/20171020082737gu189.jpeg">
+				<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/20171020082737gu189.jpeg">
 				<div class="carousel-caption"></div>
 			</div>
 		</div>
@@ -135,7 +134,6 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-	<div class="col-md-2"></div>
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 	<!-- 新建帖子(发布资源) -->
 	<script id="newPost" type="text/html">
