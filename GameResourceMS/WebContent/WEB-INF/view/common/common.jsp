@@ -11,4 +11,5 @@
 	String system_name = ConfigManager.getItemValue(SystemConstant.SYSTEM_NAME);
 	String administrator = ConfigManager.getItemValue(SystemConstant.ADMINISTRATOR);
 %>
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/common.css"/>
 

@@ -1,5 +1,6 @@
 var contextpath = "http://localhost:8080/GameResourceMS";
-template.config({sTag:'<#',eTag:'#>'})
+template.config({sTag:'<#',eTag:'#>'});
+var chart = null;
 
 $(document).ready(function(){
 	//加载当前用户信息
@@ -18,6 +19,7 @@ $(document).ready(function(){
 	$.latestPosts_page();
 })
 
+//Triggers definition
 $(document).ready(function(){
 	$("#toggle_info_button").click(function(){
 		$("#introduction").slideToggle('slow');
@@ -27,6 +29,9 @@ $(document).ready(function(){
 	});
 	$("#nav-portrait,#nav-username").click(function(){
 		$("#user_info").slideToggle('slow');
+	})
+	$("#query-web-info").click(function(){
+		queryWebInfo();
 	})
 })
 
@@ -109,6 +114,126 @@ $.newPost = function(){
 	})
 }
 
+function queryWebInfo(){
+	//创建渐变色
+	Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color){
+		return {
+			radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+	        stops: [
+	            [0, color],
+	            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken brightness
+	        ]
+		};
+	});
+	//处理数据
+	chart = Highcharts.chart('templates_Panel',{
+		chart: {
+			type: 'pie',
+			events: {
+				load: requestWebInfo
+			},
+			options3d: {
+				enabled: true,
+				alpha: 45,
+				beta: 0
+			}
+		},
+		title: {
+			text: '来自不同浏览器的访问量占比'
+		},
+		subtitle: {
+			text: 'click the slice to see details\n数据源:netmarketshare.com'
+		},
+		tooltip: {
+			headerFormat:'<span style="font-size:11px">{series.name}</span><br>',
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+		},
+		plotOptions: {
+			pie:{
+				allowPointSelect: true,
+				cursor: 'pointer',
+				depth: 35,
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b>: {point.y:.2f} %',
+				}
+			}
+		}
+		,
+		series: [{
+			name:'浏览器',
+			colorByPoint: true,
+			data: [
+				{
+					name: 'Chrome',
+					y: 66.21,
+					sliced: true,
+					selected: true,
+					drilldown: "Chrome"
+				},
+				{
+					name: 'Firefox',
+					y: 9.59,
+					drilldown: "Firefox"
+				},
+				{
+					name: 'Internet Explorer 11',
+					y: 7.52,
+					drilldown: "IE11"
+				},
+				{
+					name: 'Edge',
+					y: 4.57,
+					drilldown: "Edge"
+				},
+				{
+					name: 'Safari',
+					y: 3.65,
+					drilldown: "Safari"
+				},
+				['Opera', 1.60],
+				['Others',   0.7]
+				],
+			tooltip: {
+				pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+			}
+		}],
+		drilldown: {
+			series: [
+				{
+					type: "pie",
+					id: "Chrome",
+					name: "Chrome",
+					data: [
+						['v19.0', 23.0],
+						['v18.0', 12.3],
+						['v17.0', 6.6],
+						['v16.0', 3.1],
+					],
+				},
+				{
+					type: "pie",
+					id: "Firefox",
+					name: "Firefox",
+					data: [
+						['v19.0', 23.0],
+						['v18.0', 12.3],
+						['v17.0', 6.6],
+						['v16.0', 3.1],
+					],
+				}
+				]
+		}
+
+	})
+};
+
+
+function requestWebInfo(){
+	
+}
+
+/**
 $.queryWebInfo = function(){
 	var tpl = $("#webInfo").html();
 	$.ajax({
@@ -125,4 +250,4 @@ $.queryWebInfo = function(){
 		}
 	})
 	
-}
+}*/

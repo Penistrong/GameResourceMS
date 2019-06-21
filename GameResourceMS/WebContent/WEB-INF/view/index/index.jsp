@@ -8,28 +8,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>游戏资源集散论坛</title>
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>
-<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
+<!-- 图表脚本引入 highcharts -->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts-3d.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/data.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/series-label.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/drilldown.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/themes/dark-unica.js"></script>
 </head>
 <body>
-	<div id="user_info">
-		<ul id="user_infolist">
-		<li><img id="portrait" title="修改个人资料"/>
-		<li><% CurrentUser currentUser = (CurrentUser)session.getAttribute("currentUser"); %></li>
-		<li><p id="user_name"><%=currentUser.getUser_name() %></p></li>
-		<li class="identity"><p id="identity"></p></li>
-		<li><p id="level">LV.<%=currentUser.getLevel() %></p></li>
-		</ul>
-		<p id="introduction"></p>
-		<p id="toggle_info_button">点我看简介QAQ</p>
-	</div>
+	
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+		<div id="user_info"><!-- 当前用户信息浮动框 -->
+			<ul id="user_infolist">
+			<li><img id="portrait" title="修改个人资料"/>
+			<li><% CurrentUser currentUser = (CurrentUser)session.getAttribute("currentUser"); %></li>
+			<li><p id="user_name"><%=currentUser.getUser_name() %></p></li>
+			<li class="identity"><p id="identity"></p></li>
+			<li><p id="level">LV.<%=currentUser.getLevel() %></p></li>
+			</ul>
+			<p id="introduction"></p>
+			<p id="toggle_info_button">点我看简介QAQ</p>
+		</div>
 		<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
@@ -66,9 +75,9 @@
 						<span class="glyphicon glyphicon-menu-down"></span> 其他信息
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>关于作者</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> 关于作者</a></li>
 						<li class="divider"></li>
-						<li><a href="#" id="query-web-info"><span class="glyphicon glyphicon-info-sign"></span>网站信息</a></li>
+						<li><a href="#" id="query-web-info"><span class="glyphicon glyphicon-info-sign"></span> 网站信息</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -182,6 +191,47 @@
 	<!-- 查询网站基本信息和流量(底层) -->
 	<script id="webInfo" type="text/html">
 	</script>
+	<pre id="tsv" style="display:none">Browser Version	Total Market Share
+Microsoft Internet Explorer 8.0	26.61%
+Microsoft Internet Explorer 9.0	16.96%
+Chrome 18.0	8.01%
+Chrome 19.0	7.73%
+Firefox 12	6.72%
+Microsoft Internet Explorer 6.0	6.40%
+Firefox 11	4.72%
+Microsoft Internet Explorer 7.0	3.55%
+Safari 5.1	3.53%
+Firefox 13	2.16%
+Firefox 3.6	1.87%
+Opera 11.x	1.30%
+Chrome 17.0	1.13%
+Firefox 10	0.90%
+Safari 5.0	0.85%
+Firefox 9.0	0.65%
+Firefox 8.0	0.55%
+Firefox 4.0	0.50%
+Chrome 16.0	0.45%
+Firefox 3.0	0.36%
+Firefox 3.5	0.36%
+Firefox 6.0	0.32%
+Firefox 5.0	0.31%
+Firefox 7.0	0.29%
+Proprietary or Undetectable	0.29%
+Chrome 18.0 - Maxthon Edition	0.26%
+Chrome 14.0	0.25%
+Chrome 20.0	0.24%
+Chrome 15.0	0.18%
+Chrome 12.0	0.16%
+Opera 12.x	0.15%
+Safari 4.0	0.14%
+Chrome 13.0	0.13%
+Safari 4.1	0.12%
+Chrome 11.0	0.10%
+Firefox 14	0.10%
+Firefox 2.0	0.09%
+Chrome 10.0	0.09%
+Opera 10.x	0.09%
+Microsoft Internet Explorer 8.0 - Tencent Traveler Edition	0.09%</pre>
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/index/index.js?v=<%=version%>"></script>
 </body>
 </html>
