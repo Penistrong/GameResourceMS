@@ -13,10 +13,11 @@
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap.min.css"/>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 </head>
-<body data-spy="scroll" data-target="#scrollspy" data-offset="100">
+<body data-spy="scroll" data-target="#scrollspy" data-offset="80">
 	<!-- 导航栏 -->
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
@@ -25,7 +26,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span> 游戏资源集散论坛-个人资料</a>
+			<a class="navbar-brand" href="<%=context_path%>/index"><span class="glyphicon glyphicon-home"></span> 游戏资源集散论坛-个人资料</a>
 			</div>
 			<div class="collapse navbar-collapse" id="example-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -43,7 +44,7 @@
 				<div class="container-fluid">
 				<div class="container-fluid">
 					<ul class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#userName_Section">昵称</a></li>
+						<li class="active"><a href="#userName_Section">基本信息</a></li>
 						<li><a href="#portrait_Section">头像</a></li>
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">个人信息<span class="caret"></span></a>
@@ -77,6 +78,7 @@
 									<label class="control-label">上传头像</label>
 									<div class="controls">
 										<input type="file" id="upload_portrait" />
+										<p class="help-block">大小不超过512K</p>
 									</div>
 								</div>
 							</div>
@@ -89,13 +91,70 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-xs-10 col-sm-10 col-md-10" id="user_info">
-					<div id="userName_Section" class="section">
-						<p><%=currentUser.getUser_name() %></p>
-					</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 " id="user_info">
+				<div id="userName_Section" class="section">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">UID</label>
+							<div class="col-sm-4">
+								<p class="form-control-static"><%=currentUser.getUser_id()%></p>
+							</div>
+						</div>
+						<fieldset disabled>
+							<div class="form-group">
+								<label for="disabledSelect" class="col-sm-2 control-label">识别身份</label>
+								<div class="col-sm-2">
+									<select id="disabledSelect" class="form-control">
+										<option id="curIdentity"></option>
+									</select>
+								</div>
+							</div>
+						</fieldset>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">昵称</label>
+							<div class="col-sm-2" id="username-control">
+								<p class="form-control-static"><%=currentUser.getUser_name()%></p>
+							</div>
+							<script type="text/html" id="username_InnerHtml">
+								<input type="text" class="form-control" placeholder="请输入新昵称" id="user_name">
+							</script>
+							<div class="col-sm-1" id="btn-edit-name">
+								<button type="button"
+									class="btn btn-primary btn-xs glyphicon glyphicon-edit form-control"
+									onclick="changeUserName()"></button>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">等级</label>
+							<div class="col-sm-1">
+								<p class="form-control-static">Lv.<%=currentUser.getLevel()%></p>
+							</div>
+							<div class="col-sm-4" id="level-progress">
+								<div class="progress progress-striped active">
+									<%Double exp_percentage = Integer.valueOf(currentUser.getExp())*100.0/9999; %>
+									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%=currentUser.getExp()%>" aria-valuemin="0" aria-valuemax="9999" style="width: <%=exp_percentage%>%"></div>
+								</div>
+							</div>
+							<div class="col-sm-2" id="ExpStat">
+								<span class="form-control-static"><span id="curExp"><%=currentUser.getExp()%></span>/9999</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">G币</label>
+							<div class="col-sm-2">
+								<p class="form-control-static"><%=currentUser.getCoins()%></p>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="Section" class="section"><!-- 不知道为什么包了这个div滚动监听就正确显示了 -->
 					<div id="portrait_Section" class="section">
-						<img alt="用户头像" id="portrait" class="img-circle">
-						<button class="btn btn-primary btn-md" data-toggle="modal" data-target="#PortraitModal">更改头像</button>
+						<div class="col-md-4">
+							<img alt="用户头像" id="portrait" class="img-circle">
+							<button class="btn btn-primary btn-md" data-toggle="modal"
+								data-target="#PortraitModal">更改头像</button>
+						</div>
+					</div>
 					<div id="personalInfo-user_type" class="section">
 						<p>测试用户类型</p>
 					</div>
@@ -106,10 +165,15 @@
 						<p>测试硬币</p>
 					</div>
 					<div id="introduction_Section" class="section">
-						<p>测试</p>
+						<form role="form">
+							<div class="form-group">
+								<label for="name">简介</label>
+								<textarea class="form-control" rows="5"></textarea>
+							</div>
+						</form>
 					</div>
 				</div>
-		</div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/user/personalConfig.js"></script>

@@ -22,7 +22,7 @@ $(document).ready(function(){
 //Triggers definition
 $(document).ready(function(){
 	$('#adCarousel').carousel({
-	    interval: 2000
+	    interval: 4000
 	});
 	$("#toggle_info_button").click(function(){
 		$("#introduction").slideToggle('slow');
@@ -35,6 +35,12 @@ $(document).ready(function(){
 	})
 	$("#query-web-info").click(function(){
 		queryWebInfo();
+	})
+	$("#query-author-info").click(function(){
+		queryAuthorInfo();
+	})
+	$("#btn-show-latest-posts").click(function(){
+		$.latestPosts_page();
 	})
 })
 
@@ -247,6 +253,11 @@ function queryWebInfo(){
 
 function requestWebInfo(){
 	
+}
+
+function queryAuthorInfo(){
+	var rendered_html = template($("#aboutAuthor").html());
+	$("#templates_Panel").html(rendered_html);
 }
 
 /**
