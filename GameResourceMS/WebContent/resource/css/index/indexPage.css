@@ -21,9 +21,11 @@ img#nav-portrait{
 }
 p#nav-username{cursor:pointer;}
 
-div.container{margin-top:100px;}
+div.container-fluid.main-container{margin-top:100px;}
 div#templates_Panel{min-height:400px;}
 div.panel{background-color:rgba(0,0,0,0);border:transparent}
+
+img.ads-image{max-height:200px;}
 
 ul.posts_list{font:20px verdana, arial, sans-serif;}
 ul.posts_list li{list-style:none;padding:0;margin:0;float:left;font:20px,KaiTi,arial,sans-serif;display:block;background:#fffbf0;text-over-flow:ellipsis;over-flow:hidden;white-space:nowrap;height:30px;}

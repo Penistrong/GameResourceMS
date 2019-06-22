@@ -21,6 +21,9 @@ $(document).ready(function(){
 
 //Triggers definition
 $(document).ready(function(){
+	$('#adCarousel').carousel({
+	    interval: 2000
+	});
 	$("#toggle_info_button").click(function(){
 		$("#introduction").slideToggle('slow');
 	});
