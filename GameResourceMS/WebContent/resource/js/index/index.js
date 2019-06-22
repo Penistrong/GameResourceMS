@@ -177,9 +177,9 @@ function queryWebInfo(){
 					drilldown: "Firefox"
 				},
 				{
-					name: 'Internet Explorer 11',
-					y: 7.52,
-					drilldown: "IE11"
+					name: 'Internet Explorer',
+					y: 9.20,
+					drilldown:  "IE"
 				},
 				{
 					name: 'Edge',
@@ -192,7 +192,7 @@ function queryWebInfo(){
 					drilldown: "Safari"
 				},
 				['Opera', 1.60],
-				['Others',   0.7]
+				['Others', 5.18]
 				],
 			tooltip: {
 				pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
@@ -209,7 +209,7 @@ function queryWebInfo(){
 						['v18.0', 12.3],
 						['v17.0', 6.6],
 						['v16.0', 3.1],
-					],
+					]
 				},
 				{
 					type: "pie",
@@ -220,7 +220,20 @@ function queryWebInfo(){
 						['v18.0', 12.3],
 						['v17.0', 6.6],
 						['v16.0', 3.1],
-					],
+					]
+				},
+				{
+					type: "pie",
+					id: "IE",
+					name: "Internet Explorer",
+					data: [
+						['IE11',7.52],
+						['IE10',0.33],
+						['IE9', 0.34],
+						['IE8', 0.68],
+						['IE7', 0.14],
+						['IE6', 0.18]
+					]
 				}
 				]
 		}
