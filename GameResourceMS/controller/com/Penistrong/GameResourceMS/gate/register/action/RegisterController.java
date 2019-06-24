@@ -45,6 +45,7 @@ public class RegisterController extends BaseAction<RegisterService<Map<String,Ob
 	@RequestMapping(value="/validateInfo",method=RequestMethod.POST)
 	public Map<String,Object> validateInfo(@RequestBody Map<String,Object> map,HttpServletRequest request){
 		String msg = service.Is_User_Existed(map);
+		System.out.println(msg);
 		if(!msg.equals("Ready_To_Register")) {
 			map.put("msg", "failed");
 			map.put("error_msg", msg);
