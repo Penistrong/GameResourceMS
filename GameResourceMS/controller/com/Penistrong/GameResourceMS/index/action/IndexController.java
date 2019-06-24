@@ -43,4 +43,10 @@ public class IndexController extends BaseAction<IndexService<Map<String,Object>>
 		map.put("portrait",this.service.getPortrait(currentUser.getResource_id(),currentUser.getUser_id()));
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getWebInfo",method=RequestMethod.POST)
+	public Map<String,Object> getWebInfo(HttpServletRequest request,@RequestBody Map<String, Object> params){
+		return null;
+	}
 }

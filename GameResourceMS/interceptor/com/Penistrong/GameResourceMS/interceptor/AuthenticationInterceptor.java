@@ -103,6 +103,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor{
 				return true;
 			}
 		}
+		//TODO:已登录用户无法访问register/login页面,需要加强逻辑判断
 		
 		System.out.println(time+"Redirect request to LoginPage to get authentication first");
 		response.sendRedirect(context_path+"/gate/login");

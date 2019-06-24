@@ -1,25 +1,40 @@
-body{position:relative;}
-
+body{position:relative;background:url('http://localhost:8080/GameResourceMS/resource/image/index/background.jpg') no-repeat fixed center;background-size:cover;}
 ul.nav-pills{
-	top:80px;
+	top:100px;
 	position:fixed;
+	background-color:rgba(255,255,255,0.5);
 }
 
-div.col-md-9 div{
+#username_Section {color: #fff; background-color: #1E88E5;height:280px;font-size:20px;}
+#portrait_Section {color: #fff; background-color: #673ab7;height:100px;}
+#personalInfo-user_type {color: #fff; background-color: #ff9800;}
+#personalInfo-level {color: #fff; background-color: #00bcd4;}
+#personalInfo-coins_posts {color: #fff; background-color: #009688;}
+#introduction_Section {color:#fff;background-color: #D9D919;margin-top:800px;}
+
+div.row{margin-top:100px;}
+
+div.progress-striped{margin-bottom:0px;height:12px;}
+div#level-progress{margin-top:15px;}
+
+div.section{
 	height:250px;
 	font-size:28px;
 }
-
-div#user_info{
-	background-color:#00bcd4;
+div#btn-edit-name{
+	margin-top:4px;
 }
-
-div#introduction_Section{
-	background-color:#D9D919;
+div#ExpStat{
+	margin-top:9.8px;
+	font-size:16px;
+	padding:0px;
+}
+span#curExp{
+	color:#D9D919;
 }
 
 @media screen and(max-width:810px){
-	#userName_Section,#portrait_Section,#personalInfo-user_type,#personalInfo-level,#personalInfo-coins_posts,#introduction_Section{
+	div.section{
 		margin-left:150px;
 	}
 }
