@@ -9,5 +9,7 @@
 		 WHERE resource_id = #{resource_id}
 		   AND user_id = #{user_id}
 	</update>
-
+	
+	
+	
 </mapper>

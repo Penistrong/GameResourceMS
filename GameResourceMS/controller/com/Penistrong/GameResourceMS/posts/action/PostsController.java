@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,26 @@ import com.Penistrong.GameResourceMS.posts.service.PostsService;
 @Controller
 @RequestMapping("/posts")
 public class PostsController extends BaseAction<PostsService<Map<String,Object>>,Map<String,Object>>{
+	@RequestMapping
+	public String index(ModelMap map, HttpServletRequest request) {
+		return "posts/post";
+	}
+	
+	/**
+	 * @Title:redirectToPost
+	 * @Description:重定向至对应的帖子，并且使用的是Restful风格传参,(url prefix)/{user_id}/{post_id}
+	 * @param map
+	 * @param request
+	 * @return 
+	 * @return String
+	 * @throws
+	 */
+	@RequestMapping(value="/{poster_id}/{post_id}", method=RequestMethod.GET)
+	public String redirectToPost(ModelMap map, HttpServletRequest request,@PathVariable("poster_id") String poster_id,@PathVariable("post_id") String post_id) {
+		map.addAttribute("poster_id", poster_id);
+		map.addAttribute("post_id", post_id);
+		return "posts/post";
+	}
 	/**
 	 * 按最后回复时间查询帖子
 	 * @param request

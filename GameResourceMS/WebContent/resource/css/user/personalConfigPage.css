@@ -13,6 +13,8 @@ ul.nav-pills{
 #personalInfo-coins_posts {color: #fff; background-color: #009688;}
 #introduction_Section {color:#fff;background-color: #D9D919;}
 
+input#edit_user_name{margin-top:4px;}
+
 div.row{margin-top:100px;}
 
 div.progress-striped{margin-bottom:0px;height:12px;}

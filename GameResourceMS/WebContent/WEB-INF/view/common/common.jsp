@@ -11,5 +11,18 @@
 	String system_name = ConfigManager.getItemValue(SystemConstant.SYSTEM_NAME);
 	String administrator = ConfigManager.getItemValue(SystemConstant.ADMINISTRATOR);
 %>
+<!-- common css definition -->
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/common.css"/>
-
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap.min.css"/>
+<!-- load -->
+ <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/load.css">
+<!-- common scripts definition -->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap/bootstrap.min.js"></script>
+<!--Loader JS-->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/load.js?v=<%=version%>"></script>
+<div id="loader-wrapper">
+	<div id="loader"></div>
+	<div class="loader-section section-left"></div>
+	<div class="loader-section section-right"></div>
+</div>

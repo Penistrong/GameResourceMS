@@ -33,7 +33,8 @@ $(document).ready(function(){
 			}*/
 		},
 		title:{
-			text: 'User Stats|数据记录'
+			useHTML:true,
+			text: 'User Stats|<a href='+contextpath+'/user/dataAnalysis'+" style='color:#D9D919'>本年数据记录</a>"
 		},
 		subtitle:{
 			text: '数据源: game_resource_db@MySQL Server 5.17'
@@ -61,8 +62,8 @@ $(document).ready(function(){
 					return (Math.abs(this.value) / 1000) + 'K';
 				}
 			},
-			min: -5000,
-			max: 5000
+			//min: -5000,
+			//max: 5000
 		},
 		plotOptions: {
 			series:{
@@ -86,11 +87,13 @@ $(document).ready(function(){
 		series: [{
 			name: '访问量',
 			color: Highcharts.getOptions().colors[0],
-			data: []
+			data: [],
+			xAxis:0,
 		}, {
 			name: '指标/pt',
 			color: Highcharts.getOptions().colors[2],
-			data: []
+			data: [],
+			xAxis:1,
 		}]
 	});
 })
@@ -103,9 +106,19 @@ function getUserStats(){
 		success:function(data){
 			chart.series[0].addPoint(-data.pv);
 			chart.series[0].addPoint(-data.uv);
-			chart.series[1].addPoint(data.exdau);
-			chart.series[1].addPoint(data.KPI);
-			console.log(chart.series);
+			chart.series[1].addPoint(+data.exdau);
+			chart.series[1].addPoint(+data.kpi);
+			//calculate the maximum/minimum of the reversed yAxis
+			if((+data.pv) / 100 > 0){
+				chart.yAxis.min = - ((+data.pv)/100 + 1) * 100;
+			}else{
+				chart.yAxis.min = - ((+data.pv)/10 + 1) * 10;
+			}
+			if((+data.exdau >= +data.kpi)){
+				chart.yAxis.max = ((+data.exdau)/10 + 1) * 10;
+			}else{
+				chart.yAxis.max = ((+data.kpi)/10 + 1) * 10;
+			}
 		}
 	})
 }
