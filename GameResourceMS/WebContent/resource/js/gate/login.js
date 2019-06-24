@@ -2,7 +2,6 @@ var contextpath = "http://localhost:8080/GameResourceMS";
 
 $(document).ready(function(){
 	$("#loginButton").click(function(){
-		console.log("in");
 		var user_id = $("#user_id").val();
 		var password = $("#password").val();
 		if(data_validate(user_id,password)==false){
