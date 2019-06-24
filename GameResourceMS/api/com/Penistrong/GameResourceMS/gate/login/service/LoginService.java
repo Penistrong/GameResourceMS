@@ -7,9 +7,9 @@ import com.Penistrong.GameResourceMS.po.CurrentUser;
 
 /**
  * 
- * @author Penistrong[chenliwei]
- * @version GameResourceMS	
- * @lastEditTime 2018年4月30日下午7:00:10
+ * @author Dell[BloodStream]
+ * @version GameResourceMS
+ * @built_time 2019年6月19日下午7:28:27
  * @param <R>
  */
 public interface LoginService<R extends Object> extends BaseService<R> {
