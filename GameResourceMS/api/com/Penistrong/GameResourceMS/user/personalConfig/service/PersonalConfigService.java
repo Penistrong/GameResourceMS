@@ -1,5 +1,7 @@
 package com.Penistrong.GameResourceMS.user.personalConfig.service;
 
+import java.util.Map;
+
 import com.Penistrong.GameResourceMS.base.service.BaseService;
 
 /**
@@ -10,5 +12,5 @@ import com.Penistrong.GameResourceMS.base.service.BaseService;
  * @param <R>
  */
 public interface PersonalConfigService<R extends Object> extends BaseService<R> {
-
+	boolean updateUserInfo(Map<String, Object> params);
 }

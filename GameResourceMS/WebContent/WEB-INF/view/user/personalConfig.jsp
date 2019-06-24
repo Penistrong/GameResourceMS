@@ -14,6 +14,13 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
+<!-- 图表脚本引入 highcharts -->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts-3d.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/data.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/series-label.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/themes/dark-unica.js"></script>
 </head>
 <body data-spy="scroll" data-target="#scrollspy" data-offset="80">
 	<!-- 导航栏 -->
@@ -44,17 +51,17 @@
 				<div class="container-fluid">
 				<div class="container-fluid">
 					<ul class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#userName_Section">基本信息</a></li>
+						<li class="active"><a href="#baseinfo_Section">基本信息</a></li>
 						<li><a href="#portrait_Section">头像</a></li>
+						<li><a href="#introduction_Section">简介</a></li>
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">个人信息<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#personalInfo-user_type">用户类型</a></li>
 								<li><a href="#personalInfo-level">等级</a></li>
 								<li><a href="#personalInfo-coins_posts">论坛币与发帖历史</a></li>
 							</ul>
 						</li>
-						<li><a href="#introduction_Section">简介</a></li>
+						<li><a href="#userStats_Secction">数据记录</a></li>
 					</ul>
 				</div>
 				</div>
@@ -92,7 +99,7 @@
 				</form>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 " id="user_info">
-				<div id="userName_Section" class="section">
+				<div id="baseinfo_Section" class="section">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">UID</label>
@@ -116,7 +123,7 @@
 								<p class="form-control-static"><%=currentUser.getUser_name()%></p>
 							</div>
 							<script type="text/html" id="username_InnerHtml">
-								<input type="text" class="form-control" placeholder="请输入新昵称" id="user_name">
+								<input type="text" class="form-control" placeholder="请输入新昵称" id="edit_user_name">
 							</script>
 							<div class="col-sm-1" id="btn-edit-name">
 								<button type="button"
@@ -155,8 +162,13 @@
 								data-target="#PortraitModal">更改头像</button>
 						</div>
 					</div>
-					<div id="personalInfo-user_type" class="section">
-						<p>测试用户类型</p>
+					<div id="introduction_Section" class="section">
+						<form role="form">
+							<div class="form-group">
+								<label for="name">简介</label>
+								<textarea class="form-control" rows="5" id="edit_introduction"></textarea>
+							</div>
+						</form>
 					</div>
 					<div id="personalInfo-level" class="section">
 						<p>测试等级</p>
@@ -164,13 +176,7 @@
 					<div id="personalInfo-coins_posts" class="section">
 						<p>测试硬币</p>
 					</div>
-					<div id="introduction_Section" class="section">
-						<form role="form">
-							<div class="form-group">
-								<label for="name">简介</label>
-								<textarea class="form-control" rows="5"></textarea>
-							</div>
-						</form>
+					<div id="userStats_Section" class="section">
 					</div>
 				</div>
 			</div>

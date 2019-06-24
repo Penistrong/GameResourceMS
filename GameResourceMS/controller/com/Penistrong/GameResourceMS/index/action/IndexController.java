@@ -38,6 +38,7 @@ public class IndexController extends BaseAction<IndexService<Map<String,Object>>
 		CurrentUser currentUser = (CurrentUser)session.getAttribute("currentUser");
 		User user = this.service.getUserInfo(currentUser.getUser_id());
 		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("user_name", user.getUser_name());
 		map.put("identity", user.getIdentity());
 		map.put("introduction", user.getIntroduction());
 		map.put("portrait",this.service.getPortrait(currentUser.getResource_id(),currentUser.getUser_id()));
