@@ -11,12 +11,21 @@
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/load.css">
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/load.js?v=<%=version%>"></script>
 </head>
 <body>
+
+	<div id="loader-wrapper">
+   		<div id="loader"></div>
+    	<div class="loader-section section-left"></div>
+    	<div class="loader-section section-right"></div>
+	</div>
+
 	<div id="user_info">
 		<ul id="user_infolist">
 		<li><img id="portrait" title="修改个人资料"/>
@@ -130,6 +139,7 @@
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 	<!-- 新建帖子(发布资源) -->
 	<script id="newPost" type="text/html">
+
 		<form action="<%=context_path%>/posts/newPosts" id="newPost_form" onsubmit="return false;">
 		
 		</form>

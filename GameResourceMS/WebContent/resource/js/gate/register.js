@@ -4,7 +4,8 @@ $(document).ready(function(){
 	$("#register_button_1").click(function(){
 		var user_id = $('#user_id').val();
 		var user_name = $('#user_name').val();
-		
+		//console.log("mistake");
+		//console.log(password);
 		if(ID_Name_validation(user_id,user_name)==false){
 			return false;
 		}
@@ -15,8 +16,34 @@ $(document).ready(function(){
 			dataType:"json",
 			data:JSON.stringify({'user_id':user_id,'user_name':user_name}),
 			success:function(data){
-				if(data.msg=="success"){
-					loadingConcreteTable(data.user_id,data.user_name);
+				if(data.msg=="success"){			
+					//loadingConcreteTable(data.user_id,data.user_name);
+						alert("注册被点击");
+						console.log(user_id);
+						console.log("in");
+						var password = $("#password").val();
+						var re_password = $("#re_password").val();
+						if(password_validation(password,re_password)==false){
+							console.log("validate false");
+							return false;
+						}
+						$.ajax({
+							type:"POST",
+							url:contextpath+"/gate/register/register",
+							contentType:"application/json;charset=utf-8",
+							dataType:"json",
+							data:JSON.stringify({'user_id':user_id,'user_name':user_name,'password':password}),
+							success:function(data){
+								console.log(data);
+								if(data.msg=="success"){	
+									redirect(data.user_id,data.user_name);
+									console.log("in");
+								}else{
+									alert("未知错误");
+									console.log("mistake");
+								}
+							}
+						})
 				}else{
 					if(data.error_msg=="the ID has been registered!"){
 						$("#user_id").prop({value:"",placeholer:data.error_msg});
@@ -36,32 +63,32 @@ $(document).ready(function(){
 	});
 })
 
-$(document).ready(function(){	
-	$("#register_table").on('click','#register_button_2',function(){
-		alert("注册被点击");
-		var password = $("#password").val();
-		var re_password = $("#re_password").val();
-		var user_id_ready = $("#user_id_ready").text();
-		var user_name_ready = $("#user_name_ready").text();
-		if(password_validation(password,re_password)==false){
-			return false;
-		}
-		$.ajax({
-			type:"POST",
-			url:contextpath+"/gate/register/register",
-			contentType:"application/json;charset=utf-8",
-			dataType:"json",
-			data:JSON.stringify({'user_id':user_id_ready,'user_name':user_name_ready,'password':password}),
-			success:function(data){
-				if(data.msg=="success"){
-					redirect(data.user_id,data.user_name);
-				}else{
-					alert("未知错误");
-				}
-			}
-		})
-	});
-})
+//$(document).ready(function(){	
+//	$("#register_table").on('click','#register_button_2',function(){
+//		alert("注册被点击");
+//		var password = $("#password").val();
+//		var re_password = $("#re_password").val();
+//		var user_id_ready = $("#user_id_ready").text();
+//		var user_name_ready = $("#user_name_ready").text();
+//		if(password_validation(password,re_password)==false){
+//			return false;
+//		}
+//		$.ajax({
+//			type:"POST",
+//			url:contextpath+"/gate/register/register",
+//			contentType:"application/json;charset=utf-8",
+//			dataType:"json",
+//			data:JSON.stringify({'user_id':user_id_ready,'user_name':user_name_ready,'password':password}),
+//			success:function(data){
+//				if(data.msg=="success"){
+//					redirect(data.user_id,data.user_name);
+//				}else{
+//					alert("未知错误");
+//				}
+//			}
+//		})
+//	});
+//})
 
 var user_id_Reg = /(^0{0,1}(13[0-9]|15[0-9]|18[0-9])[0-9]{8}$)|(^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$)/i
 var user_name_Reg = /^[^]{2,7}$/
@@ -101,10 +128,7 @@ function loadingConcreteTable(user_id,user_name){
 }
 
 function redirect(user_id,user_name){
-	$("#register_div").hide();
-	$("#message_div").show();
-	$("td.user_id").text(user_id);
-	$("td.user_name").text(user_name);
+	$("#loader_wrapper").show();
 	
 	function jump(time){
 		window.setTimeout(function(){
@@ -113,10 +137,10 @@ function redirect(user_id,user_name){
 				$("#time").text(time);
 				jump(time);
 			}else{
-				location.href = contextpath+"/gate/login";
+				location.href = contextpath+"/index";
 			}
 		},1000);
 	}
 	
-	jump(5);
+	jump(0);
 }

@@ -2,6 +2,7 @@ var contextpath = "http://localhost:8080/GameResourceMS";
 
 $(document).ready(function(){
 	$("#loginButton").click(function(){
+		console.log("in");
 		var user_id = $("#user_id").val();
 		var password = $("#password").val();
 		if(data_validate(user_id,password)==false){
@@ -20,6 +21,7 @@ $(document).ready(function(){
 					alert('密码或账户错误,请重新输入!');
 					$("#user_id").attr("value","");
 					$("#password").attr("value","");
+					console.log("mistake");
 				}
 			},
 			error:function(){
@@ -38,7 +40,7 @@ function data_validate(user_id,password){
 		$("#user_id").attr({value:'',placeholder:'请输入邮箱或手机号!'});
 		return false;
 	}
-	if(!password_Reg.test(password)){
+	if(!password_Reg.test(password)){	
 		$("#password").attr({value:'',placeholder:'仅支持字母数字与部分标点!'});
 		return false;
 	}
@@ -46,10 +48,9 @@ function data_validate(user_id,password){
 }
 
 function redirect(data){
-	$("#login_div").hide();
-	$("#message_div").show();
-	$("td#user_id").text(data.user_id);
-	
+	//$("#loader_wrapper2").show();
+	//$("td#user_id").text(data.user_id);
+	//$("#loginButton").html('<div id="loader-wrapper"><div id="loader"></div><div class="loader-section section-left"></div><div class="loader-section section-right"></div></div>');
 	function jump(time){
 		window.setTimeout(function(){
 			time--;
@@ -57,10 +58,11 @@ function redirect(data){
 				$("#time").text(time);
 				jump(time);
 			}else{
+				//$("loginButton").html('<div id="loader-wrapper"><div id="loader"></div><div class="loader-section section-left"></div><div class="loader-section section-right"></div></div>');
 				location.href = contextpath+"/index";
 			}
 		},1000);
 	}
 	
-	jump(5);
+	jump(0);
 }
