@@ -28,11 +28,6 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/load.js?v=<%=version%>"></script>
 </head>
 <body>
-		<div id="loader-wrapper">
-   			<div id="loader"></div>
-    		<div class="loader-section section-left"></div>
-    		<div class="loader-section section-right"></div>
-		</div>
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div id="user_info"><!-- 当前用户信息浮动框 -->
