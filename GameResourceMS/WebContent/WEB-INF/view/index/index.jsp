@@ -28,7 +28,6 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/load.js?v=<%=version%>"></script>
 </head>
 <body>
-
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div id="user_info"><!-- 当前用户信息浮动框 -->
@@ -177,8 +176,7 @@
 												<form action="signin.html">
 													<div class="form-group">
 													    <label for="signin_form">Post</label>
-													    <textarea rows="20" class="form-control" cols="20" placeholder="enter your post here" id="post" required/></textarea>
-													    
+													    <input type="text" class="form-control"  placeholder="enter your post here" id="post" required/>
 													</div><!--/.form-group -->
 													<div class="form-group">
 														<label for="signin_form">Photo</label>

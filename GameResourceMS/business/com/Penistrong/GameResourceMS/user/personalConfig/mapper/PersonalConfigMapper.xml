@@ -3,13 +3,25 @@
 <mapper namespace="com.Penistrong.GameResourceMS.user.personalConfig.mapper.PersonalConfigMapper">
 	<update id="updateUserInfo">
 		UPDATE user_accounts
-		   SET sql_safe_updates = 1
+		   SET 1 = 1
 		   	   <if test=" user_name !='' and user_name != null ">,user_name = #{user_name}</if>
 		   	   <if test="introduction != '' and introduction != null">,introduction = #{introduction}</if>
 		 WHERE resource_id = #{resource_id}
 		   AND user_id = #{user_id}
 	</update>
 	
+	<update id="uploadPortrait">
+		UPDATE user_moreinfos
+		   SET portrait_id = #{portrait_id}, portrait = #{portrait}, upload_time = #{upload_time}
+		 WHERE resource_id = #{resource_id}
+		   AND user_id = #{user_id}
+	</update>
 	
+	<select id="getPortrait" resultType="java.lang.String">
+		SELECT portrait
+		  FROM user_moreinfos
+		 WHERE resource_id = #{resource_id}
+		   AND user_id = #{user_id}
+	</select>
 	
 </mapper>

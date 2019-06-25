@@ -15,7 +15,7 @@
 		
         
         <!-- title of site -->
-        <title>首页-游戏资源集散论坛</title>
+        <title>登录-游戏资源集散论坛</title>
 
         <!-- For favicon png -->
        	<link rel="shorcut icon" href="<%=image_path%>/resource/image/gate/gate.ico"/>

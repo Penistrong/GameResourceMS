@@ -8,7 +8,12 @@ $(document).ready(function(){
 		type:"POST",
 		url:contextpath+"/index/getUserInfo",
 		success:function(data){
-			$("img#portrait,img#nav-portrait").attr("src",contextpath+"/uploadfiles"+data.portrait);
+			var img = new Image({
+				onload: $("img#portrait,img#nav-portrait").prop("src",contextpath+"/uploadfiles"+data.portrait),
+				onerror: $("img#nav-portrait,img#portrait").prop("src",contextpath+"/user/personalConfig/getPortrait")
+			});
+			img.src = contextpath+"/uploadfiles"+data.portrait;//加载头像，失败则去取数据库中存储的BASE64编码过的头像
+			
 			$("p#identity").text(data.identity);
 			$("p#introduction").text(data.introduction);
 		},
