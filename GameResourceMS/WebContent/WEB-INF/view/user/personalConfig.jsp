@@ -54,8 +54,8 @@
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">个人信息<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#personalInfo-level">等级</a></li>
-								<li><a href="#personalInfo-coins_posts">论坛币与发帖历史</a></li>
+								<li><a href="#posts-history">帖子历史</a></li>
+								<li><a href="#personalInfo-coins_posts">留白</a></li>
 							</ul>
 						</li>
 						<li><a href="#userStats_Secction">数据记录</a></li>
@@ -67,8 +67,8 @@
 			<div class="modal fade col-md-10 col-md-offset-2" id="PortraitModal"
 				tabindex="-1" role="dialog" aria-labelledby="PortaitModalLabel"
 				aria-hidden="true" data-backdrop="static">
-				<form method="post" id="Change_Portrait"
-					enctype="multipart/form-data">
+				<form method="post" id="change_Portrait"
+					enctype="multipart/form-data" action="<%=context_path%>/user/personalConfig/uploadPortrait">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -78,18 +78,29 @@
 							</div>
 							<div class="modal-body">
 								<!-- 上传图片部件配置 -->
-								<div class="control-group">
-									<label class="control-label">上传头像</label>
+								<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<div class="controls col-sm-2">
+										<label class="control-label">当前头像</label>
+										<img alt="当前头像" class="img-circle" id="modal-portrait">
+									</div>
+									<div class="controls col-sm-2" id="div-preview">
+										<label class="control-label">头像预览</label>
+										<img alt="上传头像预览" class="img-circle" id="preview">
+									</div>
+								</div>
+								<div class="form-group">
 									<div class="controls">
-										<input type="file" id="upload_portrait" />
+										<input type="file" id="upload_portrait" name="portrait"/>
 										<p class="help-block">大小不超过512K</p>
 									</div>
 								</div>
+								</form>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
-									data-dismiss="modal">算了QAQ</button>
-								<button type="button" class="btn btn-primary">确认上传</button>
+									data-dismiss="modal" id="cancel_upload">算了QAQ</button>
+								<button type="button" class="btn btn-primary" onclick="uploadPortrait()">确认上传</button>
 							</div>
 						</div>
 					</div>
@@ -165,10 +176,11 @@
 								<label for="name">简介</label>
 								<textarea class="form-control" rows="5" id="edit_introduction"></textarea>
 							</div>
+							<div class="col-md-2 col-md-offset-5"><button class="btn btn-primary btn-lg">确认保存</button></div>
 						</form>
 					</div>
-					<div id="personalInfo-level" class="section">
-						<p>测试等级</p>
+					<div id="posts-history" class="section">
+						<p>发帖历史-TODO:Vue.js渲染表单</p>
 					</div>
 					<div id="personalInfo-coins_posts" class="section">
 						<p>测试硬币</p>

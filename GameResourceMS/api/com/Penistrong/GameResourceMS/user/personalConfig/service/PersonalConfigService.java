@@ -12,5 +12,10 @@ import com.Penistrong.GameResourceMS.base.service.BaseService;
  * @param <R>
  */
 public interface PersonalConfigService<R extends Object> extends BaseService<R> {
+	//修改用户信息
 	boolean updateUserInfo(Map<String, Object> params);
+	//上传头像
+	boolean uploadPortrait(Map<String, Object> params);
+	//获取头像
+	String getPortrait(Map<String, Object> params);
 }

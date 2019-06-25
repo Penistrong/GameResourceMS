@@ -10,7 +10,11 @@ $(document).ready(function(){
 		url:contextpath+"/index/getUserInfo",
 		success:function(data){
 			user = data;
-			$("img#nav-portrait,img#portrait").prop("src",contextpath+"/uploadfiles"+data.portrait);
+			var img = new Image({
+				onload: $("img#portrait,img#nav-portrait,img#modal-portrait").prop("src",contextpath+"/uploadfiles"+data.portrait),
+				onerror: $("img#nav-portrait,img#portrait,img#modal-portrait").prop("src",contextpath+"/user/personalConfig/getPortrait")
+			});
+			img.src = contextpath+"/uploadfiles"+data.portrait;//加载头像，失败则去取数据库中存储的BASE64编码过的头像
 			$("#curIdentity").html(data.identity);
 			$("#edit_introduction").val(data.introduction);
 		},
@@ -18,6 +22,11 @@ $(document).ready(function(){
 			alert('拉取用户信息失败');
 		}
 	});
+	
+	$("#upload_portrait").change(function(){
+		$("#preview").prop("src",URL.createObjectURL($(this)[0].files[0]));
+		$("#div-preview").show();
+	});	
 	
 	//图表渲染
 	chart = Highcharts.chart('userStats_Section',{
@@ -98,6 +107,24 @@ $(document).ready(function(){
 	});
 })
 
+function uploadPortrait(){
+	//注意:这里借助ajax异步上传表单[method=post,enctype=multipart/form-data]要设置ajax不要处理数据且不要设置contentType请求头
+	var formData = new FormData($("#change_Portrait")[0]);
+	$.ajax({
+		type: "post",
+		url: contextpath+"/user/personalConfig/uploadPortrait",
+		data: formData,
+		processData:false,
+		contentType:false,
+		success:function(msg){
+			if(msg=="success"){
+				$("#cancel_upload").click();
+				window.location.reload();
+			}
+		}
+	})
+}
+
 function getUserStats(){
 	$.ajax({
 		type:"post",
@@ -129,6 +156,16 @@ function changeUserName(){
 	$("input#edit_user_name").prop("value", user.user_name);
 }
 
+var user_name_Reg = /^[^]{2,7}$/;
+
+function user_name_validation(user_name){
+	if(user_name_Reg.test(user_name)==false){
+		$("input#edit_user_name").prop({value:"",placeholder:"仅支持2~7位!"});
+		return false;
+	}
+	return true;
+}
+
 function updateUserInfo(){
 	var user_name = $("input#edit_user_name").val();
 	var introduction = $("#edit_introduction").val();
@@ -138,7 +175,7 @@ function updateUserInfo(){
 		dataType:'String',
 		data:JSON.stringify({'user_name':user_name, 'introduction':introduction}),
 		success:function(flag){
-			
+		
 		}
 	})
 }
