@@ -5,12 +5,15 @@ ul.nav-pills{
 	background-color:rgba(255,255,255,0.5);
 }
 
-#username_Section {color: #fff; background-color: #1E88E5;height:280px;font-size:20px;}
+#baseinfo_Section {color: #fff; background-color: #1E88E5;height:280px;font-size:20px;}
+#Section{height:}
 #portrait_Section {color: #fff; background-color: #673ab7;height:100px;}
-#personalInfo-user_type {color: #fff; background-color: #ff9800;}
+#userStats_Section{height:400px;margin-top:100px;}
 #personalInfo-level {color: #fff; background-color: #00bcd4;}
 #personalInfo-coins_posts {color: #fff; background-color: #009688;}
-#introduction_Section {color:#fff;background-color: #D9D919;margin-top:800px;}
+#introduction_Section {color:#fff;background-color: #D9D919;}
+
+input#edit_user_name{margin-top:4px;}
 
 div.row{margin-top:100px;}
 

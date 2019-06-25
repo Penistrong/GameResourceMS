@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.text.SimpleDateFormat" %>
 <jsp:directive.include file="/WEB-INF/view/common/common.jsp" />
 <html>
 
@@ -19,18 +20,13 @@
         <!-- For favicon png -->
        	<link rel="shorcut icon" href="<%=image_path%>/resource/image/gate/gate.ico"/>
        	<link rel="background" href="<%=image_path%>/resource/image/gate/background.jpg"/>
-       	<!-- load -->
- 		<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/load.css">
        	
         <!--font-awesome.min.css-->
         <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/font-awesome.min.css">
 		
 		<!--animate.css-->
         <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/animate.css">
-		
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/bootstrap.min.css">
-		
+				
 		<!-- bootsnav -->
 		<link rel="stylesheet" href="<%=css_path%>/resource/css/assets/bootsnav.css" >	
         
@@ -55,19 +51,13 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 		
-		<div id="loader-wrapper">
-   		<div id="loader"></div>
-    	<div class="loader-section section-left"></div>
-    	<div class="loader-section section-right"></div>
-		</div>
-		
-		
 		<!-- signin end -->
 		<section class="signin">
 			<div class="container">
 				<div class="sign-content">
-					<h2><span style="font-size:70px"> <%= new java.util.Date().getHours()%>:<%= new java.util.Date().getMinutes()%></span> </h2>
-					<h2>WelCome to the word of pennis strong</h2>			
+					<%SimpleDateFormat formatter = new SimpleDateFormat("HH:mm"); %>
+					<h2><span style="font-size:70px"><%=formatter.format(new Date()) %></span> </h2>
+					<h2>Welcome to the world of Penistrong</h2>			
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="signin-form">
@@ -201,17 +191,9 @@
 		 <!-- Include all js compiled plugins (below), or include individual files as needed -->
 
 
-
-		<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
         
         <!--modernizr.min.js-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-		
-		<!--bootstrap.min.js-->
-        <script src="<%=javascript_path%>/resource/js/assets/bootstrap.min.js"></script>
-		
-		<!-- bootsnav js -->
-		
 		
 		<!-- jquery.sticky.js -->
 		
@@ -223,9 +205,6 @@
         
         <script type="text/javascript" src="<%=javascript_path%>/resource/js/gate/login.js?v=<%=version%>"></script>
         
-        
-        <!--Load JS-->
-		<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/load.js?v=<%=version%>"></script>
 
     </body>
 
