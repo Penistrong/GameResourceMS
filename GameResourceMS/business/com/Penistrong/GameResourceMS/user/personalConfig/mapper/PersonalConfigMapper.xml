@@ -3,9 +3,8 @@
 <mapper namespace="com.Penistrong.GameResourceMS.user.personalConfig.mapper.PersonalConfigMapper">
 	<update id="updateUserInfo">
 		UPDATE user_accounts
-		   SET 1 = 1
+		   SET <if test="introduction != '' and introduction != null">introduction = #{introduction}</if>
 		   	   <if test=" user_name !='' and user_name != null ">,user_name = #{user_name}</if>
-		   	   <if test="introduction != '' and introduction != null">,introduction = #{introduction}</if>
 		 WHERE resource_id = #{resource_id}
 		   AND user_id = #{user_id}
 	</update>

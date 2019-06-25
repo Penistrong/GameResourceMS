@@ -176,7 +176,7 @@
 								<label for="name">简介</label>
 								<textarea class="form-control" rows="5" id="edit_introduction"></textarea>
 							</div>
-							<div class="col-md-2 col-md-offset-5"><button class="btn btn-primary btn-lg">确认保存</button></div>
+							<div class="col-md-2 col-md-offset-5"><button class="btn btn-primary btn-lg" type="button" onclick="updateUserInfo()">确认保存</button></div>
 						</form>
 					</div>
 					<div id="posts-history" class="section">
