@@ -47,7 +47,25 @@ $(document).ready(function(){
 	$("#btn-show-latest-posts").click(function(){
 		$.latestPosts_page();
 	})
+	$("#post_send").click(function(){
+		var post="";
+		post = $("#post").val();
+		console.log("in");
+		if(post_checkbox.checked){
+			if(post!=""){
+				console.log("in");
+				return true;
+			}else{
+				$("#post").attr({value:'',placeholder:'请输入信息'});
+				return false;
+			}
+		}else{
+			alert('pleace check first');
+			return false;
+		}
+	});
 })
+
 
 //listPosts方法已update为latestPosts_page方法
 $.listPosts = function(){

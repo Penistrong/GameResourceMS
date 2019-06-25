@@ -1,4 +1,4 @@
-body{overflow-y:scroll;background:url('http://localhost:8080/GameResourceMS/resource/image/index/background.jpg') no-repeat fixed center;background-size:cover;}
+body{overflow-y:scroll;background:none;background-size:cover;}
 ul#user_infolist{list-style:none;display:table;text-align:center;}
 div#user_info{display:none;border:2px solid gray;background-color:#312520;margin-top:50px;width:200px;z-index:10;position:fixed;right:10px;}
 p#toggle_info_button{text-align:center;background:#e5eecc;border:solid 1px #c3c3c3;padding:5px;color:#9d2933;cursor:pointer;}
@@ -6,6 +6,9 @@ p#user_name{font-family: 微软雅黑;font-size: 20px;color: #16a951;font-weight
 p#identity{font_family:STKaiTi;font-size:22px;color:#D9D919;font-weight:bold;}
 p#level{font-size:20px;color:#fffbf0;text-shadow:1px 1px 1px gray;}
 p#introduction{background-color:white;text-align:center;font-family:KaiTi;font-size:20px;display:none;}
+
+button#message{position:fixed; bottom:80px; right:80px;box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);background:url('http://localhost:8080/GameResourceMS/resource/image/index/message.png');width:64px;height:64px;border: none;}
+button#photo{background:url('http://localhost:8080/GameResourceMS/resource/image/index/photo.png');width:32px;height:32px;border: none;}
 li.identity{background-color:black;}
 img#portrait{width: 120px;
 	height:120px;
@@ -18,6 +21,9 @@ img#nav-portrait{
 	width:50px;
 	height:50px;
 	cursor:pointer;
+}
+input#post{
+	height:150px;
 }
 p#nav-username{cursor:pointer;}
 

@@ -8,10 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>游戏资源集散论坛</title>
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>
+<link rel="stylesheet" href="<%=css_path%>/resource/css/assets/style.css">
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
-<!-- script definition-->
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/load.css">
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
 <!-- 图表脚本引入 highcharts -->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts.js"></script>
@@ -21,8 +25,14 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/series-label.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/drilldown.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/themes/dark-unica.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/load.js?v=<%=version%>"></script>
 </head>
 <body>
+		<div id="loader-wrapper">
+   			<div id="loader"></div>
+    		<div class="loader-section section-left"></div>
+    		<div class="loader-section section-right"></div>
+		</div>
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div id="user_info"><!-- 当前用户信息浮动框 -->
@@ -87,6 +97,11 @@
 		</div>
 		</div>
 	</nav>
+	
+	
+	
+        
+    
 	<!---------------------------------------------------- 导航栏组件 ----------------------------------------------------->
 	<!-- 加载不同模版 -->
 	<div class="container-fluid main-container">
@@ -131,6 +146,121 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
+
+
+	
+	<!-- signin end -->
+		<section class="signin">
+			<div class="container">
+				<div class="sign-content">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="signin-footer">
+								<button type="button"  data-toggle="modal" data-target=".signin_modal" id="message"></button>	
+							</div><!--/.signin-footer -->
+						</div><!--/.col-->
+					</div><!--/.row -->
+
+				</div><!--/.sign-content -->
+
+				<!-- modal part start -->
+				<div class="modal fade signin_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+					<div class="modal-dialog modal-lg" role="document">
+					    <div class="modal-content">
+					      	<div class="sign-content">
+
+					      		<div class="modal-header">
+									<h2>Post</h2>
+								</div><!--/.modal-header -->
+								
+								<div class="modal-body">
+									<div class="signin-form">
+										<div class=" ">
+											<div class=" ">
+												<form action="signin.html">
+													<div class="form-group">
+													    <label for="signin_form">Post</label>
+													    <input type="text" class="form-control"  placeholder="enter your post here" id="post" required/>
+													</div><!--/.form-group -->
+													<div class="form-group">
+														<label for="signin_form">Photo</label>
+													    <input type="text" class="form-control"  placeholder="photo" id="photo" required/>
+													</div><!--/.form-group -->
+												</form><!--/form -->
+											</div><!--/.col -->
+										</div><!--/.row -->
+
+									</div><!--/.signin-form -->
+
+									<div class="signin-modal-password">
+										<div class="awesome-checkbox-list">
+											<ul class="unstyled centered">
+												<li>
+												    <input class="styled-checkbox" id="post_checkbox" type="checkbox" value="value3">
+												    <label for="styled-checkbox-3">accept our terms & condition</label>
+												</li>
+												<li>
+												<button type="button" data-toggle="modal" data-target="#PhotoModal" id="photo"></button>
+												</li>	
+											</ul>
+										</div><!--/.awesome-checkbox-list -->
+									</div><!--/.signin-modal-password -->
+
+									<div class="signin-footer">
+										<button type="button" class="btn signin_btn" data-toggle="modal" data-target=".signin_modal" id="post_send">
+										send
+										</button>
+									</div><!--/.signin-footer -->
+								</div><!--/.modal-body -->
+
+							</div><!--/.sign-content -->
+					    </div><!--/.modal-content -->
+					</div><!--/.modal-dialog -->
+				</div><!--/.modal -->
+				
+				<!-- modal part end -->
+			</div><!--/.container -->
+
+		</section><!--/.signin -->
+		
+		<!-- signin end -->
+		
+		<!-- 上传图片模态框待修改 -->
+			<div class="modal fade col-md-10 col-md-offset-2" id="PhotoModal"
+				tabindex="-1" role="dialog" aria-labelledby="PortaitModalLabel"
+				aria-hidden="true" data-backdrop="static">
+				<form method="post" id="Change_Portrait"
+					enctype="multipart/form-data">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="PortraitModalLabel">上传自定义头像</h4>
+							</div>
+							<div class="modal-body">
+								<!-- 上传图片部件配置 -->
+								<div class="control-group">
+									<label class="control-label">上传头像</label>
+									<div class="controls">
+										<input type="file" id="upload_portrait" />
+										<p class="help-block">大小不超过512K</p>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">算了QAQ</button>
+								<button type="button" class="btn btn-primary">确认上传</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+	<!-- 上传图片模态框 end-->
+		
+	
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 	<!-- 新建帖子(发布资源) -->
 	<script id="newPost" type="text/html">
