@@ -22,8 +22,9 @@ img#nav-portrait{
 	height:50px;
 	cursor:pointer;
 }
-input#post{
+#post{
 	height:150px;
+	resize:none;
 }
 p#nav-username{cursor:pointer;}
 
