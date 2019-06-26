@@ -8,6 +8,7 @@
 <title><%=request.getAttribute("poster_id") %></title>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/posts/postPage.css"/>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/vue.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 </head>
 <body>
 	<!-- 导航栏 -->
@@ -34,5 +35,44 @@
 	</nav>
 	<%=request.getAttribute("post_id") %>
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/posts/post.js?v=<%=version%>"></script>
+	<!-- 加载不同模版 -->
+	<div class="container-fluid main-container">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="col-xs-12 col-md-12 col-sm-12" id="templates_Panel">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 楼层 -->
+	<script id="repliesFloors" type="text/html">
+	<div id="replyManagement">
+	<div class="col-md-8 col-md-offset-2" v-for="(reply, index) of slist">
+		<div class="col-md-2">
+			<form role="form">
+				<div class="form-group">
+					<img alt="层主头像" class="img-circle" v-bind:src=`<%=context_path%>/user/personalConfig/getPor?resource_id=${reply.resource_id}`>
+					<label class="control-label">{{reply.user_name}}</label>
+					<label class="control-label">{{reply.level}}</label>
+					<label class="control-label">{{reply.identity}}</label>
+				</div>
+			</form>
+		</div>
+		<div class="panel panel-info col-md-6">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					{{reply.floor}} F
+				</h4>
+			</div>
+		<div class="panel-body">
+			{{reply.reply}}		
+		</div>
+		<div class="panel-footer">
+			<div style="text-align:right">{{reply.reply_time}}</div>
+		</div>
+	</div>
+	</div>
+	</script>
 </body>
 </html>

@@ -20,7 +20,9 @@
 		SELECT portrait
 		  FROM user_moreinfos
 		 WHERE resource_id = #{resource_id}
+		<if test="user_id != '' and user_id != null">	 
 		   AND user_id = #{user_id}
+		</if>
 	</select>
 	
 </mapper>
