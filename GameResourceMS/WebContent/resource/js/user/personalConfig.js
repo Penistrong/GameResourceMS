@@ -28,6 +28,15 @@ $(document).ready(function(){
 		$("#div-preview").show();
 	});	
 	
+	//控制页面内跳转动画
+	$("a[href$='_Section']").click(function(){
+		var index = this.href.lastIndexOf("#");
+		var selector = this.href.substring(index, this.href.length);
+		var time = Math.abs(($(selector).offset().top - 50) - $("body,html").offset().top);
+		
+		$("html,body").animate({scrollTop: $(selector).offset().top - 50}, time<500?500:time);
+	})
+	
 	//图表渲染
 	chart = Highcharts.chart('userStats_Section',{
 		chart:{
@@ -159,23 +168,30 @@ function changeUserName(){
 var user_name_Reg = /^[^]{2,7}$/;
 
 function user_name_validation(user_name){
-	if(user_name_Reg.test(user_name)==false){
+	if(user_name_Reg.test(user_name)==true){
 		$("input#edit_user_name").prop({value:"",placeholder:"仅支持2~7位!"});
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 function updateUserInfo(){
-	var user_name = $("input#edit_user_name").val();
+	var data=null;
 	var introduction = $("#edit_introduction").val();
+	var user_name = $("input#edit_user_name").val();
+	if(user_name_validation(user_name))
+		data=JSON.stringify({'user_name':user_name, 'introduction':introduction});
+	else
+		data = JSON.stringify({'introduction':introduction});
+	console.log(data);
 	$.ajax({
 		type:'post',
 		url:contextpath+"/user/personalConfig/updateUserInfo",
-		dataType:'String',
-		data:JSON.stringify({'user_name':user_name, 'introduction':introduction}),
+		data:data,
+		dataType:'json',
+		contentType:"application/json;charset=utf-8",
 		success:function(flag){
-		
+			console.log(flag);
 		}
 	})
 }

@@ -20,4 +20,15 @@ public interface PostsService<R extends Object> extends BaseService<R> {
 	//发布新帖子
 	boolean createNewPost(Map<String,Object> map);
 	
+	//回复帖子
+	boolean insertNewReply(Map<String, Object> map);
+	
+	//获取帖子楼层，以便增加新的回复(盖楼)
+	Integer getFloorsOfPost(String post_id);
+	
+	//更新帖子楼层
+	boolean updateFloorsOfPost(Map<String, Object> map);
+	
+	//获取帖子内部回复内容
+	List<Map<String,Object>> getRepliesOfPost(Map<String,Object> map);
 }

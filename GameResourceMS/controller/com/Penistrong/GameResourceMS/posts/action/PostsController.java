@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Penistrong.GameResourceMS.base.action.BaseAction;
+import com.Penistrong.GameResourceMS.po.CurrentUser;
 import com.Penistrong.GameResourceMS.posts.service.PostsService;
 
 /**
@@ -45,6 +47,7 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 		map.addAttribute("post_id", post_id);
 		return "posts/post";
 	}
+	
 	/**
 	 * 按最后回复时间查询帖子
 	 * @param request
@@ -65,5 +68,21 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 	@RequestMapping(value="/createNewPost",method = RequestMethod.POST)
 	public Map<String,Object> createNewPost(@RequestBody Map<String,Object> map,HttpServletRequest request){
 		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/insertNewReply",method = RequestMethod.POST)
+	public boolean insertNewReply(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){
+		params.put("replier_id", ((CurrentUser)session.getAttribute("currentUser")).getUser_id());
+		return this.service.insertNewReply(params);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getRepliesOfPost", method=RequestMethod.POST)
+	public List<Map<String, Object>> getRepliesOfPost(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){
+		List<Map<String, Object>> replies_list = this.service.getRepliesOfPost(params);
+		for(Map<String, Object> reply:replies_list)
+			reply.put("reply_time", reply.get("reply_time").toString());
+		return replies_list;
 	}
 }
