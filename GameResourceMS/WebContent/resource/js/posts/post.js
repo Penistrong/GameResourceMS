@@ -50,7 +50,7 @@ var manage_replies = new Vue({
 				url:contextpath+"/posts/getRepliesOfPost",
 				dataType:"json",
 				contentType:"application/json;charset=utf-8",
-				data:JSON.stringify({}),
+				data:JSON.stringify({'post_id':'000002'}),
 				success:function(replies){
 					for(var i=0;i<replies.length;i++){
 						manage_replies.list.push(replies[i]);
@@ -59,6 +59,10 @@ var manage_replies = new Vue({
 					manage_replies.setSlist(manage_replies.list);
 				}
 			})
+		},
+		//拼接img src属性
+		getPortraitURL(resource_id){
+			return contextpath+"/user/personalConfig/getPor?resource_id="+resource_id;
 		},
 		//修改数据
 		showOverlay(index){

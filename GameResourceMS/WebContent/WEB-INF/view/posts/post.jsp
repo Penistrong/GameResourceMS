@@ -48,28 +48,33 @@
 	<!-- 楼层 -->
 	<script id="repliesFloors" type="text/html">
 	<div id="replyManagement">
-	<div class="col-md-8 col-md-offset-2" v-for="(reply, index) of slist">
-		<div class="col-md-2">
-			<form role="form">
+	<div class="col-md-10 col-md-offset-1" v-for="(reply, index) of slist">
+		<div class="col-md-2 col-md-offset-2">
+			<form role="form" class="form-vertical reply-floor">
 				<div class="form-group">
-					<img alt="层主头像" class="img-circle" v-bind:src=`<%=context_path%>/user/personalConfig/getPor?resource_id=${reply.resource_id}`>
-					<label class="control-label">{{reply.user_name}}</label>
-					<label class="control-label">{{reply.level}}</label>
-					<label class="control-label">{{reply.identity}}</label>
+					<img alt="层主头像" class="img-circle replier-portrait center-block" :src='getPortraitURL(reply.resource_id)'>
+				</div>
+				<div class="form-group text-center">
+					<label class="control-label center-block text-center">{{reply.user_name}}</label>
+					<label class="control-label center-block text-center">Lv. <span class="replier-lvl">{{reply.level}}<span></label>
+					<label class="control-label center-block text-center">{{reply.identity}}</label>
 				</div>
 			</form>
 		</div>
-		<div class="panel panel-info col-md-6">
+		<div class="col-md-6">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					{{reply.floor}} F
 				</h4>
 			</div>
-		<div class="panel-body">
+			<div class="panel-body">
 			{{reply.reply}}		
+			</div>
+			<div class="panel-footer">
+				<div style="text-align:right">{{reply.reply_time}}</div>
+			</div>
 		</div>
-		<div class="panel-footer">
-			<div style="text-align:right">{{reply.reply_time}}</div>
 		</div>
 	</div>
 	</div>
