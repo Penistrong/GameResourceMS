@@ -57,14 +57,7 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
          
-        <!-- signin end -->
-		<div id="loader-wrapper">
-   		<div id="loader"></div>
-    	<div class="loader-section section-left"></div>
-    	<div class="loader-section section-right"></div>
-		</div>
-		<!-- signin end -->
-
+        
 		
 		<!-- signin end -->
 		<section class="signin signup popup-up">

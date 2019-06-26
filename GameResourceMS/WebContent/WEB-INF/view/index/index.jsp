@@ -26,6 +26,8 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/modules/drilldown.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/themes/dark-unica.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/load.js?v=<%=version%>"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/vue.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 </head>
 <body>
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
@@ -99,6 +101,8 @@
     
 	<!---------------------------------------------------- 导航栏组件 ----------------------------------------------------->
 	<!-- 加载不同模版 -->
+	
+	<!-- 加载帖子 -->
 	<div class="container-fluid main-container">
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -255,6 +259,36 @@
 			</div>
 	<!-- 上传图片模态框 end-->
 		
+	
+	<!-- -----------------------------------------------帖子--------------------------------------------------------- -->
+	<script id="latestPosts" type="text/html">
+		<div id="postManagement">
+		<div class="col-md-8 col-md-offset-2" v-for="(post, index) of slist">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title">
+						{{post.post_title}}
+					</h2>
+				</div>
+			<div class="panel-body">
+				<h3 class="panel-title">
+					{{post.post_subhead}}
+				</h3>
+				<div style="text-align:right;">
+					昵称:   {{post.post_author}}
+					<br>
+					<small>
+						时间:   {{post.upload_time}}
+					</small>
+				</div>		
+			</div>
+		</div>
+		</div>
+
+
+</script>
+	
+	
 	
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 	<!-- 新建帖子(发布资源) -->

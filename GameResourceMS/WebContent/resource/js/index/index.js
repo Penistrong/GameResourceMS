@@ -68,7 +68,7 @@ $(document).ready(function(){
 
 
 //listPosts方法已update为latestPosts_page方法
-$.listPosts = function(){
+/*$.listPosts = function(){
 	var tpl = $("#latestPosts").html();
 	$.ajax({
 		type:"POST",
@@ -77,18 +77,87 @@ $.listPosts = function(){
 		success:function(list){
 			console.log(list);
 			/*传回来的list是无名称的样式[{data1},{data2}],要对其进行对象的引用就将其包装成Map格式*/
-			var datas = {"list":list};
+			/*var datas = {"list":list};
 			var rendered_html = template(tpl,datas);
 			$("#templates_Panel").html(rendered_html);
 			$("#latestPostsDataTable").DataTable();
 		}
 	})
-}
+}*/
 
 $.latestPosts_page = function(){
 	var rendered_html = template($("#latestPosts").html());
 	$("#templates_Panel").html(rendered_html);
-	$("#latestPostsDataTable").DataTable({
+	$.beginService();
+}
+
+$.beginService = function(){
+	var latestPosts = new Vue({
+		el:'#postManagement',
+		data:{
+			isActive: false,
+			selected: -1,
+			selectedlist: {},
+			slist:[],
+			searchlist:[],
+			list:[]
+		},
+		created(){
+			console.log(Date.now()+'|'+'Vue instance has been created');
+		},
+		mounted:function(){
+			this.getPostInfo();
+		},
+		methods:{
+			//获取用户信息
+			getPostInfo:function(){
+				$.ajax({
+					type:"POST",
+					url:contextpath+"/posts/getLatestPosts",
+					dataType:"json",
+					success:function(postInfos){
+						console.log("in");
+						console.log(postInfos);
+						for(var i=0;i<postInfos.length;i++){
+							latestPosts.list.push(postInfos[i]);
+							console.log(postInfos[i]);
+						}
+						//console.log(manage_users.list);
+						latestPosts.setSlist(latestPosts.list);
+					}
+				})
+			},
+			setSlist(arr){
+				this.slist = JSON.parse(JSON.stringify(arr));
+			},
+			
+			//修改数据
+			/*showOverlay(index){
+				this.selected = index;
+				this.selectedlist = this.list[index];
+				this.changeOverlay();
+			},
+			//点击保存按钮
+			
+			//获取需要渲染进页面的数据
+			setSlist(arr){
+				this.slist = JSON.parse(JSON.stringify(arr));
+			},
+			updateUserInfo(arr){
+				$.ajax({
+					type:"POST",
+					url:contextpath+"/admin/updateUserInfo",
+					data:arr,
+					success:function(result){
+						
+					}
+				})
+			},*/
+			
+		}
+	});
+}
+	/*$("#latestPostsDataTable").DataTable({
 		paging:true,
 		iDisplayLength:10,
 		bPaginate:true,
@@ -121,8 +190,8 @@ $.latestPosts_page = function(){
 				}
 			}
 		]
-		});
-}
+		});*/
+
 
 $.newPost = function(){
 	var tpl = $("#newPost").html();
