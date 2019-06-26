@@ -9,8 +9,8 @@ ul.nav-pills{
 #Section{height:}
 #portrait_Section {color: #fff; background-color: #673ab7;height:100px;}
 #userStats_Section{height:400px;}
-#posts-history {color: #fff; background-color: #00bcd4;margin-top:100px;}
-#personalInfo-coins_posts {color: #fff; background-color: #009688;}
+#posts-history_Section {color: #fff; background-color: #00bcd4;margin-top:100px;}
+#personalInfo-coins_posts_Section {color: #fff; background-color: #009688;}
 #introduction_Section {color:#fff;background-color: #D9D919;}
 
 input#edit_user_name{margin-top:4px;}

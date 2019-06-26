@@ -28,6 +28,15 @@ $(document).ready(function(){
 		$("#div-preview").show();
 	});	
 	
+	//控制页面内跳转动画
+	$("a[href$='_Section']").click(function(){
+		var index = this.href.lastIndexOf("#");
+		var selector = this.href.substring(index, this.href.length);
+		var time = Math.abs(($(selector).offset().top - 50) - $("body,html").offset().top);
+		
+		$("html,body").animate({scrollTop: $(selector).offset().top - 50}, time<500?500:time);
+	})
+	
 	//图表渲染
 	chart = Highcharts.chart('userStats_Section',{
 		chart:{

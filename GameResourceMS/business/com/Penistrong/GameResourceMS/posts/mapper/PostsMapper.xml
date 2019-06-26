@@ -9,6 +9,21 @@
 	  ORDER BY b.last_reply_time DESC	   
 	</select>
 	
+	<select id="getRepliesOfPost" resultType="java.util.Map">
+		SELECT a.post_id,a.floor,b.resource_id,b.user_id,b.user_name,a.reply,a.reply_time,b.level,b.identity
+		  FROM posts_reply a
+	INNER JOIN user_accounts b
+			ON a.replier_id = b.resource_id
+		 WHERE a.post_id = #{post_id}
+	  ORDER BY a.floor
+	</select>
+	
+	<select id="getFloorsOfPost" resultType="java.lang.Integer">
+		SELECT floors
+		  FROM posts_extend_info
+		 WHERE post_id = #{post_id}
+	</select>
+	
 	<insert id="createNewPost">
 		INSERT INTO
 			   posts_base_info
@@ -16,4 +31,18 @@
 		VALUES 
 		(#{resource_id},#{post_id},#{post_title},#{post_author},#{upload_time},#{post_title},#{post_subhead},#{post_content})
 	</insert>
+	
+	<insert id="insertNewReply">
+		INSERT INTO
+			   posts_reply
+		(POST_ID,FLOOR,REPLIER_ID,REPLY,REPLY_TIME)
+		VALUES
+		(#{post_id},#{floor},#{replier_id},#{reply},#{reply_time})
+	</insert>
+	
+	<update id="updateFloorsOfPost">
+		UPDATE posts_extend_info
+		   SET floors = #{floors}
+		 WHERE post_id = #{post_id}
+	</update>
 </mapper>

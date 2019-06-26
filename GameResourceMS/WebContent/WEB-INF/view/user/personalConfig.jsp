@@ -54,8 +54,8 @@
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">个人信息<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#posts-history">帖子历史</a></li>
-								<li><a href="#personalInfo-coins_posts">留白</a></li>
+								<li><a href="#posts-history_Section">帖子历史</a></li>
+								<li><a href="#personalInfo-coins_posts_Section">留白</a></li>
 							</ul>
 						</li>
 						<li><a href="#userStats_Secction">数据记录</a></li>
@@ -179,10 +179,10 @@
 							<div class="col-md-2 col-md-offset-5"><button class="btn btn-primary btn-lg" type="button" onclick="updateUserInfo()">确认保存</button></div>
 						</form>
 					</div>
-					<div id="posts-history" class="section">
+					<div id="posts-history_Section" class="section">
 						<p>发帖历史-TODO:Vue.js渲染表单</p>
 					</div>
-					<div id="personalInfo-coins_posts" class="section">
+					<div id="personalInfo-coins_posts_Section" class="section">
 						<p>测试硬币</p>
 					</div>
 					<div id="userStats_Section" class="section">
