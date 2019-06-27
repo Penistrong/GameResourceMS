@@ -1,4 +1,4 @@
-body{background:url('../../image/gate/login_background.jpg') no-repeat fixed center;background-size:cover;}
+body{background:none;background-size:cover;}
 table#login_box{width:300px;text-align:center;border-collapse:collapse;padding:2px;border:2px solid white;background:rgba(0,0,0,0.3)}
 table#login_box td{font-family:STKaiti;color:#fffbf0;text-shadow:2px 2px 2px gray;font-size:30px;}
 

@@ -157,40 +157,7 @@ $.beginService = function(){
 		}
 	});
 }
-	/*$("#latestPostsDataTable").DataTable({
-		paging:true,
-		iDisplayLength:10,
-		bPaginate:true,
-		blengthChange:true,
-		bFilter:true,
-		bSort:true,
-		bInfo:true,
-		bProcessing:true,
-		searching:true,
-		ajax:{
-			url:contextpath+"/posts/getLatestPosts",
-			type:"post",
-			dataSrc:function(result){
-				return result;
-			}
-		},
-		columns:[
-				{data:"tags",defaultContent : ""},
-				{data:"post_title",defaultContent : ""},
-				{data:"post_subhead",defaultContent : ""},
-				{data:"post_author",defaultContent : ""},
-				{data:"last_reply_time",defaultContent : ""},
-		],
-		columnDefs:[
-			{
-				target:[3],
-				data:"floors",
-				"render":function(data,type,row){
-					return "<a href=\"JavaScript:;\">测试哦</a>";
-				}
-			}
-		]
-		});*/
+	
 
 
 $.newPost = function(){
