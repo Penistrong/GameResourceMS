@@ -26,18 +26,160 @@ $.repliesFloors = function(){
 }
 
 $.beginService = function(){
+	
+	//底部分页组件
+	Vue.component('pagination',{
+		//父组件传递的值(有的有默认值)
+		props: {
+			//每页可见页码
+			perPages : {
+				type: Number,
+				default: 5
+			},
+			//当前页码
+			pageIndex : {
+				type: Number,
+				default: 1
+			},
+			//每页显示条数
+			pageSize : {
+				type: Number,
+				default: 10
+			},
+			//总条数
+			total : {
+				type: Number,
+				default: 1
+			},
+		},
+		template:`<ul class="ul-paging center-block" v-if="pages != 1">
+				 	<!--prev-->
+				 	<li :class="['paging-item', 'paging-item--prev',{'paging-item--disabled':index===1}]"
+				 		@click="prev"><<</li>
+				 	
+				 	<!--first-->
+				 	<li :class="['paging-item', 'paging-item--first',{'paging-item--disabled':index===1}]"
+						@click="first">首页</li>
+					<li :class="['paging-item', 'paging-item--more']"
+						v-if="showPrevMore">...</li>
+					<li :class="['paging-item', {'paging-item--current':index===pager}]"
+						v-for="pager in pagers" @click="go(pager)">{{ pager }}</li>
+					<li :class="['paging-item', 'paging-item--more']"
+						v-if="showNextMore">...</li>
+					
+					<!--last-->
+					<li :class="['paging-item', 'paging-item--last', {'paging-item--disabled':index===pages}]"
+						@click="last">尾页</li>
+						
+					<!--next-->	
+					<li :class="['paging-item', 'paging-item--next', {'paging-item--disabled':index===pages}]"
+						@click="next">>></li>
+				  </ul>
+				 `,
+		methods:{
+			prev(){
+				console.log(this.limit);
+				if(this.index > 1)
+					this.go(this.index - 1)
+			},
+			next(){
+				if(this.index<this.pages)
+					this.go(this.index +  1)
+			},
+			first(){
+				if(this.index !== 1)
+					this.go(1)
+			},
+			last(){
+				if(this.index !== this.pages)
+					this.go(this.pages)
+			},
+			go(page){
+				if(this.index !== page){
+					this.index = page
+					//发送给父组件，让父组件调用change对应的pageChange方法
+					this.$emit('change', this.index)
+				}
+			}
+		},
+		computed:{
+			//计算总页码
+			pages(){
+				return Math.ceil(this.size / this.limit)
+			},
+			//计算页码,当count变化时自动计算
+			pagers(){
+				const array = []
+				const perPages = this.perPages
+				const pageCount = this.pages
+				let current = this.index
+				//偏移量
+				const _offset = (perPages - 1)/2
+				
+				const offset = {
+					start 	: current - _offset,
+					end		: current + _offset 
+				}
+				
+				if(offset.start < 1){
+					offset.end += 1 - offset.start
+					offset.start = 1
+				}
+				if(offset.end > pageCount){
+					offset.start -= offset.end - pageCount
+					offset.end = pageCount
+				}
+				if(offset.start < 1) offset.start = 1
+				
+				this.showPrevMore = (offset.start > 1)
+				this.showNextMore = (offset.end < pageCount)
+				
+				for(let i = offset.start;i<=offset.end;i++){
+					array.push(i)
+				}
+				return array
+			}
+		},
+		data(){
+			return {
+				index: this.pageIndex,//当前页码
+				limit: this.pageSize, //每页显示条数
+				size: this.total || 1,//总记录数
+				showPrevMore: false,
+				showNextMore: false
+			}
+		},
+		watch :{
+			pageIndex(val) {
+				this.index = val || 1
+			},
+			pageSize(val) {
+				this.limit = val || 10
+			},
+			total(val) {
+				this.size = val || 1
+			}
+		}
+	});
+	
 var manage_replies = new Vue({
 	el:'#replyManagement',
-	data:{
-		isActive: false,
-		selected: -1,
-		selectedlist: {},
-		slist:[],
-		searchlist:[],
-		list:[]
+	data(){
+		return{
+			isActive: false,
+			selected: -1,
+			selectedlist: {},
+			slist:[],
+			searchlist:[],
+			list:[],
+			pageSize : 5,
+			currentPage: 1,
+			count : 0,
+			items : []
+		}
 	},
 	created(){
-		console.log(Date.now()+'|'+'Vue instance has been created');
+		console.log(Date.now().toString()+'|'+'Vue instance has been created');
 	},
 	mounted:function(){
 		this.getRepliesOfPost();
@@ -56,13 +198,33 @@ var manage_replies = new Vue({
 						manage_replies.list.push(replies[i]);
 					}
 					//console.log(manage_users.list);
-					manage_replies.setSlist(manage_replies.list);
+					//显示展现出的slist(showed list)
+					//manage_replies.setSlist(manage_replies.list);
+					//默认显示前pageSize条数据
+					for(var i=0;i<manage_replies.pageSize;i++)
+						manage_replies.slist.push(replies[i]);
+					manage_replies.count = manage_replies.list.length;//总记录
+					console.log(manage_replies.count);
 				}
 			})
 		},
 		//拼接img src属性
 		getPortraitURL(resource_id){
 			return contextpath+"/user/personalConfig/getPor?resource_id="+resource_id;
+		},
+		pageChange(page){
+			this.currentPage = page
+			//TODO 改变页码时改变slist
+			var curPageStartIndex = (page - 1) * this.pageSize;
+			var curPageEndIndex = page*this.pageSize - 1;
+			if(curPageEndIndex >= this.count){
+				curPageEndIndex = this.count - 1;
+			}
+			this.slist.splice(0, this.slist.length);//清空原来要显示的slist
+			
+			for(var i = curPageStartIndex;i<=curPageEndIndex;i++){
+				this.slist.push(this.list[i]);
+			}
 		},
 		//修改数据
 		showOverlay(index){
@@ -135,6 +297,9 @@ var manage_replies = new Vue({
 	}
 });
 
+
+
+/**
 Vue.component('model',{
 	props:['list','isactive'],
 	template:`<div class="overlay" v-show="isactive">
@@ -184,5 +349,5 @@ Vue.component('model',{
 			this.$emit('modify',this.modifylist);
 		}
 	}
-});
+});*/
 }

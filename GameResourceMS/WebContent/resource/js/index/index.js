@@ -116,16 +116,16 @@ $.beginService = function(){
 					url:contextpath+"/posts/getLatestPosts",
 					dataType:"json",
 					success:function(postInfos){
-						console.log("in");
-						console.log(postInfos);
 						for(var i=0;i<postInfos.length;i++){
 							latestPosts.list.push(postInfos[i]);
-							console.log(postInfos[i]);
 						}
 						//console.log(manage_users.list);
 						latestPosts.setSlist(latestPosts.list);
 					}
 				})
+			},
+			getPostURL(poster_id, post_id){
+				return contextpath+"/posts/"+poster_id+"/"+post_id;
 			},
 			setSlist(arr){
 				this.slist = JSON.parse(JSON.stringify(arr));

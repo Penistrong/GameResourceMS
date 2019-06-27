@@ -255,7 +255,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2 class="panel-title">
-						{{post.post_title}}
+						<a :href="getPostURL(post.poster_id, post.post_id)">{{post.post_title}}</a>
 					</h2>
 				</div>
 			<div class="panel-body">

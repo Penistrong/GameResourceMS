@@ -33,8 +33,8 @@
 			</div>
 		</div>
 	</nav>
-	<%=request.getAttribute("post_id") %>
-	<script type="text/javascript" src="<%=javascript_path%>/resource/js/posts/post.js?v=<%=version%>"></script>
+	<span style="display:none;" id="post_id_box"><%=request.getAttribute("post_id") %></span>
+	
 	<!-- 加载不同模版 -->
 	<div class="container-fluid main-container">
 		<div class="panel panel-default">
@@ -48,6 +48,8 @@
 	<!-- 楼层 -->
 	<script id="repliesFloors" type="text/html">
 	<div id="replyManagement">
+	<div class="col-md-10 col-md-offset-1">
+	</div>
 	<div class="col-md-10 col-md-offset-1" v-for="(reply, index) of slist">
 		<div class="col-md-2 col-md-offset-2">
 			<form role="form" class="form-vertical reply-floor">
@@ -77,7 +79,12 @@
 		</div>
 		</div>
 	</div>
+	<div class="col-md-8 col-md-offset-2">
+	<pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange"></pagination>
+	</div>
 	</div>
 	</script>
+	
+	<script type="text/javascript" src="<%=javascript_path%>/resource/js/posts/post.js?v=<%=version%>"></script>
 </body>
 </html>
