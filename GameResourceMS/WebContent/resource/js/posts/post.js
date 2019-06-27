@@ -115,7 +115,7 @@ $.beginService = function(){
 				let current = this.index
 				//偏移量
 				const _offset = (perPages - 1)/2
-				
+
 				const offset = {
 					start 	: current - _offset,
 					end		: current + _offset 
