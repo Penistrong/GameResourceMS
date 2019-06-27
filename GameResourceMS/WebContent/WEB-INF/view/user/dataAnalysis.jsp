@@ -10,11 +10,8 @@
 <title>个人数据分析-游戏资源集散论坛</title>
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/user/dataAnalysisPage.css"/>
-<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
-<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
-<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
 <!-- 图表脚本引入 highcharts -->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts.js"></script>

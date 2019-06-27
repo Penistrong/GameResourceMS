@@ -90,4 +90,21 @@ public class PersonalConfigController extends BaseAction<PersonalConfigService<M
 				bytes[i] += 256;
 		return bytes;
 	}
+	
+	//只有唯一参数resource_id进行查询并返回头像 For: .../user/personalConfig/getPor?resource_id={RequestParam}
+	@RequestMapping(value="/getPor", method=RequestMethod.GET, produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPortrait(HttpServletRequest request, @RequestParam String resource_id) throws IOException {
+		Map<String, Object> params = new HashMap<>();
+		params.put("resource_id", resource_id);
+		String portait = this.service.getPortrait(params);
+		
+		BASE64Decoder decoder = new BASE64Decoder();
+		byte[] bytes = decoder.decodeBuffer(portait);
+		//调整异常数据
+		for(int i = 0;i<bytes.length;i++)
+			if(bytes[i]<0)
+				bytes[i] += 256;
+		return bytes;
+	}
 }
