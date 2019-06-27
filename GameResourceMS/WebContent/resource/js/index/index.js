@@ -127,10 +127,20 @@ $.beginService = function(){
 					}
 				})
 			},
+			jump(poster_id,post_id){
+				location.href = contextpath+"/posts/"+poster_id+"/"+post_id;
+				return contextpath+"/posts/"+poster_id+"/"+post_id;
+			},
+			
+			jumpURL(poster_id,post_id){
+				return contextpath+"/posts/"+poster_id+"/"+post_id;
+			},
 			setSlist(arr){
 				this.slist = JSON.parse(JSON.stringify(arr));
 			},
-			
+			getPortraitURL(resource_id){
+				return contextpath+"/user/personalConfig/getPor?resource_id="+resource_id;
+			},
 			//修改数据
 			/*showOverlay(index){
 				this.selected = index;

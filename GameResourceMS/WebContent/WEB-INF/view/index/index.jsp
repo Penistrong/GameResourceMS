@@ -257,22 +257,20 @@
 	<!-- -----------------------------------------------帖子--------------------------------------------------------- -->
 	<script id="latestPosts" type="text/html">
 		<div id="postManagement">
-		<div class="col-md-8 col-md-offset-2" v-for="(post, index) of slist">
+		<div class="col-md-8 col-md-offset-2" v-for="(post, index) of slist" @click=jump(post.poster_id,post.post_id) style="cursor:pointer">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2 class="panel-title">
-						{{post.post_title}}
-					</h2>
+					<a :href=jumpURL(post.poster_id,post.post_id)>{{post.post_title}}</a>
 				</div>
 			<div class="panel-body">
 				<h3 class="panel-title">
 					{{post.post_subhead}}
 				</h3>
 				<div style="text-align:right;">
-					昵称:   {{post.post_author}}
+					 {{post.post_author}}
 					<br>
 					<small>
-						时间:   {{post.upload_time}}
+						{{post.upload_time}}
 					</small>
 				</div>		
 			</div>
