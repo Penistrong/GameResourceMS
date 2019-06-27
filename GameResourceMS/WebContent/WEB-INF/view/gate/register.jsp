@@ -18,37 +18,11 @@
         <!-- title of site -->
         <title>Sign up</title>
 
-		<!-- load -->
- 		<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/load.css">
-
         <!-- For favicon png -->
 		<link rel="shorcut icon" href="<%=image_path%>/resource/image/gate/gate.ico"/>
-       
-        <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/font-awesome.min.css">
-		
-		<!--animate.css-->
-        <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/animate.css">
-		
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/bootstrap.min.css">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="<%=css_path%>/resource/css/assets/bootsnav.css" >	
-        
+
         <!--style.css-->
         <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/style.css">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="<%=css_path%>/resource/css/assets/responsive.css">
-        
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		
-        <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 
     </head>	
 	
@@ -153,20 +127,6 @@
 
 		 <!-- Include all js compiled plugins (below), or include individual files as needed -->
 
-		
-        <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.min.js"></script>
-        <!--modernizr.min.js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-		
-		<!--bootstrap.min.js-->
-        <script src="<%=javascript_path%>/resource/js/assets/bootstrap.min.js"></script>
-		
-		<!-- bootsnav js -->
-		
-		
-		<!-- jquery.sticky.js -->
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 		
         <script type="text/javascript" src="<%=javascript_path%>/resource/js/gate/register.js?v=<%=version%>"></script>		
         <!--Custom JS-->

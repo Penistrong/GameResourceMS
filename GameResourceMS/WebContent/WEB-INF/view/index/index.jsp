@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>游戏资源集散论坛</title>
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>
-<link rel="stylesheet" href="<%=css_path%>/resource/css/assets/style.css"><link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
+<link rel="stylesheet" href="<%=css_path%>/resource/css/index/style.css"><link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
@@ -22,8 +22,11 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/themes/dark-unica.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/vue.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/scrollToTop.js"></script>
 </head>
 <body>
+	
+
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div id="user_info"><!-- 当前用户信息浮动框 -->
@@ -150,6 +153,9 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="signin-footer">
+								<div id=scrowToTop>
+									<button type="button"  v-on:click="backTop" id="toTop"></button>
+								</div>
 								<button type="button"  data-toggle="modal" data-target=".signin_modal" id="message"></button>	
 							</div><!--/.signin-footer -->
 						</div><!--/.col-->
