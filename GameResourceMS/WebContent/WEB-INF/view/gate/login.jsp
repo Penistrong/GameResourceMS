@@ -32,7 +32,6 @@
         <![endif]-->
 		
 		
-		
 		<!-- signin end -->
 		<div id="particles">
 			<div class="intro">
@@ -69,8 +68,8 @@
 										</button>
 										<p style="color:#fff">
 											Don’t have an Account ?
-											<i >
-												<a style="color:#fff;font-size:20px" href="<%=context_path%>/gate/register" id="registerButton">Register</a>
+											<i style="font-size:20px">
+												<a style="color:#fff" href="<%=context_path%>/gate/register" id="registerButton">Register</a>
 											</i>
 										</p>
 									</div><!--/.signin-footer -->
@@ -190,7 +189,9 @@
         
         <!--Custom JS-->
        
-
+        
+        <script type="text/javascript" src="<%=javascript_path%>/resource/js/gate/login.js?v=<%=version%>"></script>
+        
         <script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
   		<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>
         
