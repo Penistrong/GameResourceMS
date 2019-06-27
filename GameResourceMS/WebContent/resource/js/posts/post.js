@@ -58,7 +58,7 @@ $.beginService = function(){
 				 		@click="prev"><<</li>
 				 	
 				 	<!--first-->
-				 	<li :class="['paging-item', 'paging-item--first',{'paging-item--disabled':index===1}]"
+				 	<li :class="['paging-item', 'paging-item--first']"
 						@click="first">首页</li>
 					<li :class="['paging-item', 'paging-item--more']"
 						v-if="showPrevMore">...</li>
@@ -68,7 +68,7 @@ $.beginService = function(){
 						v-if="showNextMore">...</li>
 					
 					<!--last-->
-					<li :class="['paging-item', 'paging-item--last', {'paging-item--disabled':index===pages}]"
+					<li :class="['paging-item', 'paging-item--last']"
 						@click="last">尾页</li>
 						
 					<!--next-->	
@@ -175,16 +175,34 @@ var manage_replies = new Vue({
 			pageSize : 5,
 			currentPage: 1,
 			count : 0,
-			items : []
+			items : [],
+			postInfo: []
 		}
 	},
 	created(){
 		console.log(Date.now().toString()+'|'+'Vue instance has been created');
 	},
 	mounted:function(){
+		this.getPostMainInfo();
 		this.getRepliesOfPost();
 	},
 	methods:{
+		//获取帖子主要信息,包括发帖人信息与帖子内容等,前端Vue进行渲染操作
+		getPostMainInfo:function(){
+			$.ajax({
+				type:"POST",
+				url:contextpath+"/posts/getPostMainInfo",
+				dataType:"json",
+				contentType:"application/json;charset=utf-8",
+				data:JSON.stringify({'poster_id':$("#poster_id_box").html(), 'post_id':$("#post_id_box").html()}),
+				success:function(postInfo){
+					manage_replies.postInfo = postInfo;
+				},
+				error:function(){
+					alert("拉取帖子信息失败!");
+				}
+			})
+		},
 		//获取用户信息
 		getRepliesOfPost:function(){
 			$.ajax({
@@ -192,7 +210,7 @@ var manage_replies = new Vue({
 				url:contextpath+"/posts/getRepliesOfPost",
 				dataType:"json",
 				contentType:"application/json;charset=utf-8",
-				data:JSON.stringify({'post_id':'000002'}),
+				data:JSON.stringify({'post_id':$("#post_id_box").html()}),
 				success:function(replies){
 					for(var i=0;i<replies.length;i++){
 						manage_replies.list.push(replies[i]);
@@ -201,8 +219,14 @@ var manage_replies = new Vue({
 					//显示展现出的slist(showed list)
 					//manage_replies.setSlist(manage_replies.list);
 					//默认显示前pageSize条数据
-					for(var i=0;i<manage_replies.pageSize;i++)
-						manage_replies.slist.push(replies[i]);
+					if(manage_replies.pageSize<=replies.length){
+						for(var i=0;i<manage_replies.pageSize;i++)
+							manage_replies.slist.push(replies[i]);
+					}else{
+						for(var i=0;i<replies.length;i++)
+							manage_replies.slist.push(replies[i]);
+					}
+					
 					manage_replies.count = manage_replies.list.length;//总记录
 					console.log(manage_replies.count);
 				}

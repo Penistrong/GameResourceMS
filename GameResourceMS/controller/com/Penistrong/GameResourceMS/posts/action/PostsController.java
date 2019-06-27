@@ -1,5 +1,6 @@
 package com.Penistrong.GameResourceMS.posts.action;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,7 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 		return this.service.insertNewReply(params);
 	}
 	
+	//params初始包含post_id的k-v
 	@ResponseBody
 	@RequestMapping(value="/getRepliesOfPost", method=RequestMethod.POST)
 	public List<Map<String, Object>> getRepliesOfPost(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){
@@ -84,5 +86,12 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 		for(Map<String, Object> reply:replies_list)
 			reply.put("reply_time", reply.get("reply_time").toString());
 		return replies_list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getPostMainInfo", method=RequestMethod.POST)
+	public Map<String, Object> getPostMainInfo(@RequestBody Map<String, Object>params, HttpServletRequest request){
+		Map<String, Object> resultMap = this.service.getPostMainInfo(params);
+		return resultMap;
 	}
 }
