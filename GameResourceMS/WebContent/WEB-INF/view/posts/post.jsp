@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-combined.no-icons.min.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-responsive.min.css"/>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/spin/spin.css"/>
 <!-- 快捷键 -->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.hotkeys.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
@@ -56,6 +57,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="div-loading-spin">
 	</div>
 	<!-- 楼层 -->
 	<script id="repliesFloors" type="text/html">
