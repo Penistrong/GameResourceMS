@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.Penistrong.GameResourceMS.posts.mapper.PostsMapper">
+	
+	<select id="validatePost" resultType="java.lang.Boolean">
+		SELECT IFNULL
+	  ((SELECT top(1) 1 
+	      FROM posts_base_info
+	     WHERE poster_id = #{poster_id} 
+	       AND post_id = #{post_id}), 0)
+	</select>
+	
 	<select id="getLatestPosts" resultType="java.util.Map">
 		SELECT a.*,b.visits,b.last_reply_time,b.last_reply_user,b.floors,b.tags
 		  FROM posts_base_info a
@@ -54,6 +63,12 @@
 	<update id="updateFloorsOfPost">
 		UPDATE posts_extend_info
 		   SET floors = #{floors}
+		   <if test="reply_time != '' and reply_time != null">
+		   ,last_reply_time=#{reply_time}
+		   </if>
+		   <if test="replier_name != '' and replier_name != null">
+		   ,last_reply_user=#{replier_name}
+		   </if>
 		 WHERE post_id = #{post_id}
 	</update>
 </mapper>

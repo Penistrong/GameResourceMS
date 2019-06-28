@@ -71,4 +71,12 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		return this.sqlSessionTemplate.selectOne(sql, map);
 	}
 
+	@Override
+	public boolean validatePost(Map<String, Object> map) {
+		map.put("mapping", "validatePost");
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping, map.get("mapping").toString()});
+		this.logger.debug("Execute {} params : {}", sql, map);
+		return this.sqlSessionTemplate.selectOne(sql, map);
+	}
+
 }

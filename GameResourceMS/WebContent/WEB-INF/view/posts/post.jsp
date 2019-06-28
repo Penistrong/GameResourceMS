@@ -9,6 +9,18 @@
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/posts/postPage.css"/>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/vue.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
+<!-- BootStrap-wysiwyg前置 -->
+<!-- 样式 -->
+<link rel="stylesheet" type="text/css" href="<%=javascript_path%>/resource/js/common/google-code-prettify/prettify.css"/>
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-combined.no-icons.min.css"/>
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-responsive.min.css"/>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<!-- 快捷键 -->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
+<!-- 富文本转码器 注意此处的富文本应是已替换了html标签的版本-->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/html_coder.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/BASE64/jquery.base64.js"></script>
 </head>
 <body>
 	<!-- 导航栏 -->
@@ -25,10 +37,10 @@
 			</div>
 			<div class="collapse navbar-collapse" id="example-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-				<li><a href="<%=context_path%>/user/dataAnalysis"><span class="glyphicon glyphicon-stats"></span> 数据分析</a></li>
+				<li><a href="<%=context_path%>/user/dataAnalysis" class="navbar-hyperlink" id="navbar-dataAnalysis"><span class="glyphicon glyphicon-stats"></span> 数据分析</a></li>
 				<li><img id="nav-portrait" class="img-circle"></li>
 				<li><p id="nav-username" class="navbar-text"><%=currentUser.getUser_name() %></p></li>
-				<li><a href="<%=context_path%>/gate/login/logout"><span class="glyphicon glyphicon-log-out"></span>注销</a></li>
+				<li><a href="<%=context_path%>/gate/login/logout" class="navbar-hyperlink" id="navbar-logout"><span class="glyphicon glyphicon-log-out"></span>注销</a></li>
 				</ul>
 			</div>
 		</div>
@@ -79,7 +91,8 @@
 					{{postInfo.post_content}}		
 				</div>
 				<div class="panel-footer">
-					<div style="text-align:right">浏览量: {{postInfo.visits}}</div>
+					<div style="text-align:right">最近由 {{postInfo.last_reply_user}} 回复于 {{postInfo.last_reply_time}}</div>
+					<div style="text-align:right">楼层: {{postInfo.floors}}  浏览量: {{postInfo.visits}}</div>
 				</div>
 			</div>
 		</div>
@@ -104,7 +117,7 @@
 					{{reply.floor}} F
 				</h4>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body div-reply" v-html="reply.reply">
 			{{reply.reply}}		
 			</div>
 			<div class="panel-footer">
@@ -120,7 +133,109 @@
 	</div>
 	</div>
 	</script>
-	
+	<!-- 富文本组件 -->
+	<div class="col-md-8 col-md-offset-2">
+		<div style="height: 50px;"></div>
+		<!--这里加上是为了让提示信息显示 不然会被遮挡-->
+		<div id="div-wysiwyg">
+			<div class="btn-toolbar" data-role="editor-toolbar"
+				data-target="#editor">
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" title="字体"><i
+						class="icon-font"></i><b class="caret"></b></a>
+					<ul class="dropdown-menu">
+					</ul>
+				</div>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" title="字体大小"><i
+						class="icon-text-height"></i> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a data-edit="fontSize 5"><font size="5">大号Huge</font></a></li>
+						<li><a data-edit="fontSize 3"><font size="3">中号Medium</font></a></li>
+						<li><a data-edit="fontSize 1"><font size="1">小号small</font></a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<a class="btn" data-edit="bold" title="B加粗 (Ctrl/Cmd+B)"><i
+						class="icon-bold"></i></a>
+					<!--加粗-->
+					<a class="btn" data-edit="italic" title="斜体 (Ctrl/Cmd+I)"><i
+						class="icon-italic"></i></a>
+					<!-- 斜体-->
+					<a class="btn" data-edit="strikethrough" title="删除线"><i
+						class="icon-strikethrough"></i></a>
+					<!-- 删除线-->
+					<a class="btn" data-edit="underline" title="下划线 (Ctrl/Cmd+U)"><i
+						class="icon-underline"></i></a>
+					<!-- 下划线-->
+				</div>
+				<div class="btn-group">
+					<a class="btn" data-edit="insertunorderedlist" title="普通列表"><i
+						class="icon-list-ul"></i></a>
+					<!-- 加点-->
+					<a class="btn" data-edit="insertorderedlist" title="排序列表"><i
+						class="icon-list-ol"></i></a>
+					<!-- 数字排序-->
+					<a class="btn" data-edit="outdent" title="取消缩进 (Shift+Tab)"><i
+						class="icon-indent-left"></i></a>
+					<!-- 减少缩进-->
+					<a class="btn" data-edit="indent" title="缩进 (Tab)"><i
+						class="icon-indent-right"></i></a>
+					<!--增加缩进-->
+				</div>
+				<div class="btn-group">
+					<a class="btn" data-edit="justifyleft" title="左对齐 (Ctrl/Cmd+L)"><i
+						class="icon-align-left"></i></a>
+					<!--左对齐-->
+					<a class="btn" data-edit="justifycenter" title="居中 (Ctrl/Cmd+E)"><i
+						class="icon-align-center"></i></a>
+					<!--居中-->
+					<a class="btn" data-edit="justifyright"
+						title="右对齐 (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+					<!--右对齐-->
+					<a class="btn" data-edit="justifyfull" title="填充 (Ctrl/Cmd+J)"><i
+						class="icon-align-justify"></i></a>
+					<!--垂直对齐-->
+				</div>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" title="超链接"><i
+						class="icon-link"></i></a>
+					<!-- 链接-->
+					<div class="dropdown-menu input-append">
+						<input class="span2" placeholder="URL" type="text"
+							data-edit="createLink" />
+						<button class="btn" type="button">添加</button>
+					</div>
+					<a class="btn" data-edit="unlink" title="移除超链接"><i
+						class="icon-cut"></i></a>
+				</div>
+				<div class="btn-group">
+					<a class="btn" title="插入图片 (或拖拽图片)" id="pictureBtn"><i
+						class="icon-picture"></i></a> <input type="file"
+						data-role="magic-overlay" data-target="#pictureBtn"
+						data-edit="insertImage" />
+				</div>
+				<div class="btn-group">
+					<a class="btn" data-edit="undo" title="撤销 (Ctrl/Cmd+Z)"><i
+						class="icon-undo"></i></a>
+					<!--撤销-->
+					<a class="btn" data-edit="redo" title="恢复 (Ctrl/Cmd+Y)"><i
+						class="icon-repeat"></i></a>
+					<!--恢复-->
+				</div>
+				<input type="text" data-edit="inserttext" id="voiceBtn"
+					x-webkit-speech="">
+			</div>
+
+			<div id="editor">回复一下帖子吧...</div>
+			<div class="col-md-2 col-md-offset-10">
+				<div class="btn-group" style="margin-top:10px">
+					<a class="btn btn-emit" title="" id="btn-emit-reply"><i class="icon-external-link"></i> 发送回复</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/posts/post.js?v=<%=version%>"></script>
 </body>
 </html>

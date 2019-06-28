@@ -24,6 +24,12 @@ div.main-container{
 	margin-top:100px;
 }
 
+.div-reply{
+	max-height:300px;
+	min-height:120px;
+	overflow-y:auto;
+}
+
 .poster{
 	cursor:pointer;
 }
@@ -46,6 +52,7 @@ div.main-container{
 }
 
 .poster-identity{
+	font-weight:bold;
 	color: #cc3299;
 	font-size:18px;
 }
@@ -122,4 +129,37 @@ div.main-container{
 	position: relative;
 	z-index: 1;
 	border-color: #64a281;
+}
+
+#editor{
+	overflow:scroll;
+	max-height:300px;
+	min-height:200px;
+}
+
+#div-wysiwyg{
+	border:2px solid #00ff00;
+	border-radius:10px;
+	margin-bottom:100px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:5px;
+}
+
+#nav-username{
+	line-height:20px;
+}
+
+.navbar-hyperlink{
+	padding-top:15px!important;
+	padding-bottom:15px!important;
+	padding-left:0px!important;
+	padding-right:0px!important;
+}
+
+#navbar-dataAnalysis{
+	padding-right:15px!important;
+}
+#navbar-logout{
+	margin-right:-15px;
 }
