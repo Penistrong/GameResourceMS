@@ -10,8 +10,11 @@
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>
 <link rel="stylesheet" href="<%=css_path%>/resource/css/index/style.css"><link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/row.css">
+
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="<%=css_path%>/resource/css/index/background.css">
 <!-- 图表脚本引入 highcharts -->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts-3d.js"></script>
@@ -25,8 +28,11 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/scrollToTop.js"></script>
 </head>
 <body>
+	<div id="particles">
+		<div class="intro">
+			
+		
 	
-
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div id="user_info"><!-- 当前用户信息浮动框 -->
@@ -135,7 +141,20 @@
 			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
 		</a>
+		
+		
 	</div>
+		<a class="v-fork-me" href="https://github.com/Penistrong/GameResourceMS" target="_blank" rel="noopener">
+      		<img src="<%=image_path%>/resource/image/common/web_info/forkme_right_darkblue.png" alt="Fork me on GitHub">
+    	</a>
+		<footer id="footer">
+			<address>
+				15257917788
+			</address>
+		</footer>
+		</div>
+	</div>
+	
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 
 
@@ -264,7 +283,7 @@
 						<a :href="getPostURL(post.poster_id, post.post_id)">{{post.post_title}}</a>
 					</h2>
 				</div>
-			<div class="panel-body">
+			<div class="panel-body" style='width: 930px;display:block;word-break: break-all;word-wrap: break-word;'>
 				<h3 class="panel-title">
 					{{post.post_subhead}}
 				</h3>
@@ -343,7 +362,8 @@
 		</div>
 	</div>
 	</script>
-	
+	 <script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
+	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/index/index.js?v=<%=version%>"></script>
 </body>
 </html>

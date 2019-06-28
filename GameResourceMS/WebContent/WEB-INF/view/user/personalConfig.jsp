@@ -10,6 +10,7 @@
 <title>个人资料设置-游戏资源集散论坛</title>
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/user/personalConfigPage.icon"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/user/personalConfigPage.css"/>
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/row.css"/>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <!-- 图表脚本引入 highcharts -->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts.js"></script>
@@ -20,6 +21,10 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/themes/dark-unica.js"></script>
 </head>
 <body data-spy="scroll" data-target="#scrollspy" data-offset="80">
+	<div class="pen">
+    <div class="panel top">
+    </div>
+    </div>
 	<!-- 导航栏 -->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="container-fluid">
@@ -42,6 +47,8 @@
 			</div>
 		</div>
 	</nav>
+	
+	
 	<div class="container main-container">
 		<div class="row">
 			<nav class="col-xs-2 col-sm-2 col-md-2" id="scrollSpy">
