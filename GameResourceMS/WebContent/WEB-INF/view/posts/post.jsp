@@ -9,6 +9,9 @@
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/posts/postPage.css"/>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/vue.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
+<!-- BootStrap-wysiwyg前置 -->
+<!-- 样式 -->
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/posts/postPage.css"/>
 </head>
 <body>
 	<!-- 导航栏 -->
