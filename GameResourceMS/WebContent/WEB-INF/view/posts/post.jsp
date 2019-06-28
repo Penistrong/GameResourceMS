@@ -21,7 +21,6 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
 <!-- 富文本转码器 注意此处的富文本应是已替换了html标签的版本-->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/html_coder.js"></script>
-<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/BASE64/jquery.base64.js"></script>
 </head>
 <body>
 	<!-- 导航栏 -->
@@ -90,7 +89,7 @@
 					</h4>
 					<span :class="postInfo.tags"></span>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" id="div-post-content">
 					{{postInfo.post_content}}		
 				</div>
 				<div class="panel-footer">

@@ -218,9 +218,7 @@ $(document).ready(function(){
 	};
 	
 	spinner = new Spinner(opts);
-	
-	$.base64.utf8encode = true;
-	
+
 	$.ajax({
 		type:"post",
 		url:contextpath+"/index/getUserInfo",

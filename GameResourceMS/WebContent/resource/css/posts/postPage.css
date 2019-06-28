@@ -24,8 +24,13 @@ div.main-container{
 	margin-top:100px;
 }
 
+div#div-post-content{
+	max-height:800px;
+	pverflow-y:auto;
+}
+
 .div-reply{
-	max-height:300px;
+	max-height:500px;
 	min-height:120px;
 	overflow-y:auto;
 }
