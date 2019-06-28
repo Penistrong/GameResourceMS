@@ -3,11 +3,12 @@
 <mapper namespace="com.Penistrong.GameResourceMS.posts.mapper.PostsMapper">
 	
 	<select id="validatePost" resultType="java.lang.Boolean">
-		SELECT IFNULL
-	  ((SELECT top(1) 1 
-	      FROM posts_base_info
-	     WHERE poster_id = #{poster_id} 
-	       AND post_id = #{post_id}), 0)
+		SELECT IFNULL(
+		(SELECT 1 
+		  FROM posts_base_info 
+		 WHERE post_id = #{post_id} 
+		   AND poster_id = #{poster_id}
+		       limit 1),0)
 	</select>
 	
 	<select id="getLatestPosts" resultType="java.util.Map">

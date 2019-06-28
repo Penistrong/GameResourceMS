@@ -7,9 +7,9 @@ body {
     background-color: #3e69c3;
     background-attachment:fixed;
     background-image: url(http://scarbroughstudios.com/img/codepen.svg);
-    -webkit-animation: scrollBad 5s linear infinite;
-    -moz-animation: scrollBad 5s linear infinite;
-    animation: scrollBad 5s linear infinite;
+    -webkit-animation: scrollBad 10s linear infinite;
+    -moz-animation: scrollBad 10s linear infinite;
+    animation: scrollBad 10s linear infinite;
 
 }
 @-webkit-keyframes scrollBad {
