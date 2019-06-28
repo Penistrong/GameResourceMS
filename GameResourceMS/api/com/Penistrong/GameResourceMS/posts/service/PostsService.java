@@ -31,4 +31,7 @@ public interface PostsService<R extends Object> extends BaseService<R> {
 	
 	//获取帖子内部回复内容
 	List<Map<String,Object>> getRepliesOfPost(Map<String,Object> map);
+	
+	//获取帖子主要内容
+	Map<String, Object> getPostMainInfo(Map<String, Object> map);
 }

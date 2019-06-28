@@ -15,11 +15,44 @@ form.reply-floor{
 }
 
 span.replier-lvl{
-	color:#D9D919;
+	color:#6B8E23;
+	font-weight:bold;
+	font-size:20px;
 }
 
 div.main-container{
 	margin-top:100px;
+}
+
+.poster{
+	cursor:pointer;
+}
+
+.poster:hover:after{
+	content: "偷窥他的空间";
+}
+
+.poster-tag{
+	background-color:#e2711d;
+	color:#fff;
+	border-radius:5px;
+	font-weight:bold;
+	font-size:21px;
+}
+
+.poster-name{
+	font-size:16px;	
+	font-family:Comic Sans;
+}
+
+.poster-identity{
+	color: #cc3299;
+	font-size:18px;
+}
+
+.poster-intro{
+	border:1px solid #ccc;
+	border-radius:10px;
 }
 
 .ul-paging{
@@ -29,10 +62,11 @@ div.main-container{
 	font-size: 0;
 	list-style: none;
 	user-select: none;
+	margin-left:auto;
 }
 
 .ul-paging>li.paging-item {
-		display:flex;
+		display:inline;
 		font-size: 18px;
 		position: relative;
 		padding: 6px 15px;
