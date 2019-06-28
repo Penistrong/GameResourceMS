@@ -37,7 +37,7 @@
 		</div>
 	</nav>
 	<span style="display:none;" id="post_id_box"><%=request.getAttribute("post_id") %></span>
-	
+	<span style="display:none;" id="poster_id_box"><%=request.getAttribute("poster_id") %></span>
 	<!-- 加载不同模版 -->
 	<div class="container-fluid main-container">
 		<div class="panel panel-default">
@@ -51,7 +51,41 @@
 	<!-- 楼层 -->
 	<script id="repliesFloors" type="text/html">
 	<div id="replyManagement">
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1" id="div-post-info">
+		<div class="col-md-3 col-md-offset-1">
+			<form role="form" class="form-vertical">
+				<div class="form-group">
+					<img alt="楼主头像" class="img-circle replier-portrait center-block poster" :src='getPortraitURL(postInfo.resource_id)'>
+				</div>
+				<div class="form-group text-center">
+					<label class="control-label center-block text-center poster-name"><span class="poster"><span class="poster-tag text-center">楼主</span> {{postInfo.post_author}}</span></label>
+					<label class="control-label center-block text-center">Lv. <span class="replier-lvl">{{postInfo.level}}<span></label>
+					<label class="control-label center-block text-center poster-identity">{{postInfo.identity}}</label>
+				</div>
+				<div class="form-group text-center">
+					<label class="control-label center-block text-center poster-intro poster">{{postInfo.introduction}}</label>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-7">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h2>
+						{{postInfo.post_title}}
+					</h2>
+					<h4 class="panel-title">
+						{{postInfo.post_subhead}}
+					</h4>
+					<span :class="postInfo.tags"></span>
+				</div>
+				<div class="panel-body">
+					{{postInfo.post_content}}		
+				</div>
+				<div class="panel-footer">
+					<div style="text-align:right">浏览量: {{postInfo.visits}}</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="col-md-10 col-md-offset-1" v-for="(reply, index) of slist">
 		<div class="col-md-2 col-md-offset-2">
@@ -82,8 +116,10 @@
 		</div>
 		</div>
 	</div>
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-4 col-md-offset-4">
+	<div class="text-center">
 	<pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange"></pagination>
+	</div>
 	</div>
 	</div>
 	</script>

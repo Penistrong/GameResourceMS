@@ -26,26 +26,30 @@
     </head>
 	
 <body >
-		<div class="NotFound_div">
-	    	<div class="Not-Found-game">
-	      	<h1 class="web" >404 NOT FOUND!</h1>
-	      	<h1 class="mobile">404</h1>
-	      	<span id="pleasantly">↑↑↑按下空格键有惊喜</span>
-    	</div>
-    	<p>三体人干扰我们的服务，没找到您要的内容！GDers正在努力对抗智子的科技封锁，<a href="/joinus/">加入吧......</a></p>
-    	<p><a href="/">去首页看看...</a></p>
-  		</div>
+		<div class="col-md-6 col-md-offset-3">
+		
 
 		<div id="main-frame-error" class="interstitial-wrapper">
 		  <div id="main-content">
 		    <div class="icon icon-offline" alt=""></div>
 		  </div>
 		  <div id="offline-resources">
-		    <img id="offline-resources-1x" src="/resource/image/dinosar/default_100_percent/100-offline-sprite.png">
-		    <img id="offline-resources-2x" src="/resource/image/dinosar/default_200_percent/200-offline-sprite.png">
+		  	
+		    <img id="offline-resources-1x" src="<%=image_path%>/resource/image/dinosar/default_100_percent/100-offline-sprite.png">
+		    <img id="offline-resources-2x" src="<%=image_path%>/resource/image/dinosar/default_200_percent/200-offline-sprite.png">
 		    <template id="audio-resources">
 		    </template>
 		  </div>
+		</div>
+		<div class="NotFound_div">
+	    	<div class="Not-Found-game">
+	      	<h1 class="web" >404 NOT FOUND!</h1>
+	      	<h1 class="mobile">404</h1>
+	      	<span id="pleasantly">↑↑↑按下空格键有惊喜</span>
+    	</div>
+    	<p>三体人干扰我们的服务，没找到您要的内容！GDers正在努力对抗智子的科技封锁
+    	<p><a href="http://localhost:8080/GameResourceMS/gate/login">去首页看看...</a></p>
+  		</div>
 		</div>
     </body>
 

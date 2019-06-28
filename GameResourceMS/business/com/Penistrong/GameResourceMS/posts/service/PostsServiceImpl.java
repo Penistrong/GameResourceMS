@@ -63,4 +63,12 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		return this.sqlSessionTemplate.selectList(sql, map);
 	}
 
+	@Override
+	public Map<String, Object> getPostMainInfo(Map<String, Object> map) {
+		map.put("mapping", "getPostMainInfo");
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping, map.get("mapping").toString()});
+		this.logger.debug("Execute {} params : {}", sql, map);
+		return this.sqlSessionTemplate.selectOne(sql, map);
+	}
+
 }
