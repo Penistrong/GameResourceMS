@@ -44,9 +44,15 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 	 */
 	@RequestMapping(value="/{poster_id}/{post_id}", method=RequestMethod.GET)
 	public String redirectToPost(ModelMap map, HttpServletRequest request,@PathVariable("poster_id") String poster_id,@PathVariable("post_id") String post_id) {
-		map.addAttribute("poster_id", poster_id);
-		map.addAttribute("post_id", post_id);
-		return "posts/post";
+		Map<String, Object> preCheckParams = new HashMap<>();
+		preCheckParams.put("poster_id", poster_id);
+		preCheckParams.put("post_id", post_id);
+		if(this.service.validatePost(preCheckParams)) {
+			map.addAttribute("poster_id", poster_id);
+			map.addAttribute("post_id", post_id);
+			return "posts/post";
+		}else
+			return "redirect:/404";
 	}
 	
 	/**
@@ -72,10 +78,14 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/insertNewReply",method = RequestMethod.POST)
+	@RequestMapping(value="/createNewReply",method = RequestMethod.POST)
 	public boolean insertNewReply(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){
-		params.put("replier_id", ((CurrentUser)session.getAttribute("currentUser")).getUser_id());
-		return this.service.insertNewReply(params);
+		params.put("replier_id", ((CurrentUser)session.getAttribute("currentUser")).getResource_id());
+		params.put("replier_name", ((CurrentUser)session.getAttribute("currentUser")).getUser_name());
+		if(this.service.insertNewReply(params))
+			if(this.service.updateFloorsOfPost(params))
+					return true;
+		return false;
 	}
 	
 	//params初始包含post_id的k-v
@@ -92,6 +102,8 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 	@RequestMapping(value="/getPostMainInfo", method=RequestMethod.POST)
 	public Map<String, Object> getPostMainInfo(@RequestBody Map<String, Object>params, HttpServletRequest request){
 		Map<String, Object> resultMap = this.service.getPostMainInfo(params);
+		resultMap.put("upload_time", resultMap.get("upload_time").toString());
+		resultMap.put("last_reply_time", resultMap.get("last_reply_time").toString());
 		return resultMap;
 	}
 }

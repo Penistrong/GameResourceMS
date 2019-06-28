@@ -1,6 +1,9 @@
 var contextpath = "http://localhost:8080/GameResourceMS";
 
 $(document).ready(function(){
+	
+	$.base64.utf8encode = true;
+	
 	$.ajax({
 		type:"post",
 		url:contextpath+"/index/getUserInfo",
@@ -17,12 +20,48 @@ $(document).ready(function(){
 		}
 	});
 	$.repliesFloors();
+	
+	//菜单栏绑定调用
+    initToolbarBootstrapBindings();  
+
+    //插件调用
+    $('#editor').wysiwyg();
+
+    window.prettyPrint && prettyPrint();
+    
+    //新建回复
+    $("#btn-emit-reply").click(function(){
+    	$.createNewReply();
+    });
 })
 
 $.repliesFloors = function(){
 	var rendered_html = template($("#repliesFloors").html());
 	$("#templates_Panel").html(rendered_html);
 	$.beginService();
+}
+
+//!Must include html_coder.js first!
+$.createNewReply = function(){
+	var content = $("#editor").html();
+	console.log(content);
+	var reply = html_encode(content);
+	console.log(reply);
+	$.ajax({
+		type:"POST",
+		url:contextpath+"/posts/createNewReply",
+		dataType:"json",
+		contentType:"application/json;charset=utf-8",
+		data:JSON.stringify({'post_id':$("#post_id_box").html(), 'reply':reply}),
+		success:function(msg){
+			console.log(msg);
+			if(msg=="true"){
+				window.location.reload();
+			}else{
+				alert("回复失败!");
+			}
+		}
+	})
 }
 
 $.beginService = function(){
@@ -212,6 +251,10 @@ var manage_replies = new Vue({
 				contentType:"application/json;charset=utf-8",
 				data:JSON.stringify({'post_id':$("#post_id_box").html()}),
 				success:function(replies){
+					//首先对回复信息里的html内容decode进行标签转义
+					for(var i=0;i<replies.length;i++){
+						replies[i].reply = html_decode(replies[i].reply);
+					}
 					for(var i=0;i<replies.length;i++){
 						manage_replies.list.push(replies[i]);
 					}
@@ -375,3 +418,29 @@ Vue.component('model',{
 	}
 });*/
 }
+
+function initToolbarBootstrapBindings() {
+    var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier', 
+          'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+          'Times New Roman', 'Verdana'],
+          fontTarget = $('[title=字体]').siblings('.dropdown-menu');
+    $.each(fonts, function (idx, fontName) {
+        fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
+    });
+    $('a[title]').tooltip({container:'body'});
+      $('.dropdown-menu input').click(function() {return false;})
+          .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
+      .keydown('esc', function () {this.value='';$(this).change();});
+
+    $('[data-role=magic-overlay]').each(function () { 
+      var overlay = $(this), target = $(overlay.data('target')); 
+      overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+    });
+    $('#voiceBtn').hide();
+    // if ("onwebkitspeechchange"  in document.createElement("input")) {
+    //   var editorOffset = $('#editor').offset();
+    //   $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
+    // } else {
+    //   $('#voiceBtn').hide();
+    // }
+  };

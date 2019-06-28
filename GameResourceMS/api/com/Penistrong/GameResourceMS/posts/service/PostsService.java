@@ -13,6 +13,9 @@ import com.Penistrong.GameResourceMS.base.service.BaseService;
  * @param <R>
  */
 public interface PostsService<R extends Object> extends BaseService<R> {
+	
+	//检查帖子是否存在
+	boolean validatePost(Map<String, Object> map);
 
 	//获取帖子(按最后回复的时间排序)
 	List<Map<String,Object>> getLatestPosts();
