@@ -78,4 +78,10 @@
 		   SET visits = visits + 1
 		 WHERE post_id = #{post_id}
 	</update>
+	
+	<update id="rewardsForReply">
+		UPDATE user_accounts
+		   SET exp = exp + 3, coins = coins + 1
+		 WHERE resource_id = #{replier_id}
+	</update>
 </mapper>

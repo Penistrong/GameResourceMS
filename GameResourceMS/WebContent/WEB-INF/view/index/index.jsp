@@ -376,9 +376,8 @@
 	</div>
 	</script>
 	<footer id="footer">
-		<p>author:陈立伟 吕昶臻 alias:Penistrong 15257917788</p>
-		<p><a href="https://github.com/Penistrong/GameResourceMS">Fork us on GitHub</a></p>
-		<p>Copyright © 2019-9102 游戏资源集散论坛 GameResourceMS All Rights Reserved.</p>
+		<p>author:陈立伟 吕昶臻 alias:Penistrong 15257917788 <a href="https://github.com/Penistrong/GameResourceMS">Fork us on GitHub</a></p>
+		<address>Copyright © 2019-9102 游戏资源集散论坛 GameResourceMS All Rights Reserved.</address>
 	</footer>
 	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
 	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>

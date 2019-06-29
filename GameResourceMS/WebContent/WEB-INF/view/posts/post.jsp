@@ -39,7 +39,7 @@
 				<ul class="nav navbar-nav navbar-right">
 				<li><a href="<%=context_path%>/user/dataAnalysis" class="navbar-hyperlink" id="navbar-dataAnalysis"><span class="glyphicon glyphicon-stats"></span> 数据分析</a></li>
 				<li><img id="nav-portrait" class="img-circle"></li>
-				<li><p id="nav-username" class="navbar-text"><%=currentUser.getUser_name() %></p></li>
+				<li><a href="<%=context_path%>/user/personalConfig" id="nav-username"><%=currentUser.getUser_name()%></a></li>
 				<li><a href="<%=context_path%>/gate/login/logout" class="navbar-hyperlink" id="navbar-logout"><span class="glyphicon glyphicon-log-out"></span>注销</a></li>
 				</ul>
 			</div>
@@ -89,7 +89,7 @@
 					</h4>
 					<span :class="postInfo.tags"></span>
 				</div>
-				<div class="panel-body" id="div-post-content">
+				<div class="panel-body" id="div-post-content" v-html="postInfo.post_content">
 					{{postInfo.post_content}}		
 				</div>
 				<div class="panel-footer">

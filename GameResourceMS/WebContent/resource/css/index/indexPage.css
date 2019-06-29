@@ -40,7 +40,7 @@ p#nav-username{cursor:pointer;}
   position:fixed;
   left:0;
   top:50;
-  z-index:2e5;
+  z-index:10;
 }
 
 div.container-fluid.main-container{margin-top:100px;}
@@ -72,17 +72,22 @@ ul.posts_list li a {
 #adCarousel {
 	z-index: 3;
 	backgroud-color: rgba(0, 0, 0, 0);
-	position: fixed;
-	bottom: 80;
+	position: relative;
+	margin-top: 100px;
 }
 
-footer#footer {
-	height: 80px;
-	position: fixed;
+#footer {
+	font-size:12px;
+	color:#999;
+	margin:0 auto;
+	position: relative;
 	bottom: 0;
 	width: 100%;
-	background-color: rgba(c,c,c,0.5);
+	background-color: rgba(0,0,0,1);
 	font-weight:bold;
-	line-height: 20px;
 	text-align: center;
+}
+
+address{
+	margin-bottom:0px;
 }

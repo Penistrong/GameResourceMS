@@ -158,7 +158,8 @@ div#div-post-content{
 }
 
 #nav-username{
-	line-height:20px;
+	padding-top:15px!important;
+	padding-bottom:15px!important;
 }
 
 .navbar-hyperlink{

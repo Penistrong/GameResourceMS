@@ -450,6 +450,7 @@ var manage_replies = new Vue({
 				contentType:"application/json;charset=utf-8",
 				data:JSON.stringify({'poster_id':$("#poster_id_box").html(), 'post_id':$("#post_id_box").html()}),
 				success:function(postInfo){
+					postInfo.post_content = html_decode(postInfo.post_content);
 					manage_replies.postInfo = postInfo;
 				},
 				error:function(){

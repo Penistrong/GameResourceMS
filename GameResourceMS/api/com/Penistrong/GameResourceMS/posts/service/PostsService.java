@@ -40,4 +40,7 @@ public interface PostsService<R extends Object> extends BaseService<R> {
 	
 	//更新帖子浏览量
 	boolean updatePostVisits(String post_id);
+	
+	//发放帖子内回复奖励
+	boolean rewardsForReply(Map<String, Object> map);
 }

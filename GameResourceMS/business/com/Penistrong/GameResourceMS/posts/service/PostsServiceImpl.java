@@ -84,4 +84,12 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		String sql = String.format("%s%s", new Object[] {this.sqlMapping, "updatePostVisits"});
 		return this.sqlSessionTemplate.update(sql, post_id)>0?true:false;
 	}
+
+	@Override
+	public boolean rewardsForReply(Map<String, Object> map) {
+		map.put("mapping", "rewardsForReply");
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping, map.get("mapping").toString()});
+		this.logger.debug("Execute {} params : {}", sql, map);
+		return this.sqlSessionTemplate.update(sql, map)>0?true:false;
+	}
 }

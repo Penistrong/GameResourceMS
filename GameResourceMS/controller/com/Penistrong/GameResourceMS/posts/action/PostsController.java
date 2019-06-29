@@ -83,11 +83,19 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 	@ResponseBody
 	@RequestMapping(value="/createNewReply",method = RequestMethod.POST)
 	public boolean insertNewReply(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){
-		params.put("replier_id", ((CurrentUser)session.getAttribute("currentUser")).getResource_id());
-		params.put("replier_name", ((CurrentUser)session.getAttribute("currentUser")).getUser_name());
+		CurrentUser curUser = (CurrentUser)session.getAttribute("currentUser");
+		params.put("replier_id", curUser.getResource_id());
+		params.put("replier_name", curUser.getUser_name());
 		if(this.service.insertNewReply(params))
-			if(this.service.updateFloorsOfPost(params))
+			if(this.service.updateFloorsOfPost(params)) {
+					//回复成功,发放奖励(可能不到账哦)
+					if(this.service.rewardsForReply(params)) {
+						curUser.setExp(String.valueOf((Integer.valueOf(curUser.getExp())+3)));
+						curUser.setCoins(String.valueOf((Integer.valueOf(curUser.getCoins())+1)));
+						session.setAttribute("currentUser", curUser);
+					}
 					return true;
+			}
 		return false;
 	}
 	
