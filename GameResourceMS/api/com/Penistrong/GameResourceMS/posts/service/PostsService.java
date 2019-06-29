@@ -37,4 +37,7 @@ public interface PostsService<R extends Object> extends BaseService<R> {
 	
 	//获取帖子主要内容
 	Map<String, Object> getPostMainInfo(Map<String, Object> map);
+	
+	//获取最新的PID
+	String getLatestPID();
 }

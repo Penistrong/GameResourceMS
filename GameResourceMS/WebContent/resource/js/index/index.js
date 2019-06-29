@@ -26,6 +26,14 @@ $(document).ready(function(){
 
 //Triggers definition
 $(document).ready(function(){
+	//菜单栏绑定调用
+    initToolbarBootstrapBindings();  
+
+    //插件调用
+    $('#editor').wysiwyg();
+
+    window.prettyPrint && prettyPrint();
+	
 	$('#adCarousel').carousel({
 	    interval: 4000
 	});
@@ -48,15 +56,16 @@ $(document).ready(function(){
 		$.latestPosts_page();
 	})
 	$("#post_send").click(function(){
-		var post="";
-		post = $("#post").val();
-		console.log("in");
-		if(post_checkbox.checked){
-			if(post!=""){
-				console.log("in");
+		var title="";
+		var subtitle="";
+		title = $("#title").val();
+		subtitle = $("#subtitle").val();
+		if(true){
+			if(title!=""&&subtitle!=""){
+				$.createNewPost();
 				return true;
 			}else{
-				$("#post").attr({value:'',placeholder:'请输入信息'});
+				$("#title").attr({value:'',placeholder:'请输入信息'});
 				return false;
 			}
 		}else{
@@ -64,6 +73,7 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+	
 })
 
 
@@ -84,6 +94,31 @@ $(document).ready(function(){
 		}
 	})
 }*/
+$.createNewPost = function(){
+	var post_title =$("#title").val();
+	console.log(post_title);
+	var post_subtitle = $("#subtitle").val();
+	console.log(post_subtitle);
+	
+	var content = $("#editor").html();
+	console.log(content);
+	var post_content = html_encode(content);
+	$.ajax({
+		type:"POST",
+		url:contextpath+"/posts/createNewPost",
+		dataType:"json",
+		contentType:"application/json;charset=utf-8",
+		data:JSON.stringify({'post_title':post_title, 'post_subhead':post_subtitle ,'post_content':post_content}),
+		success:function(msg){
+			console.log(msg);
+			if(msg){
+				window.location.reload();
+			}else{
+				alert("回复失败!");
+			}
+		}
+	})
+}
 
 $.latestPosts_page = function(){
 	var rendered_html = template($("#latestPosts").html());
@@ -116,6 +151,7 @@ $.beginService = function(){
 					url:contextpath+"/posts/getLatestPosts",
 					dataType:"json",
 					success:function(postInfos){
+						console.log(postInfos);
 						for(var i=0;i<postInfos.length;i++){
 							latestPosts.list.push(postInfos[i]);
 						}
@@ -123,6 +159,9 @@ $.beginService = function(){
 						latestPosts.setSlist(latestPosts.list);
 					}
 				})
+			},
+			jump(poster_id, post_id){
+				location.href = contextpath+"/posts/"+poster_id+"/"+post_id;
 			},
 			getPostURL(poster_id, post_id){
 				return contextpath+"/posts/"+poster_id+"/"+post_id;
@@ -319,6 +358,32 @@ function queryAuthorInfo(){
 	$("#templates_Panel").html(rendered_html);
 }
 
+
+function initToolbarBootstrapBindings() {
+    var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier', 
+          'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+          'Times New Roman', 'Verdana'],
+          fontTarget = $('[title=字体]').siblings('.dropdown-menu');
+    $.each(fonts, function (idx, fontName) {
+        fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
+    });
+    $('a[title]').tooltip({container:'body'});
+      $('.dropdown-menu input').click(function() {return false;})
+          .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
+      .keydown('esc', function () {this.value='';$(this).change();});
+
+    $('[data-role=magic-overlay]').each(function () { 
+      var overlay = $(this), target = $(overlay.data('target')); 
+      overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+    });
+    $('#voiceBtn').hide();
+    // if ("onwebkitspeechchange"  in document.createElement("input")) {
+    //   var editorOffset = $('#editor').offset();
+    //   $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
+    // } else {
+    //   $('#voiceBtn').hide();
+    // }
+  };
 /**
 $.queryWebInfo = function(){
 	var tpl = $("#webInfo").html();

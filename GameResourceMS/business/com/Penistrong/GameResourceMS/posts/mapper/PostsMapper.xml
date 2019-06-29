@@ -45,12 +45,19 @@
 		 WHERE post_id = #{post_id}
 	</select>
 	
+	<select id="getLatestPID" resultType="java.lang.String">
+		SELECT post_id
+		  FROM posts_base_info
+	  ORDER BY post_id DESC
+	     LIMIT 1
+	</select>
+	
 	<insert id="createNewPost">
 		INSERT INTO
 			   posts_base_info
-		(RESOURCE_ID,POST_ID,POST_TITLE,POST_AUTHOR,UPLOAD_TIME,POST_TITLE,POST_SUBHEAD,POST_CONTENT)
+		(RESOURCE_ID,POSTER_ID,POST_ID,POST_AUTHOR,UPLOAD_TIME,POST_TITLE,POST_SUBHEAD,POST_CONTENT)
 		VALUES 
-		(#{resource_id},#{post_id},#{post_title},#{post_author},#{upload_time},#{post_title},#{post_subhead},#{post_content})
+		(#{resource_id},#{poster_id},#{post_id},#{post_author},#{upload_time},#{post_title},#{post_subhead},#{post_content})
 	</insert>
 	
 	<insert id="insertNewReply">

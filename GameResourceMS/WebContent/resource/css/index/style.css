@@ -41,11 +41,7 @@ ul li {
 select,input,textarea,button,.form-control{box-shadow:none;outline:0!important;}
 
 
-html,body{
-    height: 100%;
-    position: relative;
-    z-index: 2;
-}
+
 [placeholder]:focus::-webkit-input-placeholder {
   -webkit-transition: opacity 0.3s 0.3s ease; 
   -moz-transition: opacity 0.3s 0.3s ease; 

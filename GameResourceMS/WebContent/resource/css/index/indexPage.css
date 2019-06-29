@@ -1,4 +1,4 @@
-body{overflow-y:scroll;background:none;background-size:cover;}
+body{overflow-y:scroll;background:none;}
 ul#user_infolist{list-style:none;display:table;text-align:center;}
 div#user_info{display:none;border:2px solid gray;background-color:#312520;margin-top:50px;width:200px;z-index:10;position:fixed;right:10px;}
 p#toggle_info_button{text-align:center;background:#e5eecc;border:solid 1px #c3c3c3;padding:5px;color:#9d2933;cursor:pointer;}
@@ -26,6 +26,20 @@ img#nav-portrait{
 #post{
 	height:150px;
 	resize:none;
+}
+#editor{
+	overflow:scroll;
+	max-height:300px;
+	min-height:200px;
+}
+
+#div-wysiwyg{
+	border:2px solid #00ff00;
+	border-radius:10px;
+	margin-bottom:50px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-bottom:0px;
 }
 footer#footer{
 	height: 40px; 
@@ -58,9 +72,10 @@ img.ads-image{max-height:200px;}
 ul.posts_list{font:20px verdana, arial, sans-serif;}
 ul.posts_list li{list-style:none;padding:0;margin:0;float:left;font:20px,KaiTi,arial,sans-serif;display:block;background:#fffbf0;text-over-flow:ellipsis;over-flow:hidden;white-space:nowrap;height:30px;}
 ul.posts_list li.post_subhead{width:200px;}
-ul.posts_list li a{display:block;
-height:30px;
-background:#3A4953; /* 设置背景色 */
-color:#fff; /* 设置文字颜色 */
-text-decoration:none; /* 去掉下划线 */
-border-right:1px solid #000; /* 在左侧加上分隔线 */}
+ul.posts_list li a{
+	display:block;
+	height:30px;
+	background:#3A4953; /* 设置背景色 */
+	color:#fff; /* 设置文字颜色 */
+	text-decoration:none; /* 去掉下划线 */
+	border-right:1px solid #000; /* 在左侧加上分隔线 */}

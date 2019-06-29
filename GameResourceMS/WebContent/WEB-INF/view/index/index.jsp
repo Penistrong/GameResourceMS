@@ -7,10 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>游戏资源集散论坛</title>
-<link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-responsive.min.css"/>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/js/common/google-code-prettify/prettify.css"/>
+
+<link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>>
 <link rel="stylesheet" href="<%=css_path%>/resource/css/index/style.css"><link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/load/row.css">
+
 
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
@@ -26,13 +30,15 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/vue.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/load/scrollToTop.js"></script>
+<!-- 快捷键 -->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
+<!-- 富文本转码器 注意此处的富文本应是已替换了html标签的版本-->
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/html_coder.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/BASE64/jquery.base64.js"></script>
 </head>
 <body>
-	<div id="particles">
-		<div class="intro">
-			
-		
-	
+
 	<!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 		<div id="user_info"><!-- 当前用户信息浮动框 -->
@@ -73,7 +79,7 @@
 						<li><a href="#"><span></span>游戏快讯</a></li>
 						<li><a href="#"><span></span>资源专区</a></li>
 						<li class="divider"></li>
-						<li><a href="#"><span></span>秋名山</a></li>
+						<li><a href="<%=context_path%>/404"><span></span>秋名山</a></li>
 					</ul>
 				</li>
 				<li><a href="#"><span class="glyphicon glyphicon-book"></span> 版规</a></li>
@@ -100,61 +106,58 @@
 
 	<!---------------------------------------------------- 导航栏组件 ----------------------------------------------------->
 	<!-- 加载不同模版 -->
-	<div class="container-fluid main-container">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="col-xs-12 col-md-12 col-sm-12" id="templates_Panel">
-					
+	<div id="particles">
+		<div class="intro">
+		
+			
+			<div class="container-fluid main-container">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="col-xs-12 col-md-12 col-sm-12" id="templates_Panel">
+							
+						</div>
+					</div>
 				</div>
+			
+				</div>
+			<!-- 模版池 -->
+			<!-- 轮播广告池 -->
+			<div id="adCarousel" class="carousel slide col-md-8 col-md-offset-2">
+				<ol class="carousel-indicators">
+					<li data-target="#adCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#adCarousel" data-slide-to="1"></li>
+					<li data-target="#adCarousel" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200835097sxf8.jpeg">
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="item">
+						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200848121eydw.jpeg">
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="item">
+						<!-- <img alt="广告" src="<%=image_path%>/resource/image/ads"> -->
+						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/20171020082737gu189.jpeg">
+						<div class="carousel-caption"></div>
+					</div>
+				</div>
+				<!-- 轮播导航 -->
+				<a class="left carousel-control" href="#adCarousel" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#adCarousel" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+				
+				
 			</div>
-		</div>
-	</div>
-	<!-- 模版池 -->
-	<!-- 轮播广告池 -->
-	<div id="adCarousel" class="carousel slide col-md-8 col-md-offset-2">
-		<ol class="carousel-indicators">
-			<li data-target="#adCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#adCarousel" data-slide-to="1"></li>
-			<li data-target="#adCarousel" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
-			<div class="item active">
-				<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200835097sxf8.jpeg">
-				<div class="carousel-caption"></div>
+				<!-- 角标 -->
 			</div>
-			<div class="item">
-				<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200848121eydw.jpeg">
-				<div class="carousel-caption"></div>
-			</div>
-			<div class="item">
-				<!-- <img alt="广告" src="<%=image_path%>/resource/image/ads"> -->
-				<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/20171020082737gu189.jpeg">
-				<div class="carousel-caption"></div>
-			</div>
-		</div>
-		<!-- 轮播导航 -->
-		<a class="left carousel-control" href="#adCarousel" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#adCarousel" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-		
-		
-	</div>
-		<a class="v-fork-me" href="https://github.com/Penistrong/GameResourceMS" target="_blank" rel="noopener">
-      		<img src="<%=image_path%>/resource/image/common/web_info/forkme_right_darkblue.png" alt="Fork me on GitHub">
-    	</a>
-		<footer id="footer">
-			<address>
-				15257917788
-			</address>
-		</footer>
-		</div>
-	</div>
-	
+	</div>	
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 
 
@@ -185,48 +188,145 @@
 					      		<div class="modal-header">
 									<h2>Post</h2>
 								</div><!--/.modal-header -->
-								
-								<div class="modal-body">
+
+								<div class="modal-body">	
 									<div class="signin-form">
 										<div class=" ">
 											<div class=" ">
 												<form action="signin.html">
 													<div class="form-group">
-													    <label for="signin_form">Post</label>
-													    <input type="text" class="form-control"  placeholder="enter your post here" id="post" required/>
+													    <label for="signin_form">Title</label>
+													    <input type="text" class="form-control"  placeholder="enter your title here" id="title" required/>
 													</div><!--/.form-group -->
 													<div class="form-group">
-														<label for="signin_form">Photo</label>
-													    <input type="text" class="form-control"  placeholder="photo" id="photo" required/>
+														<label for="signin_form">Subtitle</label>
+													    <input type="text" class="form-control"  placeholder="enter your subtitle here" id="subtitle" required/>
 													</div><!--/.form-group -->
 												</form><!--/form -->
 											</div><!--/.col -->
 										</div><!--/.row -->
 
-									</div><!--/.signin-form -->
+									</div><!--/.signin-form -->							
+									<div style="height: 50px;"></div>
+									<!--这里加上是为了让提示信息显示 不然会被遮挡-->
+									<div id="div-wysiwyg">
+										<div class="btn-toolbar" data-role="editor-toolbar"
+											data-target="#editor">
+											<div class="btn-group">
+												<a class="btn dropdown-toggle" data-toggle="dropdown"
+													title="字体"><i class="icon-font"></i><b class="caret"></b></a>
+												<ul class="dropdown-menu">
+												</ul>
+											</div>
+											<div class="btn-group">
+												<a class="btn dropdown-toggle" data-toggle="dropdown"
+													title="字体大小"><i class="icon-text-height"></i> <b
+													class="caret"></b></a>
+												<ul class="dropdown-menu">
+													<li><a data-edit="fontSize 5"><font size="5">大号Huge</font></a></li>
+													<li><a data-edit="fontSize 3"><font size="3">中号Medium</font></a></li>
+													<li><a data-edit="fontSize 1"><font size="1">小号small</font></a></li>
+												</ul>
+											</div>
+											<div class="btn-group">
+												<a class="btn" data-edit="bold" title="B加粗 (Ctrl/Cmd+B)"><i
+													class="icon-bold"></i></a>
+												<!--加粗-->
+												<a class="btn" data-edit="italic" title="斜体 (Ctrl/Cmd+I)"><i
+													class="icon-italic"></i></a>
+												<!-- 斜体-->
+												<a class="btn" data-edit="strikethrough" title="删除线"><i
+													class="icon-strikethrough"></i></a>
+												<!-- 删除线-->
+												<a class="btn" data-edit="underline"
+													title="下划线 (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+												<!-- 下划线-->
+											</div>
+											<div class="btn-group">
+												<a class="btn" data-edit="insertunorderedlist" title="普通列表"><i
+													class="icon-list-ul"></i></a>
+												<!-- 加点-->
+												<a class="btn" data-edit="insertorderedlist" title="排序列表"><i
+													class="icon-list-ol"></i></a>
+												<!-- 数字排序-->
+												<a class="btn" data-edit="outdent" title="取消缩进 (Shift+Tab)"><i
+													class="icon-indent-left"></i></a>
+												<!-- 减少缩进-->
+												<a class="btn" data-edit="indent" title="缩进 (Tab)"><i
+													class="icon-indent-right"></i></a>
+												<!--增加缩进-->
+											</div>
+											<div class="btn-group">
+												<a class="btn" data-edit="justifyleft"
+													title="左对齐 (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+												<!--左对齐-->
+												<a class="btn" data-edit="justifycenter"
+													title="居中 (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+												<!--居中-->
+												<a class="btn" data-edit="justifyright"
+													title="右对齐 (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+												<!--右对齐-->
+												<a class="btn" data-edit="justifyfull"
+													title="填充 (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+												<!--垂直对齐-->
+											</div>
+											<div class="btn-group">
+												<a class="btn dropdown-toggle" data-toggle="dropdown"
+													title="超链接"><i class="icon-link"></i></a>
+												<!-- 链接-->
+												<div class="dropdown-menu input-append">
+													<input class="span2" placeholder="URL" type="text"
+														data-edit="createLink" />
+													<button class="btn" type="button">添加</button>
+												</div>
+												<a class="btn" data-edit="unlink" title="移除超链接"><i
+													class="icon-cut"></i></a>
+											</div>
+											<div class="btn-group">
+												<a class="btn" title="插入图片 (或拖拽图片)" id="pictureBtn"><i
+													class="icon-picture"></i></a> <input type="file"
+													data-role="magic-overlay" data-target="#pictureBtn"
+													data-edit="insertImage" />
+											</div>
+											<div class="btn-group">
+												<a class="btn" data-edit="undo" title="撤销 (Ctrl/Cmd+Z)"><i
+													class="icon-undo"></i></a>
+												<!--撤销-->
+												<a class="btn" data-edit="redo" title="恢复 (Ctrl/Cmd+Y)"><i
+													class="icon-repeat"></i></a>
+												<!--恢复-->
+											</div>
+											<input type="text" data-edit="inserttext" id="voiceBtn"
+												x-webkit-speech="">
+										</div>
 
-									<div class="signin-modal-password">
+										<div id="editor">回复一下帖子吧...</div>
+										
+									
+								</div>
+
+								    <div class="signin-modal-password">
 										<div class="awesome-checkbox-list">
 											<ul class="unstyled centered">
 												<li>
 												    <input class="styled-checkbox" id="post_checkbox" type="checkbox" value="value3">
 												    <label for="styled-checkbox-3">accept our terms & condition</label>
-												</li>
-												<li>
-												<button type="button" data-toggle="modal" data-target="#PhotoModal" id="photo"></button>
 												</li>	
 											</ul>
 										</div><!--/.awesome-checkbox-list -->
 									</div><!--/.signin-modal-password -->
 
-									<div class="signin-footer">
-										<button type="button" class="btn signin_btn" data-toggle="modal" data-target=".signin_modal" id="post_send">
-										send
-										</button>
-									</div><!--/.signin-footer -->
-								</div><!--/.modal-body -->
 
-							</div><!--/.sign-content -->
+								<div class="signin-footer">
+									<button type="button" class="btn signin_btn"
+										data-toggle="modal" data-target=".signin_modal" id="post_send">
+										send</button>
+								</div>
+								<!--/.signin-footer -->
+							</div>
+							<!--/.modal-body -->
+
+						</div><!--/.sign-content -->
 					    </div><!--/.modal-content -->
 					</div><!--/.modal-dialog -->
 				</div><!--/.modal -->

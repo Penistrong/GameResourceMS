@@ -22,7 +22,10 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 
 	@Override
 	public boolean createNewPost(Map<String, Object> map) {
-		String sql = String.format("%s%s", new Object[] {this.sqlMapping,"createNewPost"});
+		map.put("mapping", "createNewPost");
+		//map.put("post_id", this.getFloorsOfPost(map.get("post_id").toString()) + 1);
+		map.put("upload_time", DateFormatUtils.format(UtilTools.getDate(), "yyyy-MM-dd HH:mm:ss"));
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping,map.get("mapping").toString()});
 		this.logger.debug("Execute {} params : {}", sql, map);
 		return this.sqlSessionTemplate.insert(sql, map)>0?true:false;
 	}
@@ -77,6 +80,12 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		String sql = String.format("%s%s", new Object[] {this.sqlMapping, map.get("mapping").toString()});
 		this.logger.debug("Execute {} params : {}", sql, map);
 		return this.sqlSessionTemplate.selectOne(sql, map);
+	}
+
+	@Override
+	public String getLatestPID() {
+		String sql  = String.format("%s%s", new Object[] {this.sqlMapping, "getLatestPID"});
+		return this.sqlSessionTemplate.selectOne(sql);
 	}
 
 }

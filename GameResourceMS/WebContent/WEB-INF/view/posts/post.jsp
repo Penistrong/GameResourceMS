@@ -11,8 +11,7 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <!-- BootStrap-wysiwyg前置 -->
 <!-- 样式 -->
-<link rel="stylesheet" type="text/css" href="<%=javascript_path%>/resource/js/common/google-code-prettify/prettify.css"/>
-<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-combined.no-icons.min.css"/>
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/js/common/google-code-prettify/prettify.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-responsive.min.css"/>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
 <!-- 快捷键 -->
@@ -141,8 +140,8 @@
 			<div class="btn-toolbar" data-role="editor-toolbar"
 				data-target="#editor">
 				<div class="btn-group">
-					<a class="btn dropdown-toggle" data-toggle="dropdown" title="字体"><i
-						class="icon-font"></i><b class="caret"></b></a>
+					<a class="btn dropdown-toggle" data-toggle="dropdown" title="字体">
+					<i class="icon-font"></i><b class="caret"></b></a>
 					<ul class="dropdown-menu">
 					</ul>
 				</div>
