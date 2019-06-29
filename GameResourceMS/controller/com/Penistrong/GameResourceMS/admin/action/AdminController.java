@@ -29,8 +29,11 @@ import com.Penistrong.GameResourceMS.po.CurrentUser;
 @RequestMapping("/admin")
 public class AdminController extends BaseAction<AdminService<Map<String,Object>>,Map<String,Object>>{
 	@RequestMapping
-	public String index(ModelMap map,HttpServletRequest request) {
-		return "admin/adminPage";
+	public String index(ModelMap map,HttpServletRequest request, HttpSession session) {
+		if(((CurrentUser)session.getAttribute("currentUser")).getUser_type().equals("administrator"))
+			return "admin/adminPage";
+		else
+			return "redirect:/503";
 	}
 	
 	@ResponseBody
@@ -45,6 +48,10 @@ public class AdminController extends BaseAction<AdminService<Map<String,Object>>
 	public List<Map<String,Object>> getUserInfo(HttpServletRequest request){
 		this.logger.info(UtilTools.getDate().toString()+"|"+this.getClass().toString()+" is querying user_accounts!");
 		List<Map<String,Object>> userInfos = service.getUserInfo();
+		for(Map<String, Object> userInfo:userInfos) {
+			userInfo.put("create_time", userInfo.get("create_time").toString());
+			userInfo.put("modify_time", userInfo.get("modify_time").toString());
+		}
 		return userInfos;
 	}
 	

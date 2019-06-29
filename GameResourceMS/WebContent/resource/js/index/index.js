@@ -92,15 +92,158 @@ $.latestPosts_page = function(){
 }
 
 $.beginService = function(){
+	
+	//底部分页组件
+	Vue.component('pagination',{
+		//父组件传递的值(有的有默认值)
+		props: {
+			//每页可见页码
+			perPages : {
+				type: Number,
+				default: 5
+			},
+			//当前页码
+			pageIndex : {
+				type: Number,
+				default: 1
+			},
+			//每页显示条数
+			pageSize : {
+				type: Number,
+				default: 10
+			},
+			//总条数
+			total : {
+				type: Number,
+				default: 1
+			},
+		},
+		template:`<ul class="ul-paging center-block" v-if="pages != 1">
+				 	<!--prev-->
+				 	<li :class="['paging-item', 'paging-item--prev',{'paging-item--disabled':index===1}]"
+				 		@click="prev"><<</li>
+				 	
+				 	<!--first-->
+				 	<li :class="['paging-item', 'paging-item--first']"
+						@click="first">首页</li>
+					<li :class="['paging-item', 'paging-item--more']"
+						v-if="showPrevMore">...</li>
+					<li :class="['paging-item', {'paging-item--current':index===pager}]"
+						v-for="pager in pagers" @click="go(pager)">{{ pager }}</li>
+					<li :class="['paging-item', 'paging-item--more']"
+						v-if="showNextMore">...</li>
+					
+					<!--last-->
+					<li :class="['paging-item', 'paging-item--last']"
+						@click="last">尾页</li>
+						
+					<!--next-->	
+					<li :class="['paging-item', 'paging-item--next', {'paging-item--disabled':index===pages}]"
+						@click="next">>></li>
+				  </ul>
+				 `,
+		methods:{
+			prev(){
+				console.log(this.limit);
+				if(this.index > 1)
+					this.go(this.index - 1)
+			},
+			next(){
+				if(this.index<this.pages)
+					this.go(this.index +  1)
+			},
+			first(){
+				if(this.index !== 1)
+					this.go(1)
+			},
+			last(){
+				if(this.index !== this.pages)
+					this.go(this.pages)
+			},
+			go(page){
+				if(this.index !== page){
+					this.index = page
+					//发送给父组件，让父组件调用change对应的pageChange方法
+					this.$emit('change', this.index)
+				}
+			}
+		},
+		computed:{
+			//计算总页码
+			pages(){
+				return Math.ceil(this.size / this.limit)
+			},
+			//计算页码,当count变化时自动计算
+			pagers(){
+				const array = []
+				const perPages = this.perPages
+				const pageCount = this.pages
+				let current = this.index
+				//偏移量
+				const _offset = (perPages - 1)/2
+
+				const offset = {
+					start 	: current - _offset,
+					end		: current + _offset 
+				}
+				
+				if(offset.start < 1){
+					offset.end += 1 - offset.start
+					offset.start = 1
+				}
+				if(offset.end > pageCount){
+					offset.start -= offset.end - pageCount
+					offset.end = pageCount
+				}
+				if(offset.start < 1) offset.start = 1
+				
+				this.showPrevMore = (offset.start > 1)
+				this.showNextMore = (offset.end < pageCount)
+				
+				for(let i = offset.start;i<=offset.end;i++){
+					array.push(i)
+				}
+				return array
+			}
+		},
+		data(){
+			return {
+				index: this.pageIndex,//当前页码
+				limit: this.pageSize, //每页显示条数
+				size: this.total || 1,//总记录数
+				showPrevMore: false,
+				showNextMore: false
+			}
+		},
+		watch :{
+			pageIndex(val) {
+				this.index = val || 1
+			},
+			pageSize(val) {
+				this.limit = val || 10
+			},
+			total(val) {
+				this.size = val || 1
+			}
+		}
+	});
+	
 	var latestPosts = new Vue({
 		el:'#postManagement',
-		data:{
-			isActive: false,
-			selected: -1,
-			selectedlist: {},
-			slist:[],
-			searchlist:[],
-			list:[]
+		data(){
+			return {
+				isActive: false,
+				selected: -1,
+				selectedlist: {},
+				slist:[],
+				searchlist:[],
+				list:[],
+				pageSize : 5,
+				currentPage: 1,
+				count : 0,
+				items : [],
+				postInfo: []
+			}
 		},
 		created(){
 			console.log(Date.now()+'|'+'Vue instance has been created');
@@ -119,8 +262,15 @@ $.beginService = function(){
 						for(var i=0;i<postInfos.length;i++){
 							latestPosts.list.push(postInfos[i]);
 						}
-						//console.log(manage_users.list);
-						latestPosts.setSlist(latestPosts.list);
+						if(latestPosts.pageSize<=postInfos.length){
+							for(var i=0;i<latestPosts.pageSize;i++)
+								latestPosts.slist.push(postInfos[i]);
+						}else{
+							for(var i=0;i<postInfos.length;i++)
+								latestPosts.slist.push(postInfos[i]);
+						}
+						
+						latestPosts.count = latestPosts.list.length;//总记录
 					}
 				})
 			},
@@ -132,6 +282,55 @@ $.beginService = function(){
 			},
 			jump(poster_id, post_id){
 				window.location.href =  contextpath+"/posts/"+poster_id+"/"+post_id;
+			},
+			pageChange(page){
+				this.currentPage = page
+				//TODO 改变页码时改变slist
+				var curPageStartIndex = (page - 1) * this.pageSize;
+				var curPageEndIndex = page*this.pageSize - 1;
+				if(curPageEndIndex >= this.count){
+					curPageEndIndex = this.count - 1;
+				}
+				this.slist.splice(0, this.slist.length);//清空原来要显示的slist
+				
+				for(var i = curPageStartIndex;i<=curPageEndIndex;i++){
+					this.slist.push(this.list[i]);
+				}
+			},
+			clean(){
+				$(".search_post").val('');
+				this.$emit('input');
+			},
+			//获取需要渲染进页面的数据
+			setSlist(arr){
+				this.slist = JSON.parse(JSON.stringify(arr));
+			},
+			search_post(e){
+				var v = e.target.value,
+					self = this;
+				self.searchlist = [];
+				if(v){
+					var ss=[];
+					//过滤需要的数据
+					this.list.forEach(function(post){
+						if(post.title.indexOf(v) > -1){
+							if(self.searchlist.indexOf(post.title) == -1){
+								self.searchlist.push(post.title);
+							}
+							ss.push(post);
+						}else if(post.subhead.indexOf(v) > -1){
+							if(self.searchlist.indexOf(post.subhead) == -1){
+								self.searchlist.push(post.subhead);
+							}
+							ss.push(post);
+						}
+					});
+					this.setSlist(ss);//过滤后数据传给slist
+				}else{
+					//TODO 
+					//搜索框为空,则展示所有数据
+					this.setSlist(this.list);
+				}
 			}
 			//修改数据
 			/*showOverlay(index){

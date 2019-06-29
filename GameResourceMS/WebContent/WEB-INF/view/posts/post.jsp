@@ -99,7 +99,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-10 col-md-offset-1" v-for="(reply, index) of slist">
+	<div class="col-md-10 col-md-offset-1" v-cloak v-for="(reply, index) of slist">
 		<div class="col-md-2 col-md-offset-2">
 			<form role="form" class="form-vertical reply-floor">
 				<div class="form-group">

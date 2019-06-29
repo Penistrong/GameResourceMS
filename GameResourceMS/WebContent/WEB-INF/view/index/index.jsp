@@ -61,9 +61,12 @@
 			<div class="collapse navbar-collapse" id="example-navbar-collapse">
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control search_post" placeholder="Search..." v-cloak @input="search_post" list="posts" >
+						<datalist id="posts">
+							<option v-cloak v-for="post in searchlist" :value="post"></option>
+						</datalist>
 					</div>
-					<button type="submit" class="btn btn-default">搜索</button>
+					<button type="submit" class="btn btn-default clean" v-cloak @click="clean">清空</button>
 				</form>
 				<ul class="nav navbar-nav navbar-left">
 					<li class="active"><a href="#" id="btn-show-latest-posts"><span
@@ -286,7 +289,7 @@
 	<!-- -----------------------------------------------帖子--------------------------------------------------------- -->
 	<script id="latestPosts" type="text/html">
 		<div id="postManagement">
-		<div class="col-md-8 col-md-offset-2" v-for="(post, index) of slist" @click=jump(post.poster_id,post.post_id) style="cursor:pointer">
+		<div class="col-md-8 col-md-offset-2" v-cloak v-for="(post, index) of slist" @click=jump(post.poster_id,post.post_id) style="cursor:pointer">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2 class="panel-title">
@@ -307,6 +310,11 @@
 						{{post.upload_time}}
 					</small>
 				</div>		
+			</div>
+		</div>
+		<div class="col-md-4 col-md-offset-4">
+			<div class="text-center">
+				<pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange"></pagination>
 			</div>
 		</div>
 		</div>
@@ -376,7 +384,7 @@
 	</div>
 	</script>
 	<footer id="footer">
-		<p>author:陈立伟 吕昶臻 alias:Penistrong 15257917788 <a href="https://github.com/Penistrong/GameResourceMS">Fork us on GitHub</a></p>
+		<p>Author:陈立伟 吕昶臻 Alias:Penistrong 15257917788 <a href="https://github.com/Penistrong/GameResourceMS">Fork us on GitHub</a></p>
 		<address>Copyright © 2019-9102 游戏资源集散论坛 GameResourceMS All Rights Reserved.</address>
 	</footer>
 	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
