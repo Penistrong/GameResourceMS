@@ -35,7 +35,6 @@
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
 <!-- 富文本转码器 注意此处的富文本应是已替换了html标签的版本-->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/html_coder.js"></script>
-<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/BASE64/jquery.base64.js"></script>
 </head>
 <body>
 <!-------------------------------------------------- 导航栏组件 ---------------------------------------------------->
@@ -173,168 +172,184 @@
 				
 				
 			</div>
-				<!-- 角标 -->
+	<!-- 角标 -->
 	<div id="particles">
-		<div class="intro">
-			</div>
-	</div>	
+		<div class="intro"></div>
+	</div>
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 
 
-	
+
 	<!-- signin end -->
-		<section class="signin">
-			<div class="container">
-				<div class="sign-content">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="signin-footer">
-								<div id=scrowToTop>
-									<button type="button"  v-on:click="backTop" id="toTop"></button>
-								</div>
-								<button type="button"  data-toggle="modal" data-target=".signin_modal" id="message"></button>	
-							</div><!--/.signin-footer -->
-						</div><!--/.col-->
-					</div><!--/.row -->
+	<section class="signin">
+		<div class="container">
+			<div class="sign-content">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="signin-footer">
+							<div id=scrowToTop>
+								<button type="button" v-on:click="backTop" id="toTop"></button>
+							</div>
+							<button type="button" data-toggle="modal"
+								data-target=".signin_modal" id="message"></button>
+						</div>
+						<!--/.signin-footer -->
+					</div>
+					<!--/.col-->
+				</div>
+				<!--/.row -->
+			</div>
+			<!--/.sign-content -->
 
-				</div><!--/.sign-content -->
+			<!-- modal part start -->
+			<div class="modal fade signin_modal" tabindex="-1" role="dialog"
+				aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="sign-content">
 
-				<!-- modal part start -->
-				<div class="modal fade signin_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-					<div class="modal-dialog modal-lg" role="document">
-					    <div class="modal-content">
-					      	<div class="sign-content">
+							<div class="modal-header">
+								<h2>Post</h2>
+							</div>
+							<!--/.modal-header -->
 
-					      		<div class="modal-header">
-									<h2>Post</h2>
-								</div><!--/.modal-header -->
-
-								<div class="modal-body">	
-									<div class="signin-form">
+							<div class="modal-body">
+								<div class="signin-form">
+									<div class=" ">
 										<div class=" ">
-											<div class=" ">
-												<form action="signin.html">
-													<div class="form-group">
-													    <label for="signin_form">Title</label>
-													    <input type="text" class="form-control"  placeholder="enter your title here" id="title" required/>
-													</div><!--/.form-group -->
-													<div class="form-group">
-														<label for="signin_form">Subtitle</label>
-													    <input type="text" class="form-control"  placeholder="enter your subtitle here" id="subtitle" required/>
-													</div><!--/.form-group -->
-												</form><!--/form -->
-											</div><!--/.col -->
-										</div><!--/.row -->
-
-									</div><!--/.signin-form -->							
-									<div style="height: 50px;"></div>
-									<!--这里加上是为了让提示信息显示 不然会被遮挡-->
-									<div id="div-wysiwyg">
-										<div class="btn-toolbar" data-role="editor-toolbar"
-											data-target="#editor">
-											<div class="btn-group">
-												<a class="btn dropdown-toggle" data-toggle="dropdown"
-													title="字体"><i class="icon-font"></i><b class="caret"></b></a>
-												<ul class="dropdown-menu">
-												</ul>
-											</div>
-											<div class="btn-group">
-												<a class="btn dropdown-toggle" data-toggle="dropdown"
-													title="字体大小"><i class="icon-text-height"></i> <b
-													class="caret"></b></a>
-												<ul class="dropdown-menu">
-													<li><a data-edit="fontSize 5"><font size="5">大号Huge</font></a></li>
-													<li><a data-edit="fontSize 3"><font size="3">中号Medium</font></a></li>
-													<li><a data-edit="fontSize 1"><font size="1">小号small</font></a></li>
-												</ul>
-											</div>
-											<div class="btn-group">
-												<a class="btn" data-edit="bold" title="B加粗 (Ctrl/Cmd+B)"><i
-													class="icon-bold"></i></a>
-												<!--加粗-->
-												<a class="btn" data-edit="italic" title="斜体 (Ctrl/Cmd+I)"><i
-													class="icon-italic"></i></a>
-												<!-- 斜体-->
-												<a class="btn" data-edit="strikethrough" title="删除线"><i
-													class="icon-strikethrough"></i></a>
-												<!-- 删除线-->
-												<a class="btn" data-edit="underline"
-													title="下划线 (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
-												<!-- 下划线-->
-											</div>
-											<div class="btn-group">
-												<a class="btn" data-edit="insertunorderedlist" title="普通列表"><i
-													class="icon-list-ul"></i></a>
-												<!-- 加点-->
-												<a class="btn" data-edit="insertorderedlist" title="排序列表"><i
-													class="icon-list-ol"></i></a>
-												<!-- 数字排序-->
-												<a class="btn" data-edit="outdent" title="取消缩进 (Shift+Tab)"><i
-													class="icon-indent-left"></i></a>
-												<!-- 减少缩进-->
-												<a class="btn" data-edit="indent" title="缩进 (Tab)"><i
-													class="icon-indent-right"></i></a>
-												<!--增加缩进-->
-											</div>
-											<div class="btn-group">
-												<a class="btn" data-edit="justifyleft"
-													title="左对齐 (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
-												<!--左对齐-->
-												<a class="btn" data-edit="justifycenter"
-													title="居中 (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
-												<!--居中-->
-												<a class="btn" data-edit="justifyright"
-													title="右对齐 (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
-												<!--右对齐-->
-												<a class="btn" data-edit="justifyfull"
-													title="填充 (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
-												<!--垂直对齐-->
-											</div>
-											<div class="btn-group">
-												<a class="btn dropdown-toggle" data-toggle="dropdown"
-													title="超链接"><i class="icon-link"></i></a>
-												<!-- 链接-->
-												<div class="dropdown-menu input-append">
-													<input class="span2" placeholder="URL" type="text"
-														data-edit="createLink" />
-													<button class="btn" type="button">添加</button>
+											<form action="signin.html">
+												<div class="form-group">
+													<label for="signin_form">Title</label> <input type="text"
+														class="form-control" placeholder="enter your title here"
+														id="title" required />
 												</div>
-												<a class="btn" data-edit="unlink" title="移除超链接"><i
-													class="icon-cut"></i></a>
-											</div>
-											<div class="btn-group">
-												<a class="btn" title="插入图片 (或拖拽图片)" id="pictureBtn"><i
-													class="icon-picture"></i></a> <input type="file"
-													data-role="magic-overlay" data-target="#pictureBtn"
-													data-edit="insertImage" />
-											</div>
-											<div class="btn-group">
-												<a class="btn" data-edit="undo" title="撤销 (Ctrl/Cmd+Z)"><i
-													class="icon-undo"></i></a>
-												<!--撤销-->
-												<a class="btn" data-edit="redo" title="恢复 (Ctrl/Cmd+Y)"><i
-													class="icon-repeat"></i></a>
-												<!--恢复-->
-											</div>
-											<input type="text" data-edit="inserttext" id="voiceBtn"
-												x-webkit-speech="">
+												<!--/.form-group -->
+												<div class="form-group">
+													<label for="signin_form">Subtitle</label> <input
+														type="text" class="form-control"
+														placeholder="enter your subtitle here" id="subtitle"
+														required />
+												</div>
+												<!--/.form-group -->
+											</form>
+											<!--/form -->
 										</div>
+										<!--/.col -->
+									</div>
+									<!--/.row -->
 
-										<div id="editor">回复一下帖子吧...</div>
-										
-									
+								</div>
+								<!--/.signin-form -->
+								<div style="height: 50px;"></div>
+								<!--这里加上是为了让提示信息显示 不然会被遮挡-->
+								<div id="div-wysiwyg">
+									<div class="btn-toolbar" data-role="editor-toolbar"
+										data-target="#editor">
+										<div class="btn-group">
+											<a class="btn dropdown-toggle" data-toggle="dropdown"
+												title="字体"><i class="icon-font"></i><b class="caret"></b></a>
+											<ul class="dropdown-menu">
+											</ul>
+										</div>
+										<div class="btn-group">
+											<a class="btn dropdown-toggle" data-toggle="dropdown"
+												title="字体大小"><i class="icon-text-height"></i> <b
+												class="caret"></b></a>
+											<ul class="dropdown-menu">
+												<li><a data-edit="fontSize 5"><font size="5">大号Huge</font></a></li>
+												<li><a data-edit="fontSize 3"><font size="3">中号Medium</font></a></li>
+												<li><a data-edit="fontSize 1"><font size="1">小号small</font></a></li>
+											</ul>
+										</div>
+										<div class="btn-group">
+											<a class="btn" data-edit="bold" title="B加粗 (Ctrl/Cmd+B)"><i
+												class="icon-bold"></i></a>
+											<!--加粗-->
+											<a class="btn" data-edit="italic" title="斜体 (Ctrl/Cmd+I)"><i
+												class="icon-italic"></i></a>
+											<!-- 斜体-->
+											<a class="btn" data-edit="strikethrough" title="删除线"><i
+												class="icon-strikethrough"></i></a>
+											<!-- 删除线-->
+											<a class="btn" data-edit="underline" title="下划线 (Ctrl/Cmd+U)"><i
+												class="icon-underline"></i></a>
+											<!-- 下划线-->
+										</div>
+										<div class="btn-group">
+											<a class="btn" data-edit="insertunorderedlist" title="普通列表"><i
+												class="icon-list-ul"></i></a>
+											<!-- 加点-->
+											<a class="btn" data-edit="insertorderedlist" title="排序列表"><i
+												class="icon-list-ol"></i></a>
+											<!-- 数字排序-->
+											<a class="btn" data-edit="outdent" title="取消缩进 (Shift+Tab)"><i
+												class="icon-indent-left"></i></a>
+											<!-- 减少缩进-->
+											<a class="btn" data-edit="indent" title="缩进 (Tab)"><i
+												class="icon-indent-right"></i></a>
+											<!--增加缩进-->
+										</div>
+										<div class="btn-group">
+											<a class="btn" data-edit="justifyleft"
+												title="左对齐 (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+											<!--左对齐-->
+											<a class="btn" data-edit="justifycenter"
+												title="居中 (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+											<!--居中-->
+											<a class="btn" data-edit="justifyright"
+												title="右对齐 (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+											<!--右对齐-->
+											<a class="btn" data-edit="justifyfull"
+												title="填充 (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+											<!--垂直对齐-->
+										</div>
+										<div class="btn-group">
+											<a class="btn dropdown-toggle" data-toggle="dropdown"
+												title="超链接"><i class="icon-link"></i></a>
+											<!-- 链接-->
+											<div class="dropdown-menu input-append">
+												<input class="span2" placeholder="URL" type="text"
+													data-edit="createLink" />
+												<button class="btn" type="button">添加</button>
+											</div>
+											<a class="btn" data-edit="unlink" title="移除超链接"><i
+												class="icon-cut"></i></a>
+										</div>
+										<div class="btn-group">
+											<a class="btn" title="插入图片 (或拖拽图片)" id="pictureBtn"><i
+												class="icon-picture"></i></a> <input type="file"
+												data-role="magic-overlay" data-target="#pictureBtn"
+												data-edit="insertImage" />
+										</div>
+										<div class="btn-group">
+											<a class="btn" data-edit="undo" title="撤销 (Ctrl/Cmd+Z)"><i
+												class="icon-undo"></i></a>
+											<!--撤销-->
+											<a class="btn" data-edit="redo" title="恢复 (Ctrl/Cmd+Y)"><i
+												class="icon-repeat"></i></a>
+											<!--恢复-->
+										</div>
+										<input type="text" data-edit="inserttext" id="voiceBtn"
+											x-webkit-speech="">
+									</div>
+
+									<div id="editor">在这里编辑新帖子内容...</div>
+
+
 								</div>
 
-								    <div class="signin-modal-password">
-										<div class="awesome-checkbox-list">
-											<ul class="unstyled centered">
-												<li>
-												    <input class="styled-checkbox" id="post_checkbox" type="checkbox" value="value3">
-												    <label for="styled-checkbox-3">accept our terms & condition</label>
-												</li>	
-											</ul>
-										</div><!--/.awesome-checkbox-list -->
-									</div><!--/.signin-modal-password -->
+								<div class="signin-modal-password">
+									<div class="awesome-checkbox-list">
+										<ul class="unstyled centered">
+											<li><input class="styled-checkbox" id="post_checkbox"
+												type="checkbox" value="value3"> <label
+												for="styled-checkbox-3">accept our terms & condition</label>
+											</li>
+										</ul>
+									</div>
+									<!--/.awesome-checkbox-list -->
+								</div>
+								<!--/.signin-modal-password -->
 
 
 								<div class="signin-footer">
@@ -346,53 +361,25 @@
 							</div>
 							<!--/.modal-body -->
 
-						</div><!--/.sign-content -->
-					    </div><!--/.modal-content -->
-					</div><!--/.modal-dialog -->
-				</div><!--/.modal -->
-				
-				<!-- modal part end -->
-			</div><!--/.container -->
-
-		</section><!--/.signin -->
-		
-		<!-- signin end -->
-		
-		<!-- 上传图片模态框待修改 -->
-			<div class="modal fade col-md-10 col-md-offset-2" id="PhotoModal"
-				tabindex="-1" role="dialog" aria-labelledby="PortaitModalLabel"
-				aria-hidden="true" data-backdrop="static">
-				<form method="post" id="Change_Portrait"
-					enctype="multipart/form-data">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="PortraitModalLabel">上传自定义头像</h4>
-							</div>
-							<div class="modal-body">
-								<!-- 上传图片部件配置 -->
-								<div class="control-group">
-									<label class="control-label">上传头像</label>
-									<div class="controls">
-										<input type="file" id="upload_portrait" />
-										<p class="help-block">大小不超过512K</p>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">算了QAQ</button>
-								<button type="button" class="btn btn-primary">确认上传</button>
-							</div>
 						</div>
+						<!--/.sign-content -->
 					</div>
-				</form>
+					<!--/.modal-content -->
+				</div>
+				<!--/.modal-dialog -->
 			</div>
-	<!-- 上传图片模态框 end-->
-		
-	
+			<!--/.modal -->
+
+			<!-- modal part end -->
+		</div>
+		<!--/.container -->
+
+	</section>
+	<!--/.signin -->
+
+	<!-- signin end -->
+
+
 	<!-- -----------------------------------------------帖子--------------------------------------------------------- -->
 	<script id="latestPosts" type="text/html">
 		<div id="postManagement">
