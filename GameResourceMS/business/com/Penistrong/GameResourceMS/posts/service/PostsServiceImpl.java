@@ -29,6 +29,26 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		this.logger.debug("Execute {} params : {}", sql, map);
 		return this.sqlSessionTemplate.insert(sql, map)>0?true:false;
 	}
+	
+	@Override
+	public boolean createPostExtend(Map<String, Object> map) {
+		map.put("mapping", "createPostExtend");
+		map.put("floors", 1);
+		map.put("tags","new");
+		map.put("visits", 1);
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping,map.get("mapping").toString()});
+		this.logger.debug("Execute {} params : {}", sql, map);
+		return this.sqlSessionTemplate.insert(sql, map)>0?true:false;
+	}
+	
+	@Override
+	public boolean createPostReply(Map<String, Object> map) {
+		map.put("mapping", "createPostReply");
+		map.put("reply", "一楼自占");
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping,map.get("mapping").toString()});
+		this.logger.debug("Execute {} params : {}", sql, map);
+		return this.sqlSessionTemplate.insert(sql, map)>0?true:false;
+	}
 
 	@Override
 	public boolean insertNewReply(Map<String, Object> map) {
@@ -100,4 +120,5 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		this.logger.debug("Execute {} params : {}", sql, map);
 		return this.sqlSessionTemplate.update(sql, map)>0?true:false;
 	}
+
 }

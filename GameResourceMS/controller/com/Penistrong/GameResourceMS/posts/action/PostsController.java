@@ -84,7 +84,8 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 		String post_id=String.format("%06d", id+1);
 		params.put("post_id", post_id);
 		if(this.service.createNewPost(params)) {
-			return true;
+			if(this.service.createPostExtend(params) && this.service.createPostReply(params))
+				return true;
 		}
 		return false;
 	}

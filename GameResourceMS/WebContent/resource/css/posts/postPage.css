@@ -175,3 +175,22 @@ div#div-post-content{
 #navbar-logout{
 	margin-right:-15px;
 }
+
+#div-reply-reward{
+	display:none;
+	z-index:10;
+	height:50px;
+	width:200px;
+	border-radius:50px;
+	border:1px solid #ccc;
+	background-color:#ccc;
+	font-size:15px;
+	font-weight:bold;
+	text-align:center;
+	line-height:50px;
+	margin:0 auto;
+	top:50%;
+	left:50%;
+	color:#39c652;
+	position:fixed;
+}

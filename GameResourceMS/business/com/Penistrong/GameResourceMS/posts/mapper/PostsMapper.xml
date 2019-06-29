@@ -60,6 +60,22 @@
 		(#{resource_id},#{poster_id},#{post_id},#{post_author},#{upload_time},#{post_title},#{post_subhead},#{post_content})
 	</insert>
 	
+	<insert id="createPostExtend">
+		INSERT INTO
+			   posts_extend_info
+		(RESOURCE_ID,POST_ID,VISITS,LAST_REPLY_TIME,LAST_REPLY_USER,FLOORS,TAGS)
+		VALUES
+		(#{resource_id},#{post_id},#{visits},#{upload_time},#{post_author},#{floors},#{tags})
+	</insert>
+	
+	<insert id="createPostReply">
+		INSERT INTO
+			   posts_reply
+		(POST_ID,FLOOR,REPLIER_ID,REPLY,REPLY_TIME)
+		VALUES
+		(#{post_id},#{floors},#{resource_id},#{reply},#{upload_time})
+	</insert>
+	
 	<insert id="insertNewReply">
 		INSERT INTO
 			   posts_reply

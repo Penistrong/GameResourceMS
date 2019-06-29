@@ -23,6 +23,12 @@ public interface PostsService<R extends Object> extends BaseService<R> {
 	//发布新帖子
 	boolean createNewPost(Map<String,Object> map);
 	
+	//新建新帖子的依赖表
+	boolean createPostExtend(Map<String, Object> map);
+	
+	//新建新帖子的回复楼层表
+	boolean createPostReply(Map<String, Object> map);
+	
 	//回复帖子
 	boolean insertNewReply(Map<String, Object> map);
 	

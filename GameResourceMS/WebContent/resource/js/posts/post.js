@@ -269,9 +269,10 @@ $.createNewReply = function(){
 		contentType:"application/json;charset=utf-8",
 		data:JSON.stringify({'post_id':$("#post_id_box").html(), 'reply':reply}),
 		success:function(msg){
-			console.log(msg);
 			if(msg==true){
-				window.location.reload();
+				$("#div-reply-reward").show();
+				//3s后重新刷新
+				setTimeout(function(){window.location.reload()},3000);
 			}else{
 				alert("回复失败!");
 			}

@@ -397,6 +397,7 @@
 				<div style="text-align:right;">
 					   {{post.post_author}}
 					<br>
+					<small><span class="post-visits">浏览量： {{post.visits}}</span></small>
 					<small>
 						{{post.upload_time}}
 					</small>
