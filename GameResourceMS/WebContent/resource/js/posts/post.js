@@ -270,7 +270,7 @@ $.createNewReply = function(){
 		data:JSON.stringify({'post_id':$("#post_id_box").html(), 'reply':reply}),
 		success:function(msg){
 			console.log(msg);
-			if(msg=="true"){
+			if(msg==true){
 				window.location.reload();
 			}else{
 				alert("回复失败!");

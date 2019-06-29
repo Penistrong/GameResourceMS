@@ -37,4 +37,7 @@ public interface PostsService<R extends Object> extends BaseService<R> {
 	
 	//获取帖子主要内容
 	Map<String, Object> getPostMainInfo(Map<String, Object> map);
+	
+	//更新帖子浏览量
+	boolean updatePostVisits(String post_id);
 }

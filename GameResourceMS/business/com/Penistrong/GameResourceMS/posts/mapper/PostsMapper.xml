@@ -72,4 +72,10 @@
 		   </if>
 		 WHERE post_id = #{post_id}
 	</update>
+	
+	<update id="updatePostVisits">
+		UPDATE posts_extend_info
+		   SET visits = visits + 1
+		 WHERE post_id = #{post_id}
+	</update>
 </mapper>

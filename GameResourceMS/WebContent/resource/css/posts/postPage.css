@@ -62,6 +62,12 @@ div#div-post-content{
 	font-size:18px;
 }
 
+.user-identity{
+	font-weight:bold;
+	color: #3060cf;
+	font-size:16px;
+}
+
 .poster-intro{
 	border:1px solid #ccc;
 	border-radius:10px;

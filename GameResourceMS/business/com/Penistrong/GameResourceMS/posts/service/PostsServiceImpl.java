@@ -79,4 +79,9 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		return this.sqlSessionTemplate.selectOne(sql, map);
 	}
 
+	@Override
+	public boolean updatePostVisits(String post_id) {
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping, "updatePostVisits"});
+		return this.sqlSessionTemplate.update(sql, post_id)>0?true:false;
+	}
 }

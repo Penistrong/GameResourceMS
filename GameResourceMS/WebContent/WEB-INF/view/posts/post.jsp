@@ -108,7 +108,7 @@
 				<div class="form-group text-center">
 					<label class="control-label center-block text-center">{{reply.user_name}}</label>
 					<label class="control-label center-block text-center">Lv. <span class="replier-lvl">{{reply.level}}<span></label>
-					<label class="control-label center-block text-center">{{reply.identity}}</label>
+					<label class="control-label center-block text-center user-identity">{{reply.identity}}</label>
 				</div>
 			</form>
 		</div>

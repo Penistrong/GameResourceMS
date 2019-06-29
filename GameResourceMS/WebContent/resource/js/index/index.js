@@ -130,7 +130,9 @@ $.beginService = function(){
 			setSlist(arr){
 				this.slist = JSON.parse(JSON.stringify(arr));
 			},
-			
+			jump(poster_id, post_id){
+				window.location.href =  contextpath+"/posts/"+poster_id+"/"+post_id;
+			}
 			//修改数据
 			/*showOverlay(index){
 				this.selected = index;

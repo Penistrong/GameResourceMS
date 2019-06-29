@@ -50,6 +50,9 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 		if(this.service.validatePost(preCheckParams)) {
 			map.addAttribute("poster_id", poster_id);
 			map.addAttribute("post_id", post_id);
+			//更新帖子浏览量信息
+			this.service.updatePostVisits(post_id);
+			
 			return "posts/post";
 		}else
 			return "redirect:/404";
