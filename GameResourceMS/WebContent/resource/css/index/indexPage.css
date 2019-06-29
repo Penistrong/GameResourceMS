@@ -27,7 +27,7 @@ img#nav-portrait{
 	height:150px;
 	resize:none;
 }
-<<<<<<< HEAD
+
 #editor{
 	overflow:scroll;
 	max-height:300px;
@@ -42,19 +42,7 @@ img#nav-portrait{
 	padding-right:0px;
 	padding-bottom:0px;
 }
-footer#footer{
-	height: 40px; 
-    position: absolute; 
-    bottom: 0;
-    width: 100%; 
-    background-color: #c0c0c0;
-    line-height: 40px;
-     text-align: center;
-}
-}
-=======
 
->>>>>>> branch 'master' of https://github.com/Penistrong/GameResourceMS.git
 .testDiv{  
 	width: 100px;    
     word-wrap:break-word;  
@@ -87,15 +75,6 @@ img.ads-image{max-height:200px;}
 ul.posts_list{font:20px verdana, arial, sans-serif;}
 ul.posts_list li{list-style:none;padding:0;margin:0;float:left;font:20px,KaiTi,arial,sans-serif;display:block;background:#fffbf0;text-over-flow:ellipsis;over-flow:hidden;white-space:nowrap;height:30px;}
 ul.posts_list li.post_subhead{width:200px;}
-<<<<<<< HEAD
-ul.posts_list li a{
-	display:block;
-	height:30px;
-	background:#3A4953; /* 设置背景色 */
-	color:#fff; /* 设置文字颜色 */
-	text-decoration:none; /* 去掉下划线 */
-	border-right:1px solid #000; /* 在左侧加上分隔线 */}
-=======
 ul.posts_list li a {
 	display: block;
 	height: 30px;
@@ -127,4 +106,3 @@ ul.posts_list li a {
 address{
 	margin-bottom:0px;
 }
->>>>>>> branch 'master' of https://github.com/Penistrong/GameResourceMS.git
