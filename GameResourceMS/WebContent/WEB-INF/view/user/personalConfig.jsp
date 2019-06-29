@@ -150,12 +150,14 @@
 							</div>
 							<div class="col-sm-4" id="level-progress">
 								<div class="progress progress-striped active">
-									<%Double exp_percentage = Integer.valueOf(currentUser.getExp())*100.0/9999; %>
+									
+									<%Double curMaxExp = 10 * Math.pow(2, Double.valueOf(currentUser.getLevel())); %>
+									<%Double exp_percentage = Integer.valueOf(currentUser.getExp())*100.0 / curMaxExp; %>
 									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%=currentUser.getExp()%>" aria-valuemin="0" aria-valuemax="9999" style="width: <%=exp_percentage%>%"></div>
 								</div>
 							</div>
 							<div class="col-sm-2" id="ExpStat">
-								<span class="form-control-static"><span id="curExp"><%=currentUser.getExp()%></span>/9999</span>
+								<span class="form-control-static"><span id="curExp"><%=currentUser.getExp()%></span>/<%=curMaxExp %></span>
 							</div>
 						</div>
 						<div class="form-group">

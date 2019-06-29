@@ -14,12 +14,12 @@
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/js/common/google-code-prettify/prettify.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/bootstrap/bootstrap-responsive.min.css"/>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/spin/spin.css"/>
 <!-- 快捷键 -->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/jquery.hotkeys.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
 <!-- 富文本转码器 注意此处的富文本应是已替换了html标签的版本-->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/html_coder.js"></script>
-<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/BASE64/jquery.base64.js"></script>
 </head>
 <body>
 	<!-- 导航栏 -->
@@ -38,7 +38,7 @@
 				<ul class="nav navbar-nav navbar-right">
 				<li><a href="<%=context_path%>/user/dataAnalysis" class="navbar-hyperlink" id="navbar-dataAnalysis"><span class="glyphicon glyphicon-stats"></span> 数据分析</a></li>
 				<li><img id="nav-portrait" class="img-circle"></li>
-				<li><p id="nav-username" class="navbar-text"><%=currentUser.getUser_name() %></p></li>
+				<li><a href="<%=context_path%>/user/personalConfig" id="nav-username"><%=currentUser.getUser_name()%></a></li>
 				<li><a href="<%=context_path%>/gate/login/logout" class="navbar-hyperlink" id="navbar-logout"><span class="glyphicon glyphicon-log-out"></span>注销</a></li>
 				</ul>
 			</div>
@@ -55,6 +55,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="div-loading-spin">
 	</div>
 	<!-- 楼层 -->
 	<script id="repliesFloors" type="text/html">
@@ -86,7 +88,7 @@
 					</h4>
 					<span :class="postInfo.tags"></span>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" id="div-post-content" v-html="postInfo.post_content">
 					{{postInfo.post_content}}		
 				</div>
 				<div class="panel-footer">
@@ -96,7 +98,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-10 col-md-offset-1" v-for="(reply, index) of slist">
+	<div class="col-md-10 col-md-offset-1" v-cloak v-for="(reply, index) of slist">
 		<div class="col-md-2 col-md-offset-2">
 			<form role="form" class="form-vertical reply-floor">
 				<div class="form-group">
@@ -105,7 +107,7 @@
 				<div class="form-group text-center">
 					<label class="control-label center-block text-center">{{reply.user_name}}</label>
 					<label class="control-label center-block text-center">Lv. <span class="replier-lvl">{{reply.level}}<span></label>
-					<label class="control-label center-block text-center">{{reply.identity}}</label>
+					<label class="control-label center-block text-center user-identity">{{reply.identity}}</label>
 				</div>
 			</form>
 		</div>

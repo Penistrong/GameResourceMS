@@ -49,4 +49,5 @@ public class DataAnalysisController extends BaseAction<DataAnalysisService<Map<S
 		CurrentUser curUser = (CurrentUser)session.getAttribute("currentUser");
 		return this.service.getUserStatsOfYear(curUser.getResource_id());
 	}
+	
 }

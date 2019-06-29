@@ -27,6 +27,7 @@ img#nav-portrait{
 	height:150px;
 	resize:none;
 }
+<<<<<<< HEAD
 #editor{
 	overflow:scroll;
 	max-height:300px;
@@ -51,6 +52,9 @@ footer#footer{
      text-align: center;
 }
 }
+=======
+
+>>>>>>> branch 'master' of https://github.com/Penistrong/GameResourceMS.git
 .testDiv{  
 	width: 100px;    
     word-wrap:break-word;  
@@ -58,20 +62,32 @@ footer#footer{
     overflow: hidden;  
 }
 p#nav-username{cursor:pointer;}
+
 .v-fork-me {
   position:fixed;
-  right:0;button:0;
-  z-index:999;
+  left:0;
+  top:50;
+  z-index:10;
 }
+
 div.container-fluid.main-container{margin-top:100px;}
 div#templates_Panel{min-height:400px;}
 div.panel{background-color:rgba(0,0,0,0);border:transparent}
+div#templates_Panel{
+	z-index:5;
+}
+
+.post-visits{
+	color:#f10e41;
+	font-size:10px;
+}
 
 img.ads-image{max-height:200px;}
 
 ul.posts_list{font:20px verdana, arial, sans-serif;}
 ul.posts_list li{list-style:none;padding:0;margin:0;float:left;font:20px,KaiTi,arial,sans-serif;display:block;background:#fffbf0;text-over-flow:ellipsis;over-flow:hidden;white-space:nowrap;height:30px;}
 ul.posts_list li.post_subhead{width:200px;}
+<<<<<<< HEAD
 ul.posts_list li a{
 	display:block;
 	height:30px;
@@ -79,3 +95,36 @@ ul.posts_list li a{
 	color:#fff; /* 设置文字颜色 */
 	text-decoration:none; /* 去掉下划线 */
 	border-right:1px solid #000; /* 在左侧加上分隔线 */}
+=======
+ul.posts_list li a {
+	display: block;
+	height: 30px;
+	background: #3A4953; /* 设置背景色 */
+	color: #fff; /* 设置文字颜色 */
+	text-decoration: none; /* 去掉下划线 */
+	border-right: 1px solid #000; /* 在左侧加上分隔线 */
+}
+
+#adCarousel {
+	z-index: 3;
+	backgroud-color: rgba(0, 0, 0, 0);
+	position: relative;
+	margin-top: 100px;
+}
+
+#footer {
+	font-size:12px;
+	color:#999;
+	margin:0 auto;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(0,0,0,1);
+	font-weight:bold;
+	text-align: center;
+}
+
+address{
+	margin-bottom:0px;
+}
+>>>>>>> branch 'master' of https://github.com/Penistrong/GameResourceMS.git

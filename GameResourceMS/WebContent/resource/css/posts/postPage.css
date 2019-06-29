@@ -24,8 +24,13 @@ div.main-container{
 	margin-top:100px;
 }
 
+div#div-post-content{
+	max-height:800px;
+	pverflow-y:auto;
+}
+
 .div-reply{
-	max-height:300px;
+	max-height:500px;
 	min-height:120px;
 	overflow-y:auto;
 }
@@ -55,6 +60,12 @@ div.main-container{
 	font-weight:bold;
 	color: #cc3299;
 	font-size:18px;
+}
+
+.user-identity{
+	font-weight:bold;
+	color: #3060cf;
+	font-size:16px;
 }
 
 .poster-intro{
@@ -147,7 +158,8 @@ div.main-container{
 }
 
 #nav-username{
-	line-height:20px;
+	padding-top:15px!important;
+	padding-bottom:15px!important;
 }
 
 .navbar-hyperlink{
