@@ -125,6 +125,9 @@
 
 	<!---------------------------------------------------- 导航栏组件 ----------------------------------------------------->
 	<!-- 加载不同模版 -->
+	
+		
+			
 			<div class="container-fluid main-container">
 				<div class="panel panel-default">
 					<div class="panel-body">
@@ -171,16 +174,10 @@
 				
 			</div>
 				<!-- 角标 -->
-		
-					<!-- 角标 -->
-		
-					<!-- 角标 -->
-		
-		<div id="particles">
+	<div id="particles">
 		<div class="intro">
-
-		</div>
-		</div>
+			</div>
+	</div>	
 	<!-- -----------------------------------------------发帖--------------------------------------------------------- -->
 
 
@@ -394,7 +391,7 @@
 				</form>
 			</div>
 	<!-- 上传图片模态框 end-->
-	
+		
 	
 	<!-- -----------------------------------------------帖子--------------------------------------------------------- -->
 	<script id="latestPosts" type="text/html">
@@ -488,5 +485,9 @@
 	 <script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
 	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/index/index.js?v=<%=version%>"></script>
+	<footer id="footer">
+		<p>Author: 陈立伟 吕昶臻  Alias: Penistrong 15257917788 <a href="https://github.com/Penistrong/GameResourceMS">Fork us on GitHub</a></p>
+		<address>Copyright © 2019-9102 游戏资源集散论坛 GameResourceMS All Rights Reserved</address>
+	</footer>
 </body>
 </html>
