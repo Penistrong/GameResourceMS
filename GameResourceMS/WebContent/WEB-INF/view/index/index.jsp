@@ -390,18 +390,24 @@
 						<a :href="getPostURL(post.poster_id, post.post_id)">{{post.post_title}}</a>
 					</h2>
 				</div>
-			<div class="panel-body" style='width: 930px;display:block;word-break: break-all;word-wrap: break-word;'>
-				<h3 class="panel-title">
+				<div class="panel-body" style='width: 930px;display:block;word-break: break-all;word-wrap: break-word;'>
+					<h3 class="panel-title">
 					{{post.post_subhead}}
-				</h3>
-				<div style="text-align:right;">
+					</h3>
+					<div style="text-align:right;">
 					   {{post.post_author}}
-					<br>
-					<small><span class="post-visits">浏览量： {{post.visits}}</span></small>
-					<small>
-						{{post.upload_time}}
-					</small>
-				</div>		
+						<br>
+						<small><span class="post-visits">浏览量： {{post.visits}}</span></small>
+						<small>
+							{{post.upload_time}}
+						</small>
+					</div>		
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-md-offset-4">
+			<div class="text-center">
+			<pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange"></pagination>
 			</div>
 		</div>
 		</div>

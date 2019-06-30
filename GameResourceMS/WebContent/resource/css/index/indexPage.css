@@ -107,3 +107,71 @@ address{
 	margin-bottom:0px;
 }
 
+.ul-paging{
+	display: inline-block;
+	padding: 0;
+	margin: 1rem 0;
+	font-size: 0;
+	list-style: none;
+	user-select: none;
+	margin-left:auto;
+}
+
+.ul-paging>li.paging-item {
+		display:inline;
+		font-size: 18px;
+		position: relative;
+		padding: 6px 15px;
+		line-height: 1.42857143;
+		text-decoration: none;
+		border-radius:5px;
+		background-color: #fff;
+		justify-content: center;
+		align-items:center;
+		cursor: pointer;
+		color: #64a281;
+		float:left;
+	}
+
+.ul-paging:first-child {
+	margin-left: 0;
+}
+
+.ul-paging>li.paging-item:hover {
+	background-color: #D9D949;
+	color: #fff;
+	font-size: 20px;
+}
+
+.ul-paging>li.paging-item--disabled{
+	background-color: #c0c0c0;
+	color: #fff;
+}
+.ul-paging>li.paging-item--more {
+	background-color: #fff;
+	color: #505050;
+}
+
+.ul-paging>li.paging-item--disabled {
+	cursor: not-allowed;
+	opacity: .75;
+}
+
+.ul-paging>li.paging-item--disabled:hover{
+	background-color:#c0c0c0;
+	color:#fff;
+	font-size:18px;
+}
+
+.ul-paging>li.paging-item--more{
+	cursor: default;
+}
+
+.ul-paging>li.paging-item--current {
+	cursor:default;
+	background-color: #64a281;
+	color: #fff;
+	position: relative;
+	z-index: 1;
+	border-color: #64a281;
+}
