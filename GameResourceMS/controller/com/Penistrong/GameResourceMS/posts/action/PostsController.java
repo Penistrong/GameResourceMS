@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -74,6 +75,14 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 		return posts_list;
 	}
 	
+	/**
+	 * @Description 由于建立新帖子需要同时在三个表中插入新的记录且要发放发帖奖励(意味着还要要更新user_accounts这张表)，于是采用事务注解驱动进行数据库回滚防止对多个表的操作过程中出错
+	 * @param params
+	 * @param request
+	 * @param session
+	 * @return
+	 */
+	@Transactional(rollbackFor = Exception.class)
 	@ResponseBody
 	@RequestMapping(value="/createNewPost",method = RequestMethod.POST)
 	public boolean createNewPost(@RequestBody Map<String,Object> params,HttpServletRequest request,HttpSession session){
@@ -90,6 +99,14 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 		return false;
 	}
 	
+	/**
+	 * @Description 由于回复帖子后要在两张与帖子内回复有关的表中插入记录且要发放用户回复奖励，此处采用事务进行回滚
+	 * @param params
+	 * @param request
+	 * @param session
+	 * @return
+	 */
+	@Transactional(rollbackFor = Exception.class)
 	@ResponseBody
 	@RequestMapping(value="/createNewReply",method = RequestMethod.POST)
 	public boolean insertNewReply(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){

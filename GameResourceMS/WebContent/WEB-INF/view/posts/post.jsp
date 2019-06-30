@@ -61,6 +61,9 @@
 	<div id="div-reply-reward">
 		<p>经验+3，G币+1，告辞！</p>
 	</div>
+	<div id="button-backToTop">
+		<img src="<%=image_path%>/resource/image/common/scrollToTop/rocket.png" class="img-circle" id="button-backToTop-img">
+	</div>
 	<!-- 楼层 -->
 	<script id="repliesFloors" type="text/html">
 	<div id="replyManagement">

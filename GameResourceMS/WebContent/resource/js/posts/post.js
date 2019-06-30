@@ -195,6 +195,9 @@ function convertOffset(x, y, degrees) {
 }
 //!spin结束
 
+var toTop = $(document).scrollTop();//距页面顶端的偏移量，随着window的滚动监听而更新值
+var minOffset = $("#button-backToTop").scrollTop();//回到顶部 按钮距顶部的偏移量
+
 $(document).ready(function(){
 	
 	var opts = {
@@ -218,7 +221,20 @@ $(document).ready(function(){
 	};
 	
 	spinner = new Spinner(opts);
+	
+	//绑定滚动监听
+	$(window).scroll(function(){
+		toTop = $(document).scrollTop();
+		if(toTop > minOffset + 200) //200可以自行定义根据效果判断
+			$("#button-backToTop").show();
+		else
+			$("#button-backToTop").hide();
+	})
 
+	$("#button-backToTop").click(function(){
+		$('html ,body').animate({ scrollTop: 0 }, toTop / 100 * 100);//每100px移动0.1s=100ms
+	})	
+	
 	$.ajax({
 		type:"post",
 		url:contextpath+"/index/getUserInfo",
@@ -517,6 +533,8 @@ var manage_replies = new Vue({
 			for(var i = curPageStartIndex;i<=curPageEndIndex;i++){
 				this.slist.push(this.list[i]);
 			}
+			//回到页面顶部
+			$('html ,body').animate({ scrollTop: -50 }, 500);
 		},
 		//修改数据
 		showOverlay(index){

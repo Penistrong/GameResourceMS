@@ -194,3 +194,16 @@ div#div-post-content{
 	color:#39c652;
 	position:fixed;
 }
+
+#button-backToTop{
+	display:none;
+	z-index:10;
+	top:90%;
+	left:90%;
+	cursor:pointer;
+	position:fixed;
+}
+#button-backToTop-img{
+	height:80px;
+	width:80px;
+}

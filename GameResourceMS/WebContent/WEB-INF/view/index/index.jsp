@@ -474,7 +474,7 @@
 	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/index/index.js?v=<%=version%>"></script>
 	<footer id="footer">
-		<p>Author: 陈立伟 吕昶臻  Alias: Penistrong 15257917788 <a href="https://github.com/Penistrong/GameResourceMS">Fork us on GitHub</a></p>
+		<p>Author: 陈立伟 吕昶臻  Alias: Penistrong 15257917788 <a href="https://github.com/Penistrong/GameResourceMS" target="_blank">Fork us on GitHub</a></p>
 		<address>Copyright © 2019-9102 游戏资源集散论坛 GameResourceMS All Rights Reserved</address>
 	</footer>
 </body>

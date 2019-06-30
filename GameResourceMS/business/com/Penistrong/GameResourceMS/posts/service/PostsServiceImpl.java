@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.Penistrong.GameResourceMS.Util.UtilTools;
 import com.Penistrong.GameResourceMS.base.service.BaseServiceImpl;
@@ -41,6 +42,7 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		return this.sqlSessionTemplate.insert(sql, map)>0?true:false;
 	}
 	
+	
 	@Override
 	public boolean createPostReply(Map<String, Object> map) {
 		map.put("mapping", "createPostReply");
@@ -50,6 +52,7 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		return this.sqlSessionTemplate.insert(sql, map)>0?true:false;
 	}
 
+	@Transactional(rollbackFor = RuntimeException.class)
 	@Override
 	public boolean insertNewReply(Map<String, Object> map) {
 		map.put("mapping", "insertNewReply");
