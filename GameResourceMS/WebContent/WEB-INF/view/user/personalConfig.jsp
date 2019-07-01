@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/user/personalConfigPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/user/row.css"/>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
+<script type="text/javascript" src="<%=javascript_path%>/resource/js/common/vue.js"></script>
 <!-- 图表脚本引入 highcharts -->
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/highcharts/highcharts-3d.js"></script>
@@ -59,10 +60,10 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">个人信息<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#posts-history_Section">帖子历史</a></li>
-								<li><a href="#personalInfo-coins_posts_Section">留白</a></li>
+								<li><a href="#userStats_Section">数据记录</a></li>
 							</ul>
 						</li>
-						<li><a href="#userStats_Secction">数据记录</a></li>
+						<li><a href="#whitespace_Section">留白</a></li>
 					</ul>
 				</div>
 				</div>
@@ -186,13 +187,40 @@
 						</form>
 					</div>
 					<div id="posts-history_Section" class="section">
-						<p>发帖历史-TODO:Vue.js渲染表单</p>
-					</div>
-					<div id="personalInfo-coins_posts_Section" class="section">
-						<p>测试硬币</p>
+						<h3 class="text-center">发帖历史</h3>
+						<div id="div-postsHistory">
+						<div v-cloak v-for="(post, index) of postsList" style="cursor:pointer">
+							<div class="panel panel-success">
+								<div class="panel-heading">
+									<h4>
+										<span class="label label-warning">{{index+1}}</span>
+										<a :href="getPostURL(post.poster_id, post.post_id)">{{post.post_title}}</a>
+										<span style="float:right">上传于 {{post.upload_time}}</span>
+									</h4>
+									<h2 class="panel-title">
+										{{post.post_subhead}}
+										<div class="btn-group btn-post-choices" style="float:right">
+											<button type="button" class="btn btn-danger btn-choice-view" @click=jump(post.poster_id,post.post_id)>查看</button>
+											<button type="button" class="btn btn-danger dropdown-toggle btn-expand-caret" data-toggle="dropdown" >
+												<span class="caret"></span>
+												<span class="sr-only">切换下拉菜单</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li>楼层:  {{post.floors}}</li>
+												<li>浏览量: {{post.visits}}</li>
+												<li class="divider"></li>
+												<li><a @click=deleteThisPost(post.poster_id,post.post_id)>删除</a></li>
+											</ul>
+										</div>
+									</h2>
+								</div>
+							</div>
+						</div>
+						</div>
 					</div>
 					<div id="userStats_Section" class="section">
 					</div>
+					<div id="whitespace_Section" class="section"></div>
 				</div>
 			</div>
 		</div>

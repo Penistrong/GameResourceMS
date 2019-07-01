@@ -4,12 +4,14 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.imageio.ImageIO;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -106,5 +108,24 @@ public class PersonalConfigController extends BaseAction<PersonalConfigService<M
 			if(bytes[i]<0)
 				bytes[i] += 256;
 		return bytes;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getUserPostsHistory", method=RequestMethod.POST)
+	public List<Map<String, Object>> getUserPostsHistory(HttpServletRequest request, HttpSession session){
+		CurrentUser curUser = (CurrentUser)session.getAttribute("currentUser");
+		Map<String, Object> params = new HashMap<>();
+		params.put("resource_id", curUser.getResource_id());
+		params.put("poster_id", curUser.getUser_id());
+		List<Map<String, Object>> postsList =  this.service.getUserPostsHistory(params);
+		for(Map<String, Object> post:postsList)
+			post.put("upload_time", post.get("upload_time").toString());
+		return postsList;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/deletePost", method=RequestMethod.POST)
+	public boolean deletePost(@RequestBody Map<String,Object> params, HttpServletRequest request) {
+		return this.service.deletePost(params);
 	}
 }

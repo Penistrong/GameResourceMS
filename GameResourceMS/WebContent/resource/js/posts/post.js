@@ -314,7 +314,7 @@ $.beginService = function(){
 			},
 			//每页显示条数
 			pageSize : {
-				type: Number,
+				type: Number|String,
 				default: 10
 			},
 			//总条数

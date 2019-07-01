@@ -14,7 +14,7 @@
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>>
 <link rel="stylesheet" href="<%=css_path%>/resource/css/index/style.css"><link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
-<link rel="stylesheet" href="<%=css_path%>/resource/css/505/index.css">
+
 
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
@@ -85,12 +85,12 @@
 							板块<b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="#" id="query-game-info"><span></span>游戏快讯</a></li>
+							<li><a href="#"><span></span>游戏快讯</a></li>
 							<li><a href="#"><span></span>资源专区</a></li>
 							<li class="divider"></li>
 							<li><a href="#"><span></span>秋名山</a></li>
 						</ul></li>
-					<li><a href="#"><span class="glyphicon glyphicon-book"></span>
+					<li><a href="<%=context_path%>/posts/770560618@qq.com/000001" target="_blank"><span class="glyphicon glyphicon-book"></span>
 							版规</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <span
@@ -147,16 +147,16 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200835097sxf8.jpeg">
+						<img alt="广告" class="ads-image center-block" src="<%=image_path%>/resource/image/ads/ad1.jpg">
 						<div class="carousel-caption"></div>
 					</div>
 					<div class="item">
-						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200848121eydw.jpeg">
+						<img alt="广告" class="ads-image center-block" src="<%=image_path%>/resource/image/ads/ad2.jpg">
 						<div class="carousel-caption"></div>
 					</div>
 					<div class="item">
 						<!-- <img alt="广告" src="<%=image_path%>/resource/image/ads"> -->
-						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/20171020082737gu189.jpeg">
+						<img alt="广告" class="ads-image center-block" src="<%=image_path%>/resource/image/ads/ad3.jpg">
 						<div class="carousel-caption"></div>
 					</div>
 				</div>
@@ -187,11 +187,11 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="signin-footer">
-							<div id=scrowToTop>
-								<button type="button" v-on:click="backTop" id="toTop"></button>
+							<div id="scrowToTop">
+								<button type="button" v-on:click="backTop" id="toTop" style="z-index:100;"></button>
 							</div>
 							<button type="button" data-toggle="modal"
-								data-target=".signin_modal" id="message"></button>
+								data-target=".signin_modal" id="message" style="z-index:100;"></button>
 						</div>
 						<!--/.signin-footer -->
 					</div>
@@ -387,6 +387,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2 class="panel-title">
+						<span class="label label-warning" v-if="post.tags==='hot'">HOT</span>
+						<span class="label label-success" v-if="post.tags==='new'">NEW</span>
 						<a :href="getPostURL(post.poster_id, post.post_id)">{{post.post_title}}</a>
 					</h2>
 				</div>
@@ -466,15 +468,6 @@
 	</div>
 	</script>
 	<!-- ---------------------------------------------网站流量查询----------------------------------------------------- -->
-	<!-- 资源专区 -->
-	
-	<script id="aboutGame" type="text/html">
-
-	<div id="game">
-        <canvas id="canvas" width="800" height="250"></canvas>
-    </div>
-	
-	</script>
 	<!-- 查询网站基本信息和流量(底层) -->
 	<script id="webInfo" type="text/html">
 	</script>
@@ -485,15 +478,12 @@
 		</div>
 	</div>
 	</script>
-	 <script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
-	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>
-	<script type="text/javascript" src="<%=javascript_path%>/resource/js/index/index.js?v=<%=version%>"></script>
 	<footer id="footer">
 		<p>Author: 陈立伟 吕昶臻  Alias: Penistrong 15257917788 <a href="https://github.com/Penistrong/GameResourceMS" target="_blank">Fork us on GitHub</a></p>
 		<address>Copyright © 2019-9102 游戏资源集散论坛 GameResourceMS All Rights Reserved</address>
 	</footer>
-	
-    <script src="<%=javascript_path%>/resource/js/505/index.js"></script>
-  
+	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
+	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>
+	<script type="text/javascript" src="<%=javascript_path%>/resource/js/index/index.js?v=<%=version%>"></script>
 </body>
 </html>
