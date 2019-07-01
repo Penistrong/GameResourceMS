@@ -14,7 +14,7 @@
 <link rel="shortcut icon" href="<%=image_path%>/resource/image/common/web_info/forum.ico"/>>
 <link rel="stylesheet" href="<%=css_path%>/resource/css/index/style.css"><link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/index/indexPage.css"/>
 <link rel="stylesheet" type="text/css" href="<%=css_path%>/resource/css/common/dataTable/jquery.dataTables.css">
-
+<link rel="stylesheet" href="<%=css_path%>/resource/css/505/index.css">
 
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/template.js"></script>
 <script type="text/javascript" src="<%=javascript_path%>/resource/js/common/dataTable/jquery.dataTables.min.js"></script>
@@ -85,7 +85,7 @@
 							板块<b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><span></span>游戏快讯</a></li>
+							<li><a href="#" id="query-game-info"><span></span>游戏快讯</a></li>
 							<li><a href="#"><span></span>资源专区</a></li>
 							<li class="divider"></li>
 							<li><a href="#"><span></span>秋名山</a></li>
@@ -468,6 +468,16 @@
 	</div>
 	</script>
 	<!-- ---------------------------------------------网站流量查询----------------------------------------------------- -->
+	<!-- 资源专区 -->
+	
+	<script id="aboutGame" type="text/html">
+
+	<div id="game">
+        <canvas id="canvas" width="800" height="250"></canvas>
+    </div>
+	
+	</script>
+	
 	<!-- 查询网站基本信息和流量(底层) -->
 	<script id="webInfo" type="text/html">
 	</script>
@@ -485,5 +495,6 @@
 	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/jquery.particleground.js"></script>
 	<script type='text/javascript' src="<%=javascript_path%>/resource/js/gate/demo.js"></script>
 	<script type="text/javascript" src="<%=javascript_path%>/resource/js/index/index.js?v=<%=version%>"></script>
+	<script src="<%=javascript_path%>/resource/js/505/index.js"></script>
 </body>
 </html>
