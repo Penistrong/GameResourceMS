@@ -7,7 +7,7 @@ function Boss(canvas) {
     this.ctx = canvas.getContext("2d");
     this.init();
 }
-
+Boss.boss = [];
 Boss.config = {}
 Boss.type = [
     { 

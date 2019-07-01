@@ -52,6 +52,11 @@ $(document).ready(function(){
 	$("#query-author-info").click(function(){
 		queryAuthorInfo();
 	})
+	$("#query-game-info").click(function(){
+		console.log("in");
+		queryGameinfo();
+		console.log("in");
+	})
 	$("#btn-show-latest-posts").click(function(){
 		$.latestPosts_page();
 	})
@@ -559,6 +564,10 @@ function queryAuthorInfo(){
 	$("#templates_Panel").html(rendered_html);
 }
 
+function queryGameinfo(){
+	var rendered_html = template($("#aboutGame").html());
+	$("#templates_Panel").html(rendered_html);
+}
 
 function initToolbarBootstrapBindings() {
     var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier', 

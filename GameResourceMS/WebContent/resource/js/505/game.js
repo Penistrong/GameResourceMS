@@ -10,7 +10,8 @@ function start() {
     var cloud = new Cloud(canvas);
     var trex = new Trex(canvas);
     var boss = new Boss(canvas);
-
+    var boss2 = new Boss(canvas);
+    
     trex[37] = true;
     trex[67] = true;
     trex[39] = true;
@@ -90,10 +91,12 @@ function start() {
         cloud.update();
         trex.update(timer);
         boss.update(timer, trex);
+        boss2.update(timer, trex);
         Bullet.update(trex, boss);
         if(gameState == 'OVER') {
             return this.ctx.drawImage(over, 0, 0, 500, 98, 160, 70, 500, 98);
         }
+        
         window.requestAnimFrame(draw);
     })();
 }
