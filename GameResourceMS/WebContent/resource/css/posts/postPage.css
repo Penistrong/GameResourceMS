@@ -29,6 +29,10 @@ div#div-post-content{
 	pverflow-y:auto;
 }
 
+#div-post-content img{
+	max-width:500px;
+}
+
 .div-reply{
 	max-height:500px;
 	min-height:120px;

@@ -175,3 +175,11 @@ address{
 	z-index: 1;
 	border-color: #64a281;
 }
+
+#div-author-donation ul{padding:0;margin:0;}
+
+#div-author-donation li{float:left;}
+
+.img-donation{
+	width:290px;
+}

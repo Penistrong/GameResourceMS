@@ -88,7 +88,7 @@
 							<li><a href="#" id="query-game-info"><span></span>游戏快讯</a></li>
 							<li><a href="#"><span></span>资源专区</a></li>
 							<li class="divider"></li>
-							<li><a href="#"><span></span>秋名山</a></li>
+							<li><a href="<%=context_path%>/404"><span></span>秋名山</a></li>
 						</ul></li>
 					<li><a href="<%=context_path%>/posts/770560618@qq.com/000001" target="_blank"><span class="glyphicon glyphicon-book"></span>
 							版规</a></li>
@@ -384,7 +384,7 @@
 	<script id="latestPosts" type="text/html">
 		<div id="postManagement">
 		<div class="col-md-8 col-md-offset-2" v-for="(post, index) of slist" @click=jump(post.poster_id,post.post_id) style="cursor:pointer">
-			<div class="panel panel-default">
+			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h2 class="panel-title">
 						<span class="label label-warning" v-if="post.tags==='hot'">HOT</span>
@@ -392,7 +392,7 @@
 						<a :href="getPostURL(post.poster_id, post.post_id)">{{post.post_title}}</a>
 					</h2>
 				</div>
-				<div class="panel-body" style='width: 930px;display:block;word-break: break-all;word-wrap: break-word;'>
+				<div class="panel-body" style='width: 930px;display:block;word-break: break-all;word-wrap: break-word;background-color:#fff;'>
 					<h3 class="panel-title">
 					{{post.post_subhead}}
 					</h3>
@@ -483,8 +483,14 @@
 	</script>
 	<!-- 关于作者 -->
 	<script id="aboutAuthor" type="text/html">
-	<div class="col-xs-6 col-sm-6 col-md-6 col-md-offset-3">
-		<div>
+	<div class="col-xs-10 col-sm-10 col-md-10 col-md-offset-1">
+		<div id="div-author-donation" class="center-block">
+			<ul>
+				<li><img src="<%=image_path%>/resource/image/author/clwAlipay.jpg" class="img-donation"></li>
+				<li><img src="<%=image_path%>/resource/image/author/clwWeChat.png" class="img-donation"></li>
+				<li><img src="<%=image_path%>/resource/image/author/lczAlipay.jpg" class="img-donation"></li>
+				<li><img src="<%=image_path%>/resource/image/author/lczWeChat.jpg" class="img-donation"></li>
+			</ul>
 		</div>
 	</div>
 	</script>
