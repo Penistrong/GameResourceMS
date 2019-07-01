@@ -6,11 +6,10 @@ import java.util.Map;
 import com.github.pagehelper.PageInfo;
 
 /**
- * 基础服务接口
- * @param <R> 返回结果的类型
- * @author Penistrong[chenliwei]
- * @version GameResourceMS	
- * @lastEditTime 2018年4月19日下午3:05:21
+ * 
+ * @author Penistrong
+ *
+ * @param <R>
  */
 public interface BaseService<R extends Object> {
 	/**

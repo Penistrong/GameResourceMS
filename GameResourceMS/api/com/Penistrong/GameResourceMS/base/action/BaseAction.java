@@ -24,10 +24,10 @@ import com.github.pagehelper.PageInfo;
 
 /**
  * 
- * @author Penistrong[chenliwei]
- * @version GameResourceMS	
- * @lastEditTime 2018年4月21日上午11:02:43
- * @param <T> 注入的servicee
+ * @author Penistrong
+ *
+ * @param <T>
+ * @param <R>
  */
 public abstract class BaseAction<T extends BaseService<R>,R extends Object> {
 	

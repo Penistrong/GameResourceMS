@@ -6,9 +6,8 @@ import com.Penistrong.GameResourceMS.base.service.BaseService;
 
 /**
  * 
- * @author Penistrong[chenliwei]
- * @version GameResourceMS	
- * @lastEditTime 2018年4月30日下午7:00:45
+ * @author Penistrong
+ *
  * @param <R>
  */
 public interface RegisterService<R extends Object> extends BaseService<R> {

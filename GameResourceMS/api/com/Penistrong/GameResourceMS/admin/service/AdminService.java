@@ -7,9 +7,9 @@ import com.Penistrong.GameResourceMS.base.service.BaseService;
 
 /**
  * 
- * @author Penistrong[chenliwei]
- * @version GameResourceMS	
- * @lastEditTime 2018年7月19日上午11:51:21
+ * @author Penistrong
+ *
+ * @param <R>
  */
 public interface AdminService <R extends Object> extends BaseService<R>{
 	
