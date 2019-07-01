@@ -25,4 +25,29 @@
 		</if>
 	</select>
 	
+	<select id="getUserPostsHistory" resultType="java.util.Map">
+		SELECT a.poster_id,a.post_id,a.upload_time,a.post_title,a.post_subhead,b.visits,b.floors
+		  FROM posts_base_info a
+	INNER JOIN posts_extend_info b
+			ON a.resource_id = b.resource_id AND a.post_id = b.post_id
+	     WHERE a.resource_id = #{resource_id} 
+	       AND a.poster_id = #{poster_id}
+	  ORDER BY a.upload_time DESC
+	</select>
+	
+	<delete id="deletePostBase">
+		DELETE FROM posts_base_info
+		 WHERE poster_id = #{poster_id}
+		   AND post_id = #{post_id}
+	</delete>
+	
+	<delete id="deletePostExtend">
+		DELETE FROM posts_extend_info
+	     WHERE post_id = #{post_id}
+	</delete>
+	
+	<delete id="deletePostReply">
+		DELETE FROM posts_reply
+		 WHERE post_id = #{post_id}
+	</delete>
 </mapper>

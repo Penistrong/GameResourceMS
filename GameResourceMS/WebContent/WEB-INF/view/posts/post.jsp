@@ -133,7 +133,19 @@
 		</div>
 		</div>
 	</div>
+	<div class="col-md-2 col-md-offset-8">
+		<div class="select">
+			<span class="label label-warning">每页显示</span>
+			<select class="choice" v-model="pageSize" @change="pageChange(1)">
+				<option>1</option>
+				<option>5</option>
+				<option>10</option>
+				<option>30</option>
+			</select>
+		</div>
+	</div>
 	<div class="col-md-4 col-md-offset-4">
+
 	<div class="text-center">
 	<pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange"></pagination>
 	</div>

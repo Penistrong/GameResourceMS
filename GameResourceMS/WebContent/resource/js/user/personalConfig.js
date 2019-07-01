@@ -23,6 +23,9 @@ $(document).ready(function(){
 		}
 	});
 	
+	//开启vue控件服务于发帖历史
+	$.beginService();
+	
 	$("#upload_portrait").change(function(){
 		$("#preview").prop("src",URL.createObjectURL($(this)[0].files[0]));
 		$("#div-preview").show();
@@ -192,6 +195,68 @@ function updateUserInfo(){
 		contentType:"application/json;charset=utf-8",
 		success:function(flag){
 			console.log(flag);
+		}
+	})
+}
+
+$.beginService = function(){
+	var postsHistory = new Vue({
+		el:"#posts-history_Section",
+		data(){
+			return{
+				slist: [],
+				postsList:[],
+				pageSize : 3,
+				currentPage: 1,
+				count: 0
+			}
+		},
+		created(){
+			console.log(Date.now()+"Vue instance"+this.el+"has been created");
+		},
+		mounted: function(){
+			this.getUserPostsHistory();
+		},
+		methods:{
+			//获取当前用户发帖历史
+			getUserPostsHistory:function(){
+				$.ajax({
+					type:"POST",
+					url:contextpath+"/user/personalConfig/getUserPostsHistory",
+					dataType:"json",
+					success:function(postsList){
+						postsHistory.postsList = postsList;
+					},
+					error:function(){
+						alert("拉取帖子历史失败！");
+					}
+				})
+			},
+			jump(poster_id, post_id){
+				location.href = contextpath+"/posts/"+poster_id+"/"+post_id;
+			},
+			getPostURL(poster_id, post_id){
+				return contextpath+"/posts/"+poster_id+"/"+post_id;
+			},
+			deleteThisPost(poster_id, post_id){
+				$.ajax({
+					type:"POST",
+					url:contextpath+"/user/personalConfig/deletePost",
+					contentType:"application/json;charset=utf-8",
+					dataType:"json",
+					data:JSON.stringify({'poster_id':poster_id,'post_id':post_id}),
+					success:function(flag){
+						if(flag===true){
+							window.location.reload();
+						}else{
+							alert("无法删除");
+						}
+					},
+					error:function(){
+						alert("发送ajax请求出错!");
+					}
+				})
+			}
 		}
 	})
 }

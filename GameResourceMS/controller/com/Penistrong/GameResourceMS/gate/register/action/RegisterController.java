@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class RegisterController extends BaseAction<RegisterService<Map<String,Ob
 		return "gate/register";
 	}
 	
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public Map<String,Object> Register(@RequestBody Map<String,Object> map,HttpServletRequest request){	

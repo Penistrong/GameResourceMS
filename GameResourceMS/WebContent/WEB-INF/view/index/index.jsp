@@ -90,7 +90,7 @@
 							<li class="divider"></li>
 							<li><a href="#"><span></span>秋名山</a></li>
 						</ul></li>
-					<li><a href="#"><span class="glyphicon glyphicon-book"></span>
+					<li><a href="<%=context_path%>/posts/770560618@qq.com/000001" target="_blank"><span class="glyphicon glyphicon-book"></span>
 							版规</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <span
@@ -147,16 +147,16 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200835097sxf8.jpeg">
+						<img alt="广告" class="ads-image center-block" src="<%=image_path%>/resource/image/ads/ad1.jpg">
 						<div class="carousel-caption"></div>
 					</div>
 					<div class="item">
-						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/201710200848121eydw.jpeg">
+						<img alt="广告" class="ads-image center-block" src="<%=image_path%>/resource/image/ads/ad2.jpg">
 						<div class="carousel-caption"></div>
 					</div>
 					<div class="item">
 						<!-- <img alt="广告" src="<%=image_path%>/resource/image/ads"> -->
-						<img alt="广告" class="ads-image" src="http://upload.ouliu.net/i/20171020082737gu189.jpeg">
+						<img alt="广告" class="ads-image center-block" src="<%=image_path%>/resource/image/ads/ad3.jpg">
 						<div class="carousel-caption"></div>
 					</div>
 				</div>
@@ -187,11 +187,11 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="signin-footer">
-							<div id=scrowToTop>
-								<button type="button" v-on:click="backTop" id="toTop"></button>
+							<div id="scrowToTop">
+								<button type="button" v-on:click="backTop" id="toTop" style="z-index:100;"></button>
 							</div>
 							<button type="button" data-toggle="modal"
-								data-target=".signin_modal" id="message"></button>
+								data-target=".signin_modal" id="message" style="z-index:100;"></button>
 						</div>
 						<!--/.signin-footer -->
 					</div>
@@ -387,6 +387,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2 class="panel-title">
+						<span class="label label-warning" v-if="post.tags==='hot'">HOT</span>
+						<span class="label label-success" v-if="post.tags==='new'">NEW</span>
 						<a :href="getPostURL(post.poster_id, post.post_id)">{{post.post_title}}</a>
 					</h2>
 				</div>
