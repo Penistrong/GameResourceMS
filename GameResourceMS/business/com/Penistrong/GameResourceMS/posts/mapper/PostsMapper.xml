@@ -107,4 +107,10 @@
 		   SET exp = exp + 3, coins = coins + 1
 		 WHERE resource_id = #{replier_id}
 	</update>
+	
+	<update id="rewardsForNewPost">
+		UPDATE user_accounts
+		   SET exp = exp + 10, coins = coins + 20
+		 WHERE resource_id = #{resource_id}
+	</update>
 </mapper>

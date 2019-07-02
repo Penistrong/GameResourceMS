@@ -171,11 +171,11 @@ function changeUserName(){
 var user_name_Reg = /^[^]{2,7}$/;
 
 function user_name_validation(user_name){
-	if(user_name_Reg.test(user_name)==true){
+	if(user_name_Reg.test(user_name)==false){
 		$("input#edit_user_name").prop({value:"",placeholder:"仅支持2~7位!"});
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 function updateUserInfo(){
@@ -188,13 +188,17 @@ function updateUserInfo(){
 		data = JSON.stringify({'introduction':introduction});
 	console.log(data);
 	$.ajax({
-		type:'post',
+		type:"POST",
 		url:contextpath+"/user/personalConfig/updateUserInfo",
 		data:data,
 		dataType:'json',
 		contentType:"application/json;charset=utf-8",
 		success:function(flag){
-			console.log(flag);
+			if(flag){
+				window.location.reload();
+			}else{
+				alert("更改失败");
+			}
 		}
 	})
 }

@@ -39,11 +39,18 @@ public class PersonalConfigController extends BaseAction<PersonalConfigService<M
 	
 	@ResponseBody
 	@RequestMapping(value="/updateUserInfo", method=RequestMethod.POST)
-	public String updateUserInfo(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){
+	public boolean updateUserInfo(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpSession session){
 		CurrentUser curUser = (CurrentUser)session.getAttribute("currentUser");
 		params.put("resource_id", curUser.getResource_id());
 		params.put("user_id",curUser.getUser_id());	
-		return String.valueOf(this.service.updateUserInfo(params));//type boolean -> String
+		if(this.service.updateUserInfo(params)) {//type boolean -> String
+			if(params.containsKey("user_name")) {
+				curUser.setUser_name(params.get("user_name").toString());
+			}
+			session.setAttribute("currentUser", curUser);
+			return true;
+		}
+		return false;
 	}
 	
 	@ResponseBody

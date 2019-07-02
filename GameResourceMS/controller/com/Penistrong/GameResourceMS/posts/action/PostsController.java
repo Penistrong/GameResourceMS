@@ -85,18 +85,24 @@ public class PostsController extends BaseAction<PostsService<Map<String,Object>>
 	@Transactional(rollbackFor = Exception.class)
 	@ResponseBody
 	@RequestMapping(value="/createNewPost",method = RequestMethod.POST)
-	public boolean createNewPost(@RequestBody Map<String,Object> params,HttpServletRequest request,HttpSession session){
+	public Map<String, Object> createNewPost(@RequestBody Map<String,Object> params,HttpServletRequest request,HttpSession session){
 		params.put("resource_id", ((CurrentUser)session.getAttribute("currentUser")).getResource_id());
 		params.put("poster_id", ((CurrentUser)session.getAttribute("currentUser")).getUser_id());
 		params.put("post_author", ((CurrentUser)session.getAttribute("currentUser")).getUser_name());
 		Integer id=Integer.valueOf(this.service.getLatestPID());
 		String post_id=String.format("%06d", id+1);
 		params.put("post_id", post_id);
+		Map<String, Object> result = new HashMap<>();
 		if(this.service.createNewPost(params)) {
-			if(this.service.createPostExtend(params) && this.service.createPostReply(params))
-				return true;
+			if(this.service.createPostExtend(params) && this.service.createPostReply(params) && this.service.rewardsForNewPost(params)) {
+				result.put("poster_id", params.get("poster_id"));
+				result.put("post_id", params.get("post_id"));
+				result.put("msg", "success");
+				return result;
+			}
 		}
-		return false;
+		result.put("msg", "false");
+		return result;
 	}
 	
 	/**

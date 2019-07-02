@@ -98,7 +98,7 @@
 														<form action="signin.html">
 															<div class="form-group">
 															    <label for="signin_form">Used_ID</label>
-															    <input type="text" class="form-control"  placeholder="enter your user_id here" id="user_id" required/>
+															    <input type="text" class="form-control"  placeholder="Enter your user_id here" id="user_id" required/>
 															</div><!--/.form-group -->
 															<div class="form-group">
 																<label for="signin_form">Password</label>
@@ -132,7 +132,7 @@
 												
 												
 												
-												<button type="button" class="btn signin_btn" data-toggle="modal" data-target=".signin_modal" id="loginButton">
+												<button type="button" class="btn signin_btn" data-target=".signin_modal" id="loginButton">
 												sign in
 												</button>
 												<p>

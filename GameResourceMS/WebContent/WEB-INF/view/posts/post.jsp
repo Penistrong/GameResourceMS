@@ -249,7 +249,7 @@
 			<div id="editor">回复一下帖子吧...</div>
 			<div class="col-md-2 col-md-offset-10">
 				<div class="btn-group" style="margin-top:10px">
-					<a class="btn btn-emit" title="" id="btn-emit-reply"><i class="icon-external-link"></i> 发送回复</a>
+					<a class="btn btn-primary btn-emit" title="" id="btn-emit-reply"><i class="icon-external-link"></i> 发送回复</a>
 				</div>
 			</div>
 		</div>

@@ -114,12 +114,13 @@ $.createNewPost = function(){
 		dataType:"json",
 		contentType:"application/json;charset=utf-8",
 		data:JSON.stringify({'post_title':post_title, 'post_subhead':post_subtitle ,'post_content':post_content}),
-		success:function(msg){
-			console.log(msg);
-			if(msg){
-				window.location.reload();
+		success:function(data){
+			console.log(data);
+			if(data.msg=="success"){
+				$("#newPost-reward").show();
+				setTimeout(function(){window.location.href=contextpath+"/posts/"+data.poster_id+"/"+data.post_id}, 3000);
 			}else{
-				alert("回复失败!");
+				alert("帖子发送失败!");
 			}
 		}
 	})
@@ -419,7 +420,7 @@ $.newPost = function(){
 			data:JSON.stringify(newPost_data),
 			success:function(data){
 				if(data.msg == "success"){
-					window.location.href=contextpath+"/posts/"+data.post_id;
+					
 				}
 			}
 			

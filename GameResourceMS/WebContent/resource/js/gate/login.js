@@ -17,10 +17,8 @@ $(document).ready(function(){
 				if(data.msg == "success"){
 					redirect(data);
 				}else{
-					alert('密码或账户错误,请重新输入!');
-					$("#user_id").attr("value","");
-					$("#password").attr("value","");
-					console.log("mistake");
+					$("#user_id").prop({value:'',placeholder:'密码或账户错误,请重新输入!'});
+					$("#password").prop("value","");
 				}
 			},
 			error:function(){
@@ -36,11 +34,11 @@ var password_Reg = /^([a-zA-Z]+[0-9]+[.!@#$%^&*]+)|([a-zA-Z]+[.!@#$%^&*]+[0-9]+)
 
 function data_validate(user_id,password){
 	if(!user_id_Reg.test(user_id)){
-		$("#user_id").attr({value:'',placeholder:'请输入邮箱或手机号!'});
+		$("#user_id").prop({value:'',placeholder:'请输入邮箱或手机号!'});
 		return false;
 	}
 	if(!password_Reg.test(password)){	
-		$("#password").attr({value:'',placeholder:'仅支持字母数字与部分标点!'});
+		$("#password").prop({value:'',placeholder:'仅支持字母数字与部分标点!'});
 		return false;
 	}
 	return true;

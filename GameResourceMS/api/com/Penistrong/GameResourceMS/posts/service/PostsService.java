@@ -52,4 +52,7 @@ public interface PostsService<R extends Object> extends BaseService<R> {
 		
 	//发放帖子内回复奖励
 	boolean rewardsForReply(Map<String, Object> map);
+	
+	//发放新帖子奖励
+	boolean rewardsForNewPost(Map<String, Object> map);
 }

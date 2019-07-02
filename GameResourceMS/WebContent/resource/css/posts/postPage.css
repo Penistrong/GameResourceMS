@@ -180,6 +180,10 @@ div#div-post-content{
 	margin-right:-15px;
 }
 
+.div-reply img{
+	max-width:500px;
+}
+
 #div-reply-reward{
 	display:none;
 	z-index:10;

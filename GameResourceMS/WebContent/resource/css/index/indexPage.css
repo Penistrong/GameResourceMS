@@ -183,3 +183,22 @@ address{
 .img-donation{
 	width:290px;
 }
+
+#newPost-reward{
+	display:none;
+	z-index:15;
+	height:80px;
+	width:250px;
+	border-radius:50px;
+	border:1px solid #ccc;
+	background-color:#ccc;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+	line-height:80px;
+	margin:0 auto;
+	top:50%;
+	left:50%;
+	color:#ff8040;
+	position:fixed;
+}

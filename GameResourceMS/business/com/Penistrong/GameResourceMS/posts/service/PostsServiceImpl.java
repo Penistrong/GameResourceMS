@@ -124,4 +124,14 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsMapper, Map<String,Ob
 		return this.sqlSessionTemplate.update(sql, map)>0?true:false;
 	}
 
+	@Override
+	public boolean rewardsForNewPost(Map<String, Object> map) {
+		map.put("mapping", "rewardsForNewPost");
+		String sql = String.format("%s%s", new Object[] {this.sqlMapping, map.get("mapping").toString()});
+		this.logger.debug("Execute {} params : {}", sql, map);
+		return this.sqlSessionTemplate.update(sql, map)>0?true:false;
+	}
+
+	
+	
 }
